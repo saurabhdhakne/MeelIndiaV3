@@ -168,7 +168,7 @@ crossorigin=""></script>
 
             <input type="button" onclick="setLocation()" class=" btn btn-outline-primary btn-block mt-2" value="Set Your Location">
 
-            <input type="button" name="Save" value="Submit" onclick="sendInvite()" class="submitinvitation btn btn-primary btn-block mt-3">
+            <input type="button" name="Save" value="Share" onclick="sendInvite()" class="submitinvitation btn btn-primary btn-block mt-3">
 
 
         </form>
@@ -350,14 +350,14 @@ crossorigin=""></script>
 
                         http.onreadystatechange = function() {
                             if(http.readyState == 4 && http.status == 200) {
-                                alert("Invtation Created Successfully Please check Profile Page!");
+                                alert("Your invite created successfully");
+                                strText = this.responseText;
+                                strText = strText.slice(1,-1);
+                                window.location="invitation?id="+strText;
                             }
                         }
-
-                    http.send(params);
-                    alert("Your invite created successfully");
-                    window.location="/profileUser";
-
+                        
+                        http.send(params);
                 }
 			}
 </script>

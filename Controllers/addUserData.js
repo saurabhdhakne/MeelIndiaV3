@@ -52,9 +52,9 @@ module.exports = (req, res) => {
               from: "Saurabh Dhakne",
               to: toEmail, // Recepient email address. Multiple emails can send separated by commas
               subject: "MeelIndia : Account Confirmation",
-              html: `<h1> Your MeelIndia Account created Successfully.</h1> <br> <br> 
+              html: `<h1> Your MeelIndia Account created Successfully. </h1> <br> <br> 
               <h2> <a href='${process.env.ip}/confirmEmailUser?enc=${randomString}'> <strong> Click Here </strong> </a> <br> to activate your account, Please do not share your password with anyone else.</h2> <br><br> 
-              <h2 style="float:right"> Thank You. from : MellIndia </h2> `,
+              <h2 style="float:right"> Thank You. from : MeelIndia </h2> `,
             };
             transporter.sendMail(mailOptions, (error, info) => {
               if (error) {
@@ -63,7 +63,7 @@ module.exports = (req, res) => {
               console.log("Message sent: %s", info.messageId);
             });
           });
-    
+
           databases.create(
             {
               fname: req.body.fname,

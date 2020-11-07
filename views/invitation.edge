@@ -16,8 +16,18 @@
 	<script src= "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"> 
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
-   
+
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    
     <style>
+        
+    @import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@700&display=swap');
+
+    @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cookie&family=Righteous&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@700&display=swap');
+
         body{
             background:#E5E5E5;
             overflow-x: hidden;
@@ -70,11 +80,17 @@
     text-align: center;
 }
 
-    </style>
+</style>
 </head>
 <body>
     
 <div class="containetr">
+    <div class="row">
+        <div class="col-12 text-center">
+            <input type="button" value="MeelIndia" onclick="window.location='/'" class="btn btn-primary m-2">
+            <input type="button" value="Profile" onclick="window.location='/profileUser'"class="btn btn-primary m-2">
+        </div>
+    </div>
     <div class="col-md-6 offset-md-3 pb-5">
         <div class="row">
             @each(dt in invitations)
@@ -95,14 +111,12 @@
                     <img src="{{dt.bg}}" id="bgInvite" alt="">
                     <div class="dataInvite">
                         <h5 class="text-center" id="head">Celebrating</h5>
-                        <h4 class="col-12 Caveat inputInvite text-center">{{ dt.title }}</h4>
-                        <h5 class="col-12  Caveat inputInvite text-center">{{ dt.subtitle }}</h5>
-                        <p class="col-12 Caveat inputInvite text-center">{{ dt.content}} </p>
+                        <h4 class="col-12 Caveat inputInvite text-center" style="font-family:{{ dt.nameFont}}"> {{ dt.title }}</h4>
+                        <h5 class="col-12  Caveat inputInvite text-center" style="font-family:{{ dt.subFont}}">{{ dt.subtitle }}</h5>
+                        <p class="col-12 Caveat inputInvite text-center" style="font-family:{{ dt.bodyFont}}">{{ dt.content}} </p>
                         <h4 class="col-12 inputInvite text-center">{{ dt.dateTime}} </h4>
                     </div>
                 </div> 
-              
-          
         </div>
              
             @endeach
