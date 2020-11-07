@@ -201,7 +201,7 @@ h1{
                     var http = new XMLHttpRequest();
                     var url = '/greetingCreate';
                     
-                    var params = 'title='+title+'&subtitle='+subtitle+'&content='+content+'&bg='+bgImg+'&type='+type+'&nameFont='+nameFont+'&subFont='+subFont+'&bodyFont='+bodyFont;
+                    var params = 'title='+title+'&subtitle='+subtitle+'&content='+content+'&bg='+bgImg+'&type='+type+'&nameFont='+nameFont+'&subFont='+subFont+'&bod    yFont='+bodyFont;
                     http.open('POST', url, true);
 
                     http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -213,8 +213,11 @@ h1{
                                 strText = strText.slice(1,-1);
                                 window.location="greeting?id="+strText;
                         }
+                        else{
+                        }
                     }
                     http.send(params);
+                    window.location="profileUser";
                 }
 			}
 </script>
