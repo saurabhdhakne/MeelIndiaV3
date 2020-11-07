@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Invitaion</title>
+	<link rel="stylesheet" type="text/css" href="./css/styleinvitaion.css">
+	<script src= "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"> 
+	</script>
+	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+	  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+		  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+		  crossorigin=""/>
+		  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+		  integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+		  crossorigin=""></script>
+		
+	   
+  
+	<script type="text/javascript">
+		function showMessage(){
+            var message = document.getElementById("content").value;
+            var title = document.getElementById("title").value;
+            var name = document.getElementById("name").value;
+ 			display_title.innerHTML = title;
+ 			display_name.innerHTML = name;
+            display_message.innerHTML= message;
+        }
+
+        function changeHeading() {
+        	var numvalue = document.getElementById("fontheading").value;
+	 		 document.getElementById("display_title").style.fontSize =  numvalue+ "px";
+		}
+        function changeName() {
+        	var numvalue = document.getElementById("fontheading").value;
+	 		 document.getElementById("display_title").style.fontSize =  numvalue+ "px";
+		}
+        function changeContent() {
+        	var numvalue = document.getElementById("fontcontent").value;
+	 		 document.getElementById("display_message").style.fontSize =  numvalue+ "px";
+		}
+
+		function takeshot() { 
+            let sharebutton = document.getElementById('sharebutton');
+                sharebutton.style.visibility = "hidden"; 
+  
+            let div = 
+                document.getElementById('sharecard');
+                
+            // Use the html2canvas 
+            // function to take a screenshot 
+            // and append it 
+            // to the output div 
+            html2canvas(div).then( 
+                function (canvas) { 
+                    document 
+                    .getElementById('output') 
+                    .appendChild(canvas); 
+				}) 
+
+        } 
+
+
+function swipe() {
+   var largeImage = document.getElementById('output');
+   largeImage.style.display = 'block';
+   largeImage.style.width=200+"px";
+   largeImage.style.height=200+"px";
+   var url=largeImage.getAttribute('src');
+   window.open(url,'Image','width=largeImage.stylewidth,height=largeImage.style.height,resizable=1');
+
+}
+	</script>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="container">
+		
+		<div class="row">
+
+			<div class="card">
+				<div class="content">
+					<form>
+						<h5>Enter Heading for Invitation</h5>
+						<input type="text" name="headinginvitaion" class="h5invitation" id="title"/>
+						<h5>Font Size for Heading</h5>
+						<input type="range" min="1" max="100" value="50" id="fontheading" onchange="changeHeading()">
+		
+
+						<h5>Enter Name of Invitee</h5>
+						<input type="text" name="nameinvitation" class="h5invitation"  id="name"/>
+
+						<h5>Font Size for Name</h5>
+						<input type="range" min="1" max="100" value="50" id="fontname" onchange="changeName()">
+		
+						<h5>Content of Invitaion</h5>
+						<textarea rows="4" name = "contentinvitaion" class="pinvitation"  id="content"></textarea><br>
+						<h5>Font Size for Content</h5>
+						
+						<input type="range" min="1" max="100" value="50" id="fontcontent" onchange="changeContent()">
+						<br>
+						<input type="datetime-local" name="dateTime" id="dateTime" onchange="document.getElementById('dt').innerHTML = this.value">
+							
+							
+						<input type="button" name="submit" value="Create" onclick="showMessage()" class="submitinvitation btn btn-primary btn-block">
+					</form>
+					
+				</div>
+			</div>
+			<div class="card" id="sharecard">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<div class="content">
+					<h3 class="invitationheading" id="display_title">Title</h3>
+
+					<h5 class="invitationname" id="display_name">Name</h5>
+
+					<p class="invitationbody" id="display_message" style="">Lorem Ipsum Is a dummy text. Lorem Ipsum Is a dummy text.Lorem Ipsum Is a dummy text.Lorem Ipsum Is a dummy text.Lorem Ipsum Is a dummy text.Lorem Ipsum Is a dummy text.Lorem Ipsum Is a dummy text.Lorem Ipsum Is a dummy text.Lorem Ipsum Is a dummy text.Lorem Ipsum Is a dummy text.</p>
+					<div id="dt" class=" text-primary h4"></div>
+					<input type="button" name="submit" value="Share" class="sharebutton" id="sharebutton" onclick="takeshot()">
+				</div>
+			</div>
+			
+			<div id="output" onclick="swipe()"></div>
+		
+		</div>
+
+	</div>
+
+	<script type="text/javascript">
+		var imgCount = 10;
+			var dir = 'InviteBG/Invitations/';
+			var randomCount = Math.round(Math.random() * (imgCount - 1)) + 1;
+			var images = new Array
+					images[1] = "invitation1.jpg",
+					images[2] = "invitation2.jpg",
+					images[3] = "invitation3.jpg",
+
+					images[4] = "invitation4.jpg",
+
+					images[5] = "invitation5.jpg",
+
+					images[6] = "invitation6.jpg",
+
+					images[7] = "invitation7.jpg",
+
+					images[8] = "invitation8.jpg",
+
+					images[9] = "invitation9.jpg",
+
+					images[10] = "invitation10.jpg",
+			document.getElementById("sharecard").style.backgroundImage = "url(" + dir + images[randomCount] + ")"; 
+			var bgImg = "invitation"+randomCount+".jpg" ;
+			function sendInvite(){
+				var title = document.getElementById('title').value;
+				var name = document.getElementById('name').value;
+				var content = document.getElementById('content').value;
+				var dateTime = document.getElementById('dateTime').value;
+
+				var Mlat = document.getElementById('lat').value ; 
+				var Mlng = document.getElementById('lng').value ; 
+
+				console.log(title);
+				console.log(name);
+				console.log(content);
+				var http = new XMLHttpRequest();
+				var url = '/invitationCreate';
+				
+				var params = 'title='+title+'&name='+name+'&content='+content+'&bg='+bgImg+'&lat='+Mlat+'&lng='+Mlng+'&dateTime='+dateTime;
+				http.open('POST', url, true);
+
+				//Send the proper header information along with the request
+				http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+				http.onreadystatechange = function() {//Call a function when the state changes.
+					if(http.readyState == 4 && http.status == 200) {
+						alert("Invtation Created Successfully Please check Profile Page!");
+					}
+				}
+				http.send(params);
+				window.location="/profileUser";
+			}
+	</script>
+
+
+	<main class="main container" id="darkMode"  onload="getLocation()">
+
+		<div class="container-fluid">
+			<!-- /.row-->
+				<div class="container-fluid p-2">
+			<div class="col-md-12 jumbotron mt-5">
+				<hr>
+				
+					<div class="form-group">
+						<label for="lat">Lattitude</label>
+						<input type="text" class="form-control" id="lat" name="lat" aria-describedby="mobile" placeholder="lat" required>
+					</div>
+					<div class="form-group">
+						<label for="lng">Longitude</label>
+						<input type="text" class="form-control" id="lng" name="lng" aria-describedby="mobile" placeholder="lng" required>
+					</div>
+					
+					<input type="hidden" name="location" value="">
+					<div id="map" class="mb-5" style="width:100%; height:60vh;z-index:8"></div>
+				
+					<p id="demo"></p>
+			
+					<input type="button" onclick="getLocation()" class=" btn btn-outline-success btn-block mt-2" value="Get Location">
+
+					<input type="button" onclick="setLocation()" class=" btn btn-outline-success btn-block mt-2" value="Set Location">
+
+					<input type="button" name="Save" value="Submit" onclick="sendInvite()" class="submitinvitation btn btn-success ">
+
+		
+			</div>
+		</div>
+	<script>
+
+		var lngg, latt,hlat,hlng;
+				var map = L.map('map').setView([19.8684798, 75.3218784], 12);
+				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+						attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+				}).addTo(map);
+			
+		var marker;
+
+
+		function getLocation() {
+			if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(showPosition);
+			} else { 
+			x.innerHTML = "Geolocation is not supported by this browser.";
+			}
+			return false;
+		}
+				
+		function showPosition(position) {
+			latt = position.coords.latitude;
+			lngg = position.coords.longitude;
+				document.getElementById('demo').innerHTML = "Latitude: " + latt + 
+				"<br>Longitude: " + lngg;
+				
+			marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map)
+			.bindPopup('My location')
+						.openPopup();
+
+						map.locate({setView : true});
+
+			marker.dragging.enable();
+
+				}
+			
+				function setLocation(){
+				position = marker.getLatLng();
+				hlat = position.lat;
+				hlng = position.lng;
+				document.getElementById('lat').value = hlat;
+				document.getElementById('lng').value = hlng;
+				alert('Location is Set.')
+				}
+
+				function setLocation2(){
+			
+				hlat = position.lat;
+				hlng = position.lng;
+				document.getElementById('lat').value = hlat;
+				document.getElementById('lng').value = hlng;
+				alert('Location is Set.')
+				}
+
+				function onMapClick(e) {
+
+				marker.on("dragend", function(ev) {
+					var chagedPos = ev.target.getLatLng();
+					this.bindPopup("ME at " +chagedPos.toString()).openPopup();
+					loc1 = [chagedPos.lat,chagedPos.lng];
+					hlat = chagedPos.lat;
+					hlng = chagedPos.lng;
+					document.getElementById('lat').value = hlat;
+					document.getElementById('lng').value = hlng;
+					document.getElementById('demo').innerHTML = "Latitude: " + hlat + 
+					"<br>Longitude: " + hlng;
+					console.log(loc1);
+
+				});
+
+				}
+
+				map.on('click', onMapClick);
+
+	</script>
+
+		</div>
+	</main>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+@layout('layout.app')
+
+@section('content')
+   <div class="container">
+       <div class="row">
+           <div class="col-md-12 text-center m-4 bg-light products pt-4 pb-5">
+               <div class="h1">Don't Remember Password</div>
+               <div class="p text-secondary">Get verfiation link</div>
+               <hr>
+                <form method="POST" action="/FPUser" class="col-md-4 offset-md-4 bg-light shadowme pt-3 pb-5 text-dark">
+                    <div class="form-group">
+                        <h2>Users's </h2>
+                        <hr>
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control col-12" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                      </div>                        
+                      <div class="col-md-12">
+                          <input type="submit" value="Get Link" class="btn btn-outline-primary btn-block">
+                      </div>
+                </form>
+            </div>
+       </div>
+   </div>
+
+@endsection

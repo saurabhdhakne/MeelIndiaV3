@@ -1,0 +1,329 @@
+@layout('layout.app')
+
+@section('content')
+ <style>
+
+.service-details-desc{
+        text-align: center;
+     }
+
+.nameheading {
+    text-transform: uppercase;
+    font-family: "Century Gothic";
+    font-weight: bold;
+    text-align: center;
+}
+
+.designationheading
+{
+    font-size: 14px;
+}
+
+.infoheader
+{
+    font-size: 12px;
+}
+
+.infoinput{
+    font-size: 12px;
+}
+
+.infoallhead{
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-details-heading
+{
+    padding:10px 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.profile-details-input {
+    margin-bottom: 7px;
+}
+
+.updatebtn {
+    border: 0;
+	padding: 10px;
+	width: 100%;
+	border-radius: 3px;
+	background-color: #37A079;
+	font-family: "Century Gothic";
+	font-size: 1rem;
+	margin: 5px 2px;
+	cursor: pointer;
+	outline: none;
+	margin-bottom: 10px;
+	transition: background 0.3s ease-in-out;
+	box-shadow: 0px 5px 7px 0px rgba(0,0,0,0.3);
+	color: #fff;
+}
+
+.updatebtn:hover{
+    
+	background: rgba(288,0,7,0.9); 
+}
+
+button.chatbtn,
+button.createbtn {
+	border: 0;
+	padding: 10px;
+	width: 100%;
+	border-radius: 3px;
+	background-color: #37A079;
+	font-family: "Century Gothic";
+	font-size: 1rem;
+	margin: 5px 2px;
+	cursor: pointer;
+	outline: none;
+	margin-bottom: 10px;
+	transition: background 0.3s ease-in-out;
+	box-shadow: 0px 5px 7px 0px rgba(0,0,0,0.3);
+	color: #fff;
+}
+
+button.chatbtn:hover,
+button.createbtn:hover {
+	background: rgba(288,0,7,0.9); 
+}
+
+button.chatbtn i,
+button.createbtn i {
+	margin-right: 5px;
+}
+
+.profile-services-header{
+margin-top: 20px;
+text-align: center;
+text-transform: uppercase;
+font-weight: bolder;
+letter-spacing: 2px;
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.services-details-heading
+{
+    text-transform: uppercase;
+    text-align: center;
+    border:none;
+    font-weight: bolder;
+    margin: 10px 0;
+    background: transparent;
+    cursor: text;
+}
+
+.services-photo-update {
+    margin-bottom: 42%;
+
+}
+
+
+@media(max-width:1100px){
+    .designationheading
+    {
+        font-size: 12px;
+    }
+
+    .services-details-heading
+    {
+        font-size: 14px;
+    }
+
+    .service-details-desc {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .service-details-posted-on {
+        font-size: 12px;
+    }
+
+    .service-details-address {
+        font-size: 12px;
+    }
+}
+
+@media(max-width:996px){
+    .designationheading
+    {
+        font-size: 9px;
+    }
+
+    .services-details-heading
+    {
+        font-size: 12px;
+    }
+
+    .service-details-desc {
+        font-size: 10px;
+    }
+
+    .service-details-posted-on {
+        font-size: 10px;
+    }
+
+    .service-details-address {
+        font-size: 10px;
+    }
+
+    .delete-form
+    {
+        font-size: 10px;
+    }
+
+}
+
+@media(max-width:767px)
+{
+    .designationheading
+    {
+        font-size: 12px;
+        text-align: center;
+    }
+
+
+    .card-size
+    {
+        height: 75%;
+    }
+}
+
+</style>
+
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-md-4">
+                <form  action="/updateBusinessImage" class="m-3" enctype="multipart/form-data" method="POST">
+                    <input type="hidden" name="_id" value="{{ userData._id }}">
+                    <input type="file" class="custom-file-input" name="profile_pic" id="customFile" onchange="this.form.submit()">
+                    <label class="custom-file-label mt-1 m-2" for="customFile">Change Profile Picture</label>
+                </form>
+                <form action="updateBusiness" method="POST">
+                    <input type="hidden" name="_id" id="_id" value="{{userData._id}}">
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="{{userData.image}}" class="img rounded" width="100%" alt="">
+                        </div>
+
+                        <div class="col-8 text-left header">
+                            <div class="row ">
+                                <input type="text" class="ytedit h4 col nameheading" name="fname" value="{{userData.fname}}"> 
+                                <input type="text" class="ytedit h4 col nameheading" name="lname" value="{{userData.lname}}">
+                            </div> 
+                            <p>
+                                <div class="row">
+                                    <div class="col-5 mt-1 designationheading">Designation:</div>
+                                    <input type="text" class="ytedit col-7 designationheading" style="font-weight:bold;" name="designation" value="{{userData.designation}}">
+                                </div>
+                            </p>
+
+                        </div>
+
+                    </div>
+                    <hr>
+
+                    <div class="profiledetails form-group">
+                        <h6 class="profile-details-heading" >Gender</h6>
+                        <input type="text" name="gender" class="form-control profile-details-input"  value="{{userData.gender}}">
+                        <h6 class="profile-details-heading" >Contact No</h6>
+                        <input type="text" name="contact" class="form-control profile-details-input"  value="{{userData.contact}}">
+                        <h6 class="profile-details-heading" >Email</h6>
+                        <input type="text" name="email" class="form-control profile-details-input"  value="{{userData.email}}">
+                        <h6 class="profile-details-heading" >Company</h6>
+                        <input type="text" name="companyName" class="form-control profile-details-input"  value="{{userData.companyName}}">
+                        <h6 class="profile-details-heading" >Company Email</h6>
+                        <input type="text" name="companyEmail" class="form-control profile-details-input"  value="{{userData.companyEmail}}">
+                        <h6 class="profile-details-heading">Company description</h6>
+                        
+                        <textarea type="text" name="companybio" class="col-12 form-control profile-details-input" rows="4" value="{{userData.companybio}}">&nbsp;&nbsp;{{userData.companybio}}</textarea>
+
+                        <h6 class="profile-details-heading">Company No.</h6>
+                        <input type="text" name="Companycontact" class="form-control profile-details-input" value="{{userData.Companycontact}}">
+                        <h6 class="profile-details-heading">Category</h6>
+                        <input type="text" name="companyCategory" class="form-control profile-details-input" value="{{userData.companyCategory}}">
+                        <h6 class="profile-details-heading">Website</h6>
+                        <input type="text" name="website" class="form-control profile-details-input" value="{{userData.website}}">
+                        <h6 class="profile-details-heading">City</h6>
+                        <input type="text" name="city" class="form-control profile-details-input" value="{{userData.city}}">
+                        <h6 class="profile-details-heading">State</h6>
+                        <input type="text" name="state" class="form-control profile-details-input" value="{{userData.state}}">
+                        <h6 class="profile-details-heading">Country</h6>
+                        <input type="text" name="country" class="form-control profile-details-input" value="{{userData.country}}">
+                        <input type="submit" class="updatebtn" value="Update" >
+
+                    </div>
+                </form>      
+            </div>
+ 
+            <div class="col-md-1"></div>
+
+            <div class="col-md-7 p-1 pt-3 pb-4">
+                <div class="profile-button">
+                    <button class="chatbtn" onclick="window.location='/serviceForm' ">
+                        <i class="fa fa-plus"></i>
+                        Add New Service
+                    </button>
+                </div>
+                <h1 class="profile-services-header"> Services offered</h1>
+                <hr>
+
+                
+                @each(dt in services)
+                    <div class="col-md-12 pt-3 d-flex justify-content-center card-size">
+                        
+                        <div class="col-md-12 product row bg-light pb-3 pt-3 text-primary">
+                            
+                            <div class="col-md-8">
+                                <form  action="/updateService" class="m-3" method="POST">
+                                <input type="hidden" name="_id" value="{{dt._id}}">
+                                    <input type="text" class="services-details-heading form-control" name="title" value="{{dt.title}}">
+                                    </h3>
+                                    <p>
+                                        <textarea type="text" name="desc" class="ytedit text-justify col-12 service-details-desc" rows="4" value="{{dt.desc}}">&nbsp;&nbsp;{{dt.desc}}</textarea>
+                                    </p>    
+                                    <div class="col-md-12 service-details-posted-on" style="text-align:center;">
+                                            <span class="text-warning">
+                                                <i class="fa fa-hourglass" aria-hidden="true"></i>
+                                                Posted on : </span>
+                                            <span class="text-dark">
+                                                {{dt.startDate}}
+                                            </span>
+                                    </div>
+                                        
+                                        <p class="text-success service-details-address" style="margin-top:20px; text-align:center; font-weight:bold;">Address <input type="text" class="services-details-heading form-control service-details-address" name="address" value="{{dt.address}}"></p>
+                                        <input type="submit" class="updatebtn " value="Update">
+                                        
+                                </form>
+                                <form  action="/deleteService" onsubmit="alert('Your Going to be Logout After Deleting Product for Security Reasons, If Entered Right Password.')" class="m-3 delete-form" method="POST" style="">
+                                    <div class="row  bg-light shadowme mt-3 p-2">
+                                        <input type="hidden" name="_id" value="{{dt._id}}">
+                                        <input type="hidden" name="email" value="{{dt.email}}">
+                                        <input type="text" class="form-control col delete-form" id="confirmPass" name="password" placeholder="Enter the password">
+                                        <input type="submit" class="btn btn-outline-danger offset-md-1  delete-form" value="Delete">
+                                    </div>
+                                </form> 
+                            </div>
+                                <div class="col-md-4">
+                                    
+                                        <img src="{{ dt.image }}" class="rounded" width="100%" alt="">
+                                        <form  action="/updateServiceImage" class="services-photo-update" enctype="multipart/form-data" method="POST" style="position:relative; margin-top:20px;">
+                                            <input type="hidden" name="_id" value="{{dt._id}}">
+                                            <input type="file" class="custom-file-input updatebtn delete-form" name="profile_pic" id="customFile" onchange="this.form.submit()">
+                                            <label class="custom-file-label mt-1 m-2 delete-form picturelabel" for="customFile"> Picture</label>
+                                        </form>
+                                </div>
+                        
+                        </div>
+                            
+                    </div>
+               @endeach
+
+
+    
+            </div>
+        </div>
+    </div>
+
+@endsection

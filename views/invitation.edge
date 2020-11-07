@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+  
+    <title>MeelIndia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+	<script src= "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"> 
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+   
+    <style>
+        body{
+            background:#E5E5E5;
+            overflow-x: hidden;
+        }
+        input{
+            font-family: 'play', cursive;
+        }
+        .invite{
+            min-height: 550px;
+            width: 350px;
+            margin:auto;
+            background: cover;
+            font-family: 'Caveat', cursive;
+        }   
+        .Caveat{
+            font-family: 'Caveat', cursive;
+        }
+        #bgInvite{
+            width: 350px;
+            padding: 0;
+            margin-top: 0;
+        }
+        .dataInvite{
+            width: 100%;
+        }
+        .inputInvite{
+            width: 350px;
+        }
+        .shadowme{
+            box-shadow: 2px 2px 10px ;
+        }
+        
+.socialbtn
+{
+    border: none;
+    background: transparent;
+    font-size: 2em;
+    margin: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+    
+}
+
+.socialbtn:hover{
+    color: #37A079;
+}
+    
+.socialrow
+{
+    text-align: center;
+}
+
+    </style>
+</head>
+<body>
+    
+<div class="containetr">
+    <div class="col-md-6 offset-md-3 pb-5">
+        <div class="row">
+            @each(dt in invitations)
+            <div class="col-md-12 mt-5">
+                <div class="col-md-8 offset-md-2 mb-2 text-center">
+                        <div class="d-flex justify-content-center">
+                            <input type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-primary" value="Locate"  onclick="window.location='https://www.google.com/maps/search/?api=1&query={{dt.lat}},{{dt.lng}}' ">
+                            <input type="text" id="title" name="title" class="form-control ml-1 ytedit d-inline inputInvite text-center" value="https://meelindia.com/invitation?id={{dt._id}}" placeholder=""> 
+                        </div>
+                        <div class="d-flex justify-content-center">
+                                <a class="socialbtn d-flex row" href="whatsapp://send?text=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> 
+                                <a class="socialbtn d-flex row" href="https://www.facebook.com/sharer/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a> 
+                                <a class="socialbtn d-flex row" href="https://www.instagram.com/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-instagram" aria-hidden="true"></i></a> 
+                                <a class="socialbtn d-flex row" onclick='myFunction("{{ dt._id }}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>
+                        </div>
+                </div> 
+                <div class="invite bg-light shadowme" id="inviteBody">
+                    <img src="{{dt.bg}}" id="bgInvite" alt="">
+                    <div class="dataInvite">
+                        <h5 class="text-center" id="head">Celebrating</h5>
+                        <h4 class="col-12 Caveat inputInvite text-center">{{ dt.title }}</h4>
+                        <h5 class="col-12  Caveat inputInvite text-center">{{ dt.subtitle }}</h5>
+                        <p class="col-12 Caveat inputInvite text-center">{{ dt.content}} </p>
+                        <h4 class="col-12 inputInvite text-center">{{ dt.dateTime}} </h4>
+                    </div>
+                </div> 
+              
+          
+        </div>
+             
+            @endeach
+            <input type="button" value="Create Your Own Invitation / Greeting" class="btn btn-danger mt-4 mb-5 btn-block" onclick="window.location='SignUpUser'">
+
+        </div>
+    </div>
+</div>
+
+<script>
+    addEventListener('load', async ()=>{
+        let sw = await navigator.serviceWorker.register('./sw.js');
+        console.log(sw);
+    })
+    async function suscribe() {
+        let sw = await navigator.serviceWorker.ready;
+        let push = await sw.pushManager.subscribe({
+            userVisibleOnly:true,
+            applicationServerKey: "Todo!!"
+        })
+        console.log(JSON.stringify(push))
+    }
+    function myFunction(str) {
+            var copyText = 'https://meelindia.com/invitation?id='+str;
+            navigator.clipboard.writeText(copyText);
+            alert("Copied the text: " + copyText);
+        }
+</script>
+
+</body>
+</html>

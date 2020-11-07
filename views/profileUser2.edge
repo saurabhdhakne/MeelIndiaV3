@@ -1,0 +1,137 @@
+@layout('layout.app')
+
+@section('content')
+
+
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-md-4">
+                <div class="row">
+                <div class="col-4">
+                    <img src="{{userData.image}}" class="img rounded" width="100%" alt="">
+                  
+                </div>
+                <div class="col-8 text-left">
+                    <div class="col-12 text-center socialicons row mb-1 mt-3" style="font-size:1.4em;cursor:pointer;">
+                         <div class="col text-center" onclick="windows.location='{{userData.linkedinLink}}' "> <i class="fa fa-linkedin " aria-hidden="true"></i></div>
+                         <div class="col text-center" onclick="windows.location='{{userData.igLink}}' "> <i class="fa fa-instagram " aria-hidden="true"></i></div>
+                         <div class="col text-center" onclick="windows.location='{{userData.fbLink}}' "> <i class="fa fa-facebook-official" aria-hidden="true"></i></div>
+                     </div>
+                    
+                  
+                </div>
+                <div class="custom-file col-12">
+                    <form  action="/updateUserImage" class="m-3" enctype="multipart/form-data" method="POST">
+                        <input type="hidden" name="_id" value="{{ userData._id }}">
+                        <input type="file" class="custom-file-input" name="profile_pic" id="customFile" onchange="this.form.submit()">
+                        <label class="custom-file-label mt-1 m-2" for="customFile">Change Profile Picture</label>
+                    </form>
+                </div>
+                </div>
+                <hr>
+                <div class="col-12  ">
+                    <form action="updateUser" method="POST">
+                        <div class="row">   
+                            <input type="hidden" name="_id" value="{{ userData._id }}">
+                            <input type="text" name="fname" class="ytedit col h3" value="{{userData.fname}} {{ userData.lname}}"> 
+                            <input type="text" name="lname" class="ytedit col h3" value="{{ userData.lname}}" style="visibility:hidden;"> 
+                        </div>
+                        
+                        <div class="row">
+                        <h6 class="" style="margin-left:5px;">( {{ userData.email }} )</h6>
+                        </div>    
+                        <br>
+                            <div class="col-md-12 row">
+                                <div class="col-md-6">Gender  &nbsp;&nbsp;: </div><input type="text" name="gender"  class="ytedit col-md-6" value="{{userData.gender}}">
+                                <div class="col-md-6">Contact  &nbsp;: </div><input type="text" name="contact"  class="ytedit col-md-6" value="{{userData.contact}}">
+                                <div class="col-md-6">in Link &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</div>      <input type="text" id="linkedinLink"      class="col-md-6 ytedit" value="{{ userData.linkedinLink}}"      name="linkedinLink">
+                                <div class="col-md-6">IG Link&nbsp; &nbsp;&nbsp;&nbsp;:</div>      <input type="text" id="igLink"      class="col-md-6 ytedit" value="{{ userData.igLink}}"      name="igLink">
+                                <div class="col-md-6">fb Link &nbsp;&nbsp;&nbsp;&nbsp;:</div>      <input type="text" id="fbLink"      class="col-md-6 ytedit" value="{{ userData.fbLink}}"      name="fbLink">
+        
+                                <input type="submit" class="col-12 btn btn-outline-primary " value="Update" >
+                            </div>
+                            <hr>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-4 mt-3 d-flex  justify-content-center">
+                        <div class="col-11 row p-1 pt-3 rounded shadowme bg-light text-dark">
+                            <img src="./images/linkedin.webp" class="bgsocial" alt="">
+                            <div class="col-12 pt-1 mb-1 rounded text-center">
+                                <img src="./images/linkedinlogo.png" width="75%" alt="">
+                            </div>
+                            <div class="col-12 p pt-2 pb-2 text-center">
+                                <input type="text" class="ytedit col-12 text-primary text-center" value="{{userData.linkedinLink}}">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-3 d-flex justify-content-center">
+                        <div class="col-11 row  p-1 pt-3 rounded shadowme bg-light text-dark">
+                            <img src="./images/insta2.png" class="bgsocial" alt="">
+                            <div class="col-12 pt-1 mb-1 rounded text-center">
+                                <img src="./images/instalogo.png" width="75%" alt="">
+                            </div>
+                            <div class="col-12 p pt-2 pb-2 text-center">
+                                <input type="text" class="ytedit col-12 text-primary text-center" value="{{userData.igLink}}">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-3 d-flex justify-content-center">
+                        <div class="col-11 row p-1 pt-3 rounded shadowme bg-light text-dark">
+                            <img src="./images/fb3.png" class="bgsocial" alt="">
+                            <div class="col-12 pt-1 mb-1 rounded text-center">
+                                <img src="./images/fblogo.png" width="75%" alt="">
+                            </div>
+                            <div class="col-12 p pt-2 pb-2 text-center">
+
+                                <input type="text" class="ytedit col-12 text-primary text-center" value="{{userData.fbLink}}">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3 mb-2 col-md-12 bg-primary shadowme text-light pt-3 pb-2 text-center" onclick="window.location='/invitationCreate' ">
+                        <h3>Create New Invite</h3>
+                    </div>
+
+                    
+                </div>
+            </div>
+            <div class="containetr-fluid">
+                <div class="row">
+                    @each(dt in invitations)
+
+                                <div class="card" id="sharecard" style="background:url('inviteBG/Invitations/{{dt.bg}}')">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <div class="content">
+                                        <h3 class="invitationheading" id="display_title">{{dt.title}}</h3>
+                        
+                                        <h4 class="invitationname" id="display_name">{{dt.name}}</h4>
+                        
+                                        <p class="invitationbody" id="display_message" style="">{{dt.content}}</p>
+
+					                    <div class="text-primary h4"> {{dt.dateTime}} </div>
+                                        
+                                        <input type="button" name="submit" value="Open" class="sharebutton  mb-2" id="sharebutton" onclick="window.location='invitation?id={{dt._id}}'">
+                                        <input type="text" class="form-control col-12" value="localhost:5000/invitation?id={{dt._id}}">
+                                        <input type="button"  value="Locate" class="btn btn-danger mt-2" onclick="window.location='https://www.google.com/maps/search/?api=1&query={{dt.lat}},{{dt.lng}}' ">
+                                    </div>
+                                </div>
+                        
+                        
+                    @endeach
+                </div>
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" type="text/css" href="./css/styleinvitaion.css">
+	<script src= "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"> 
+    </script>
+	
+@endsection

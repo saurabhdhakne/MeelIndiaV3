@@ -1,0 +1,270 @@
+@layout('layout.app')
+
+@section('content')
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@700&display=swap');
+
+      @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cookie&family=Righteous&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@700&display=swap');
+
+.btn-primary
+{
+    font-family: 'Amaranth', sans-serif;
+    background: #000;
+    border: #000;
+}
+
+h1{
+		font-size: 4em;
+        font-family: 'play', cursive;
+		color: #76BAA1;
+		text-shadow: 1px 2px 5px;
+	}
+    .headingmain
+{
+    font-family: 'Righteous', cursive;
+    color: #000;
+    font-size: 100px;
+}    
+
+.subheadingmain
+{
+    font-family: 'Cookie', cursive;
+    font-size: 35px;
+}
+.btn-danger
+{
+    font-family: 'Amaranth', sans-serif;
+}
+
+    .btn-primary:hover{
+        background: #fff;
+        color: #000;
+    }
+    .invite{
+        min-height: 600px;
+        width: 350px;
+        margin:auto;
+        background: cover;
+        font-family: 'Dancing Script', cursive;
+    }   
+    #bgInvite{
+        width: 350px;
+        padding: 0;
+        margin-top: 0;
+    }
+    .dataInvite{
+        width: 100%;
+    }
+    .inputInvite{
+        width: 350px;
+    }
+
+    .changeclass
+    {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .forpadding
+    {
+        padding-top: 20px;
+    }
+    
+    
+</style>
+<div class="">
+    <div class="container-fluid">
+        <h1 class="col-12 text-center headingmain">MeelIndia</h1>
+        @if(user == "")
+            <div class="col-12 text-center mb-4"><input type="button" class="btn btn-outline-success" value="Sign Up to Create Invitation"  onclick=" window.location='/signUpUser' "></div>    
+        @endif
+        <h4 class="col-12 text-center subheadingmain">Your Online Greeting Creator</h4>
+        
+    <div class="row">
+        
+        <div class="col-md-4"></div>
+     <div class="col-md-4 changeclass">
+         <h5 class="d-inline">Select Type of Greeting : </h5>
+         <button type="button" class="btn btn-primary dropdown-toggle d-inline" data-toggle="dropdown">
+             Type
+           </button>
+         <div class="dropdown-menu">
+         <input type="button" onclick="greetingBirthday()" class="dropdown-item" value="Birthday">
+         <input type="button" onclick="greetingWedding()" class="dropdown-item" value="Wedding">
+         <input type="button" onclick="greetingAnniversary()" class="dropdown-item" value="Anniversary">
+         <input type="button" onclick="greetingInnogration()" class="dropdown-item" value="Innogration">
+         <input type="button" onclick="greetingEngagement()" class="dropdown-item" value="Engagement">
+         <input type="button" onclick="greetingOther()" class="dropdown-item" value="Other">
+     </div>
+     <div class="forpadding">
+             <h5 class="d-inline">Change Fonts : </h5>
+         <button type="button" class="btn btn-primary dropdown-toggle d-inline" data-toggle="dropdown">
+             Fonts
+           </button>
+         <div class="dropdown-menu">
+             <input type="button" onclick="changeNameFont()" class="dropdown-item" value="Change Name Font">
+         
+             <input type="button" onclick="changeDateFont()" class="dropdown-item" value="Change subtitle Font">
+
+             <input type="button" onclick="changeBodyFont()" class="dropdown-item" value="Change Body Font">
+     
+             </div>
+ 
+         </div>
+     </div>
+     </div>
+        <div class="row">
+        <div class="col-md-12 mt-3 mb-3 d-flex justify-content-center"> 
+            <div class="invite bg-light shadowme" id="inviteBody">
+            <img src="" id="bgInvite" alt="">
+            <div class="dataInvite">
+                <input type="text" id="title" name="title" class="ytedit h4 inputInvite text-center" value="" placeholder=""> 
+                <input type="text" id="subtitle" name="subtitle" class="ytedit p inputInvite text-center" value="" placeholder=""> 
+                <textarea rows="4" id="content" name = "content"  class="ytedit form-control p inputInvite text-center"  id="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, non. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos, suscipit. </textarea><br>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row d-flex justify-content-center">
+        <input type="button" name="Save" value="Submit" onclick="sendGreetig()" class="submitinvitation btn btn-primary ">
+    
+        </div>
+</div>
+<script>
+    var bgImg, type, nameFont = " Dancing Script, cursive",bodyFont= " Dancing Script, cursive",subFont =  " Dancing Script, cursive";
+ 
+    function greetingBirthday(){
+        document.getElementById("bgInvite").src = "./InviteBG/greeting/birthday.png";
+        bgImg = "./InviteBG/greeting/birthday.png";
+        document.getElementById("title").placeholder  = "Enter the Title";
+        document.getElementById("subtitle").placeholder = "Enter the subtitle";
+        type = "birthday";
+    }
+    function greetingWedding(){
+        document.getElementById("bgInvite").src = "./InviteBG/greeting/wedding.png";
+        bgImg = "./InviteBG/greeting/wedding.png";
+        document.getElementById("title").placeholder  = "Enter the Title";
+        document.getElementById("subtitle").placeholder = "Enter the subtitle";
+        type = "Wedding";
+    }
+    function greetingAnniversary(){
+        document.getElementById("bgInvite").src = "./InviteBG/greeting/anniversary.png";
+        bgImg = "./InviteBG/greeting/anniversary.png";
+        document.getElementById("title").placeholder  = "Enter the Title";
+        document.getElementById("subtitle").placeholder = "Enter the subtitle";
+        type = "anniversary";
+    }
+    function greetingInnogration(){
+        document.getElementById("bgInvite").src = "./InviteBG/greeting/innogration.png";
+        bgImg = "./InviteBG/greeting/innogration.png";
+        document.getElementById("title").placeholder  = "Enter the Title";
+        document.getElementById("subtitle").placeholder = "Enter the subtitle";
+        type = "innogration";
+
+    }
+    function greetingEngagement (){
+        document.getElementById("bgInvite").src = "./InviteBG/greeting/engangement.png";
+        bgImg = "./InviteBG/greeting/engangement.png";
+        document.getElementById("title").placeholder  = "Enter the Title";
+        document.getElementById("subtitle").placeholder = "Enter the subtitle";
+        type = "Engangement";
+    }
+    function greetingOther (){
+        document.getElementById("bgInvite").src = "./InviteBG/greeting/other.png";
+        bgImg = "./InviteBG/greeting/other.png";
+        document.getElementById("title").placeholder  = "Enter the Title";
+        document.getElementById("subtitle").placeholder = "Enter the subtitle";
+        type = "other";
+    }
+    greetingBirthday()
+</script>
+
+<script>
+    	function sendGreetig(){
+				var title = document.getElementById('title').value;
+				var subtitle = document.getElementById('subtitle').value;
+				var content = document.getElementById('content').value;
+
+				if( title == "" && subtitle == "" && content == "" ){
+                    alert("Please fill all the details.");
+                }
+                else{
+                    
+                    var http = new XMLHttpRequest();
+                    var url = '/greetingCreate';
+                    
+                    var params = 'title='+title+'&subtitle='+subtitle+'&content='+content+'&bg='+bgImg+'&type='+type+'&nameFont='+nameFont+'&subFont='+subFont+'&bodyFont='+bodyFont;
+                    http.open('POST', url, true);
+
+                    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+                    http.onreadystatechange = function() {
+                        if(http.readyState == 4 && http.status == 200) {
+                            alert("Invtation Created Successfully Please check Profile Page!");
+                        }
+                    }
+
+                    http.send(params);
+                    alert("Your greeting created successfully");
+                    window.location="/profileUser";
+
+                }
+			}
+</script>
+
+
+<script>
+    function changeNameFont()
+        {
+        var idee = document.getElementById("title").style.fontFamily; 
+    
+        var fontfamilies = ["Comic Sans, Comic Sans MS, cursive", "Edwardian Script ITC, bold","Bauhaus 93","Eras Bold ITC","Impact, fantasy","Pacifico, cursive" ,"Dancing Script, cursive"];    
+            
+            const randoms = Math.floor(Math.random()*fontfamilies.length);
+
+            subFont = fontfamilies[randoms];
+    
+            document.getElementById("title").style.fontFamily = fontfamilies[randoms];
+
+        }
+    
+        
+    function changeBodyFont()
+        {
+        var idee = document.getElementById("content").style.fontFamily; 
+     
+        var fontfamilies = ["Comic Sans, Comic Sans MS, cursive", "Edwardian Script ITC, bold","Bauhaus 93","Eras Bold ITC","Impact, fantasy","Pacifico, cursive" ,"Dancing Script, cursive"];    
+            
+            const randoms = Math.floor(Math.random()*fontfamilies.length);
+
+            subFont = fontfamilies[randoms];
+
+            document.getElementById("content").style.fontFamily = fontfamilies[randoms];
+    
+        }
+    
+        
+    function changeDateFont()
+        {
+        var idee = document.getElementById("subtitle").style.fontFamily; 
+    
+        var fontfamilies = ["Comic Sans, Comic Sans MS, cursive", "Edwardian Script ITC, bold","Bauhaus 93","Eras Bold ITC","Impact, fantasy","Pacifico, cursive" ,"Dancing Script, cursive"];    
+            
+            const randoms = Math.floor(Math.random()*fontfamilies.length);
+
+            subFont = fontfamilies[randoms];
+    
+        document.getElementById("subtitle").style.fontFamily = fontfamilies[randoms];
+    
+        }
+    </script>
+@endsection

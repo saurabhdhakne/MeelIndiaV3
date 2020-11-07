@@ -1,0 +1,88 @@
+@layout('layout.app')
+
+@section('content')
+   
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 pt-3">
+                <div class="col-12 bg-light shadowme rounded pt-3 pb-5">
+                    <h5 class="col-12">Categories</h5>
+                    <hr>
+    
+                    <div class="col-12 row text-light mt-3 bg-danger rounded m-1 pt-4 pb-4">
+                        <h5>Subscribers : </h5> <br>
+                          <input type="range" min="1" max="100" value="50" class="slider col-12 mb-2" id="myRange" onchange="getRate()">
+                            <span>Up To : Rs. </span>&nbsp;
+                            <span id="range">50</span>
+                            <script> 
+                            function getRate(){
+                                document.getElementById('range').innerHTML = document.getElementById('myRange').value;
+                            } </script>
+                    </div>
+    
+                    <div class="col-12 row text-light mt-3 bg-dark rounded m-1 pt-4 pb-4">
+                        <h5 class="col-12">Categories : </h5>
+                        <input type="button" class="btn btn-outline-light m-1" value="Unboxing">
+                        <input type="button" class="btn btn-outline-light m-1" value="Trolling">
+                        <input type="button" class="btn btn-outline-light m-1" value="Techinical">
+                        <input type="button" class="btn btn-outline-light m-1" value="Comedy">
+                        <input type="button" class="btn btn-outline-light m-1" value="Food">
+                        <input type="button" class="btn btn-outline-light m-1" value="Other">
+                    </div>
+                    
+                </div>
+            </div>
+    
+            <div class="col-md-9 pb-5">
+                <div class="col-12 p-1 pt-2 pb-2 bg-light mt-2 products">
+                    <form class="form-inline col-md-12 row">
+                        <input class="form-control col-md-6 col-sm-12" type="search" placeholder="Search for Youtuber" aria-label="Search">
+                        <span class="col-md-2  col-sm-12 text-primary"> <b> 146 Results </b> </span>
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                        <span class="text-primary col-md-2 text-right"> <b> Sort by </b> </span>
+
+                      </form>
+                </div>
+
+                
+                <div class="col-md-12">
+                    <div class="row bg-dark products mt-3 pt-4 pb-4 ">
+                        
+                        <div class="col-md-4 mt-3 d-flex justify-content-center">
+                            <div class="col-md-12 p-1 pr-3 bg-light row text-primary addProduct rounded text-center"  onclick="window.location='addProduct'">
+                                
+                                <h1 class="display-1 col-5"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                </h1>
+                                <h1 class="col-7 mt-2">Add Product</h1>
+                            </div>
+                        </div>
+
+                        @each(dt in YTS)
+
+                            <div class="col-md-4 mt-3 d-flex justify-content-center">
+                                <div class="col-md-12 row p-1 product bg-light rounded text-center ">
+                                    <div class="col-4">
+                                     <img src="{{dt.image}}" class="mt-4" width="100%" style="border-radius:50%;" alt="">
+                                    </div>
+                                    <div class="col-8 pt-3 row">
+                                        <h5 class="col-12">{{dt.ytName}}</h5>
+                                        <p class="text-primary col-4"> <img src="./images/ytlogo.png" width="100%" alt=""> <br> {{dt.ytSub}}</p>
+                                        <p class="text-primary col-4"> <img src="./images/insta.jpg" width="100%" alt=""> <br> {{dt.igFollowers}}</p>
+                                        <p class="text-primary col-4"> <img src="./images/fb.png" width="100%" alt=""> <br> {{dt.fbFollowers}}</p>
+                                    </div>
+                                </div>
+                            </div> 
+                        
+                        @endeach
+                        
+                    </div> 
+                     
+                   
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+@endsection

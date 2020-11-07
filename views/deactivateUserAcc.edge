@@ -1,0 +1,37 @@
+@layout('layout.app')
+
+@section('content')
+   <div class="container">
+       <div class="row">
+           <div class="col-md-12 text-center m-4 bg-light products pt-4 pb-5">
+               <div class="h1">Deactivate Account</div>
+               <div class="p text-secondary">Deactivate your account instantly.</div>
+               <hr>
+                <form method="POST" onsubmit="return checkemail()" action="/deactivateUserAcc" class="col-md-4 offset-md-4 bg-light shadowme pt-3 pb-5 text-dark">
+                    <div class="form-group">
+                        <h2>User's </h2>
+                        <hr>
+                        {{userData.email}}
+                        <input type="hidden" id="email" class="form-control col-12" name="email" value="{{userData.email}}" >
+                        <input type="email"  id="emailConfirm" class="form-control col-12" name="emailConfirm" placeholder="Confirm Your email address">
+                      </div>                        
+                      <div class="col-md-12">
+                          <input type="submit" class="btn btn-outline-primary btn-block">
+                      </div>
+                </form>
+                <script>
+                    function checkemail(){
+                        if(document.getElementById("email").value == document.getElementById("emailConfirm").value){
+                            alert("Your account is going to be deactivated.");
+                            return true;
+                        }else{
+                            alert("Credentials does't match");
+                            return false;
+                        }
+                    }
+                </script>
+            </div>
+       </div>
+   </div>
+
+@endsection

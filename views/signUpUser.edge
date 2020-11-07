@@ -1,0 +1,84 @@
+@layout('layout.app')
+
+@section('content')
+
+<style>
+
+  .updatebtn {
+      border: 0;
+    padding: 10px;
+    width: 100%;
+    border-radius: 3px;
+    background-color: #37A079;
+    font-family: "Century Gothic";
+    font-size: 1rem;
+    margin: 5px 2px;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 10px;
+    transition: background 0.3s ease-in-out;
+    box-shadow: 0px 5px 7px 0px rgba(0,0,0,0.3);
+    color: #fff;
+  }
+  
+  .updatebtn:hover{
+      
+    background: rgba(288,0,7,0.9); 
+  }
+  
+  
+  .form-header
+  {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  
+  }
+  </style>
+
+
+<div class="container-fluid main">
+    <div class="row">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4 mt-5">
+        <form method="POST" action="/signUpUser">
+          <h1>
+            <h1 class="form-header">Sign Up</h1>
+            <h6 class="form-header">( user's )</h6>
+            <hr>
+          </h1>
+          <div class="row">
+            <div class="col-md-6">
+              <label for="exampleInputEmail1">First Name</label>
+              <input type="text" name="fname" class="form-control" id="fname" aria-describedby="emailHelp" placeholder="Enter First Name">
+            </div>
+            <div class="col-md-6">
+              <label for="exampleInputEmail1">Last Name</label>
+              <input type="text" name="lname" class="form-control" id="lname" aria-describedby="emailHelp" placeholder="Enter Last Name">
+            </div>
+          </div>
+          <div class="form-group">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Confirm Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password">
+          </div>
+          <button type="submit" class="updatebtn">Sign Up</button>
+      </form>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+  </div>
+@endsection

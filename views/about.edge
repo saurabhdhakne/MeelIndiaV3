@@ -1,0 +1,180 @@
+@layout('layout.app')
+
+@section('content')
+<!--Font awesome CDN-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    
+<style>
+body
+{
+    background: url("Images/bgaboutus.jpg") center no-repeat;
+}
+
+.footer-content {
+	overflow: hidden;
+    margin-top:8%;
+}
+
+.footer-content h4 {
+	font-size: 2rem;
+	text-transform: uppercase;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	letter-spacing: 3px;
+	margin-bottom: 1.0rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.footer-content .asterisk {
+	margin: 2.4rem 0;
+
+}
+
+.footer-content-about {
+	margin-bottom: 5.4rem;
+    text-align: center;
+    font-size: 1.0rem;
+}
+
+.footer-content-about p {
+	line-height: 2;
+}
+
+.social-icons{
+	list-style: none;
+	margin-bottom: 5.4rem;
+	display: flex;
+	justify-content: center;
+}
+
+.social-icons i {
+	font-size: 2rem;
+	color: #000;
+	padding: 0.8rem 2rem;
+	opacity: 0.9;
+	transition: color 0.5s;
+}
+
+
+.social-icons:hover,
+.social-icons:focus,{
+	color: #777;
+}
+
+.newsletter-form{
+	width: 100%;
+	position: relative;
+	display: flex;
+	justify-content: center;
+}
+
+.newsletter-input {
+	width: 100%;
+	max-width: 20rem;
+	padding: 1rem;
+}
+
+.newsletter-btn {
+	background-color: white;
+  border :none;
+  border-radius: 10px;
+	color: var(--main-font-color-dark);
+	cursor: pointer;
+	font-size: 3rem;
+	padding: 1px 0.6rem;
+	position: relative;
+  top: 50%;
+  margin-top: 24px;
+	transform: translateY(-50%);
+	margin-left: 6rem;
+}
+
+
+
+</style>
+
+
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-content-about animate-bottom">
+                <h4>About Us</h4>
+                <p>
+                    Meel India is part of Preneurs Group. You can make digital invitation card or digital greeting card on this meel india website. You can make any type of E-Card on this page.
+      </p>
+      <h4 style="margin-top:4.4rem;">Address</h4>
+                <p>
+                    Serve no 07 , plot no 27, T. V. Center , Aurangabad. 431001
+                </p>
+            </div>
+            <div class="footer-content-divider animate-bottom">
+                <div class="social-media">
+                    <h4>Follow Along</h4>
+                    <ul class="social-icons">
+                        <li>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </li>
+                                                    <li>
+                            <a href="#"><i class="fab fa-facebook-square"></i></a>
+                        </li>
+                                                    <li>
+                            <a href="#"><i class="fab fa-pinterest"></i></a>
+                        </li>
+                                                    <li>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //Select element function
+      const selectElement = function(element) {
+          return document.querySelector(element);
+      };
+      
+      
+      
+      //Scroll REveal
+      
+      window.sr = ScrollReveal();
+      
+      sr.reveal('.animate-left',{
+          origin: 'left',
+          duration:1000,
+          distance:'25rem',
+          delay:300
+      });
+      
+      sr.reveal('.animate-right',{
+          origin: 'right',
+          duration: 1000,
+          distance: '25rem',
+          delay:600
+      });
+      
+      sr.reveal('.animate-top',{
+          origin: 'top',
+          duration: 1000,
+          distance: '25rem',
+          delay:600
+      });
+      
+      sr.reveal('.animate-bottom',{
+          origin: 'bottom',
+          duration: 1000,
+          distance: '25rem',
+          delay:600
+      });
+      </script>
+      
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      
+
+@endsection

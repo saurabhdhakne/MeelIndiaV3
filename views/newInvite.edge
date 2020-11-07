@@ -1,0 +1,228 @@
+@layout('layout.app')
+
+@section('content')
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+crossorigin=""></script>
+
+<style>
+    .invite{
+        min-height: 600px;
+        width: 350px;
+        margin:auto;
+        background: cover;
+        font-family: 'Caveat', cursive;
+    }   
+    #bgInvite{
+        width: 350px;
+        padding: 0;
+        margin-top: 0;
+    }
+    .dataInvite{
+        width: 100%;
+    }
+    .inputInvite{
+        width: 350px;
+    }
+    
+</style>
+<div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12 mt-3 mb-3"> 
+        <input type="button" onclick="inviteBirthday()" class="btn btn-primary m-2" value="Birthday">
+        <input type="button" onclick="inviteWedding()" class="btn btn-primary m-2" value="Wedding">
+        <input type="button" onclick="inviteAnniversy()" class="btn btn-primary m-2" value="Anniversy">
+        <input type="button" onclick="inviteInnogration()" class="btn btn-primary m-2" value="Innogration">
+        <input type="button" onclick="inviteInnogration()" class="btn btn-primary m-2" value="Innogration">
+        <input type="button" onclick="inviteEngagement()" class="btn btn-primary m-2" value="Engagement">
+    </div>
+    <div class="col-md-6 p-1 ibd">
+        <div class="invite bg-light shadowme" id="inviteBody">
+            <img src="" id="bgInvite" alt="">
+            <div class="dataInvite">
+                <h5 class="text-center" id="head">Celebrating</h5>
+                <input type="text" id="title" name="title" class="ytedit h4 inputInvite text-center" value="" placeholder=""> 
+                <input type="text" id="subtitle" name="subtitle" class="ytedit p inputInvite text-center" value="" placeholder=""> 
+                <textarea rows="4" id="content" name = "content"  class="ytedit form-control p inputInvite text-center"  id="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, non. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos, suscipit. </textarea><br>
+                <input type="datetime-local" class="ytedit form-control p inputInvite text-center" name="dateTime" id="dateTime"  value="2021-06-12T19:30">
+            </div>
+        </div>  
+    </div>
+    <div class="col-md-6" onload="getLocation()">
+        <form action="" class="col-md-12">
+            <div class="form-group">
+                <input type="hidden" class="form-control" id="lat" name="lat" aria-describedby="mobile" placeholder="lat" required>
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" id="lng" name="lng" aria-describedby="mobile" placeholder="lng" required>
+            </div>
+            
+            <input type="hidden" name="location" value="">
+            
+            <div id="map" class="mb-5 shadowme" style="width:100%; height:60vh;z-index:8"></div>
+        
+            <p id="demo"></p>
+    
+            <input type="button" onclick="getLocation()" class=" btn btn-outline-primary btn-block mt-2" value="Get Current Location">
+
+            <input type="button" onclick="setLocation()" class=" btn btn-outline-primary btn-block mt-2" value="Set Your Location">
+
+            <input type="button" name="Save" value="Submit" onclick="sendInvite()" class="submitinvitation btn btn-primary btn-block mt-3">
+
+
+        </form>
+
+    </div>
+   </div>
+</div>
+<script>
+    var bgImg,type;
+    function inviteBirthday(){
+        document.getElementById("bgInvite").src = "./InviteBG/invites/bdaybg.png";
+        bgImg = "./InviteBG/invites/bdaybg.png";
+        document.getElementById("title").placeholder  = "Saurabh Dhakne";
+        document.getElementById("subtitle").placeholder = "22th Birthday";
+        type = "birthday";
+    }
+    function inviteWedding(){
+        document.getElementById("bgInvite").src = "./InviteBG/invites/wedding.png";
+        bgImg = "./InviteBG/invites/wedding.png";
+        document.getElementById("title").placeholder  = "Laila and Majnu";
+        document.getElementById("subtitle").placeholder = "Wedding";
+        type = "Wedding";
+    }
+    function inviteAnniversy(){
+        document.getElementById("bgInvite").src = "./InviteBG/invites/anniversy.png";
+        bgImg = "./InviteBG/invites/anniversy.png";
+        document.getElementById("title").placeholder  = "25 th Anniversy ";
+        document.getElementById("subtitle").placeholder = "MeelIndia";
+        type = "anniversy";
+    }
+    function inviteInnogration(){
+        document.getElementById("bgInvite").src = "./InviteBG/invites/innogration.png";
+        bgImg = "./InviteBG/invites/innogration.png";
+        document.getElementById("title").placeholder  = "The Grand Opening of";
+        document.getElementById("subtitle").placeholder = "MeelIndia";
+        type = "innogration";
+
+    }
+    function inviteEngagement (){
+        document.getElementById("bgInvite").src = "./InviteBG/invites/engagement.png";
+        bgImg = "./InviteBG/invites/engagement.png";
+        document.getElementById("title").placeholder  = "Laila and Majnu";
+        document.getElementById("subtitle").placeholder = "Engangement Party";
+        type = "innogration";
+    }
+    inviteBirthday()
+</script>
+<script>
+
+    var lngg, latt,hlat,hlng;
+            var map = L.map('map').setView([19.8684798, 75.3218784], 10);
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+        
+    var marker;
+
+
+    function getLocation() {
+        if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+        } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+        return false;
+    }
+            
+    function showPosition(position) {
+        latt = position.coords.latitude;
+        lngg = position.coords.longitude;
+            document.getElementById('demo').innerHTML = "Latitude: " + latt + 
+            "<br>Longitude: " + lngg;
+            
+        marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map)
+        .bindPopup('My location')
+                    .openPopup();
+
+                    map.locate({setView : true});
+
+        marker.dragging.enable();
+
+            }
+        
+            function setLocation(){
+            position = marker.getLatLng();
+            hlat = position.lat;
+            hlng = position.lng;
+            document.getElementById('lat').value = hlat;
+            document.getElementById('lng').value = hlng;
+            alert('Location is Set.')
+            }
+
+            function setLocation2(){
+        
+            hlat = position.lat;
+            hlng = position.lng;
+            document.getElementById('lat').value = hlat;
+            document.getElementById('lng').value = hlng;
+            alert('Location is Set.')
+            }
+
+            function onMapClick(e) {
+
+            marker.on("dragend", function(ev) {
+                var chagedPos = ev.target.getLatLng();
+                this.bindPopup("ME at " +chagedPos.toString()).openPopup();
+                loc1 = [chagedPos.lat,chagedPos.lng];
+                hlat = chagedPos.lat;
+                hlng = chagedPos.lng;
+                document.getElementById('lat').value = hlat;
+                document.getElementById('lng').value = hlng;
+                document.getElementById('demo').innerHTML = "Latitude: " + hlat + 
+                "<br>Longitude: " + hlng;
+                console.log(loc1);
+
+            });
+
+            }
+
+            map.on('click', onMapClick);
+
+</script>
+<script>
+    	function sendInvite(){
+				var title = document.getElementById('title').value;
+				var subtitle = document.getElementById('subtitle').value;
+				var content = document.getElementById('content').value;
+				var dateTime = document.getElementById('dateTime').value;
+
+				var Mlat = document.getElementById('lat').value ; 
+				var Mlng = document.getElementById('lng').value ; 
+
+				console.log(title);
+				console.log(name);
+				console.log(content);
+				var http = new XMLHttpRequest();
+				var url = '/invitationCreate';
+				
+				var params = 'title='+title+'&subtitle='+subtitle+'&content='+content+'&bg='+bgImg+'&lat='+Mlat+'&lng='+Mlng+'&dateTime='+dateTime;
+				http.open('POST', url, true);
+
+				//Send the proper header information along with the request
+				http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+				http.onreadystatechange = function() {//Call a function when the state changes.
+					if(http.readyState == 4 && http.status == 200) {
+						alert("Invtation Created Successfully Please check Profile Page!");
+					}
+				}
+				http.send(params);
+				window.location="/profileUser";
+			}
+</script>
+@endsection

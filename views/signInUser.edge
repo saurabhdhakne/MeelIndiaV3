@@ -1,0 +1,74 @@
+@layout('layout.app')
+
+@section('content')
+
+<style>
+
+  .updatebtn {
+      border: 0;
+    padding: 10px;
+    width: 100%;
+    border-radius: 3px;
+    background-color: #37A079;
+    font-family: "Century Gothic";
+    font-size: 1rem;
+    margin: 5px 2px;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 10px;
+    transition: background 0.3s ease-in-out;
+    box-shadow: 0px 5px 7px 0px rgba(0,0,0,0.3);
+    color: #fff;
+  }
+  
+  .updatebtn:hover{
+      
+    background: rgba(288,0,7,0.9); 
+  }
+  
+  
+  .form-header
+  {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  
+  }
+  </style>
+
+
+<div class="container-fluid main">
+    <div class="row">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4 mt-5">
+        <form method="POST" action="/signInUserData">
+          <div class="row">
+          <div class="form-group col-md-12">
+              <h1 class="form-header"> Sign In</h1>
+            <h6 class="form-header">( User's )</h6>
+            
+            <hr>
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control col-12" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          </div>
+          <div class="form-group col-md-12">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control col-12" name="password" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <div class="col-md-12">
+          <button type="submit" class="updatebtn">Sign In</button>
+        </div>
+        <div class="col-md-12 mt-2">
+          <a href="/FPUser">
+            <h5>Forget Password...</h5>
+          </a>
+        </div>
+      </form>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+  </div>
+@endsection

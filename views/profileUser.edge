@@ -1,0 +1,377 @@
+@layout('layout.app')
+
+@section('content')
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>    
+
+@import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@700&display=swap');
+
+
+    .bg-primary1{
+        background: #2B7E5F;
+    }
+    
+    .bg-primary1:hover{
+        background: dodgerblue;
+        transition: .2s ease-in;
+    }
+    .invite{
+        min-height: 600px;
+        width: 350px;
+        margin:auto;
+        background: cover;
+        font-family: 'Caveat', cursive;
+    }   
+    .Caveat{
+        font-family: 'Caveat', cursive;
+    }
+    #bgInvite{
+        width: 350px;
+        padding: 0;
+        margin-top: 0;
+    }
+    .dataInvite{
+        width: 100%;
+    }
+    .inputInvite{
+        width: 350px;
+    }
+
+
+.profile-details-heading
+{
+    padding:10px 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.profile-details-input {
+    margin-bottom: 7px;
+}
+
+.updatebtn {
+    border: 0;
+	padding: 10px;
+	width: 100%;
+	border-radius: 3px;
+	background-color: #37A079;
+	font-family: "Century Gothic";
+	font-size: 1rem;
+	margin: 5px 2px;
+	cursor: pointer;
+	outline: none;
+	margin-bottom: 10px;
+	transition: background 0.3s ease-in-out;
+	box-shadow: 0px 5px 7px 0px rgba(0,0,0,0.3);
+	color: #fff;
+}
+
+.updatebtn:hover{
+    
+	background: rgba(288,0,7,0.9); 
+}
+
+.createbtn
+{
+    border: 0;
+	padding: 25px;
+	width: 100%;
+	border-radius: 23px;
+	background-color: #fff;
+	font-family: "Century Gothic";
+	font-size: 1.3rem;
+    text-transform: uppercase;
+    font-weight: bold;
+	margin: 5px 2px;
+	cursor: pointer;
+	outline: none;
+	margin-bottom: 10px;
+	transition: background 0.3s ease-in-out;
+	box-shadow: 0px 5px 7px 0px rgba(0,0,0,0.3);
+	color: #000;
+}
+
+
+.createbtn:hover{
+    
+	background: rgba(0,0,0,0.9);
+    color: #fff; 
+}
+
+.socialbtn
+{
+    border: none;
+    background: transparent;
+    font-size: 2em;
+    margin: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+    
+}
+
+.socialbtn:hover{
+    color: #37A079;
+}
+    
+.socialrow
+{
+    text-align: center;
+}
+
+.nameheading
+{
+    font-size:17px;
+    font-weight:bold;
+    text-transform:uppercase;
+}
+
+.emailheading
+{
+    margin-left:5px;
+    font-size:12px;
+}
+
+@media(max-width:768px)
+{
+    .nameheading
+    {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .emailheading
+    {
+        font-size: 15px;
+        margin-left: 35px;
+    }
+}
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      var width = screen.width,
+        height = screen.height;
+ 
+        if (screen.width <= 768) {
+		
+		$('.profiledetails').remove();
+        }
+});
+</script>
+
+    <div class="container-fluid">
+        <div class="row" style="margin-bottom:55px;">
+            <div class="col-md-2"></div>
+            <div class="col-md-3">
+                <button class="createbtn" onclick="window.location='invitationCreate'">Create New Invitation</button>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-3">
+                <button class="createbtn" onclick="window.location='greetingCreate'">Create New Greeting</button>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <form  action="/updateUserImage" class="m-3" enctype="multipart/form-data" method="POST">
+                    <input type="hidden" name="_id" value="{{ userData._id }}">
+                    <input type="file" class="custom-file-input" name="profile_pic" id="customFile" onchange="this.form.submit()">
+                    <label class="custom-file-label mt-1 m-2" for="customFile" style="font-size:13px;">Change Profile Picture</label>
+                </form>
+                <form action="updateUser" method="POST">
+                    <div class="row">   
+                        <input type="hidden" name="_id" value="{{ userData._id }}">
+                        <div class="col-4">
+                            <img src="{{userData.image}}" class="img rounded" width="100%" alt="">
+                        </div>
+
+                        <div class="col-8 text-left header">
+                            <div class="row">
+                                <input type="text" class="ytedit h4 col nameheading" name="fname" value="{{userData.fname}}"> 
+                                <input type="text" class="ytedit h4 col nameheading" name="lname" value="{{userData.lname}}">
+                            </div> 
+                            <p>
+                                <div class="row">
+                                    <h6 class="emailheading">( {{ userData.email }} )</h6>
+                                </div>
+                            </p>
+
+                        </div>
+
+                    </div>
+                    <hr>
+
+                    <div class="profiledetails form-group">
+                        <h6 class="profile-details-heading" >Gender</h6>
+                        <input type="text" name="gender" class="form-control profile-details-input"  value="{{userData.gender}}">
+                        <h6 class="profile-details-heading" >Contact No</h6>
+                        <input type="text" name="contact" class="form-control profile-details-input"  value="{{userData.contact}}">
+                        
+                        <h6 class="profile-details-heading">in Link</h6> 
+                        <input type="text" id="linkedinLink" class="form-control profile-details-input" value="{{ userData.linkedinLink}}"      name="linkedinLink">
+                        <h6 class="profile-details-heading">IG Link</h6>
+                        <input type="text" id="igLink"      class="form-control profile-details-input" value="{{ userData.igLink}}"      name="igLink">
+                        <h6 class="profile-details-heading">fb Link</h6>
+                        <input type="text" id="fbLink"      class="form-control profile-details-input" value="{{ userData.fbLink}}"      name="fbLink">
+        
+                        <input type="submit" class="updatebtn" value="Update" >
+
+                    </div>
+        </div>
+
+        <div class="col-md-4 p-1 pt-3 pb-4 invitationsclass" style="margin-left:25px;">
+            
+            <h3 class="profile-services-header" style="text-align:center;font-weight:bold;text-transform:uppercase;">Invitations!</h3>
+            <hr>
+
+            @each(dt in invitations)
+                        
+                        <div class="col-md-12">
+                                <div class="col-md-8 offset-md-2 mb-2 text-center">
+                                        <div class="d-flex justify-content-center">
+                                            <input type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-primary" value="Locate"  onclick="window.location='https://www.google.com/maps/search/?api=1&query={{dt.lat}},{{dt.lng}}' ">
+                                            <input type="text" id="title" name="title" class="ytedit d-inline inputInvite text-center" value="https://meelindia.com/invitation?id={{dt._id}}" placeholder=""> 
+                                            <button type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-primary" data-toggle="modal" data-target="#shareModal"><i class="fa fa-share" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="d-flex justify-content-center">
+                                                <a class="socialbtn d-flex row" href="whatsapp://send?text=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> 
+                                                <a class="socialbtn d-flex row" href="https://www.facebook.com/sharer/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a> 
+                                                <a class="socialbtn d-flex row" href="https://www.instagram.com/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-instagram" aria-hidden="true"></i></a> 
+                                                <a class="socialbtn d-flex row" onclick='myFunction("{{ dt._id }}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>
+                                        </div>
+                                </div> 
+                                <div class="invite bg-light shadowme" id="inviteBody">
+                                    <img src="{{dt.bg}}" id="bgInvite" alt="">
+                                    <div class="dataInvite">
+                                        <form action="inviteUpdate" method="POST">
+                                        <h5 class="text-center" id="head">Celebrating</h5>
+                                        <input type="hidden" name="_id" value="{{dt._id}}">
+                                        
+                                            <input type="text" id="title" name="title" class="ytedit h4 inputInvite text-center" value="{{dt.title}}" placeholder="" style="font-family:{{ dt.nameFont}}"> 
+                                            <input type="text" id="subtitle" name="subtitle" class="ytedit p inputInvite text-center" value="{{ dt.subtitle }}" placeholder="" style="font-family:{{ dt.subFont}}"> 
+                                            <textarea rows="4" id="content" name = "content"  class="ytedit form-control p inputInvite text-center"  id="content" style="font-family:{{ dt.bodyFont}}">{{ dt.content}}</textarea><br>
+                                            <input type="datetime-local" class="ytedit form-control p inputInvite text-center" name="dateTime" id="dateTime"  value="{{dt.dateTime}}">
+                                            <input type="submit" class="btn btn-outline-primary btn-block btn-update" value="Update">
+                                        </form>
+                                        <form action="inviteDelete" method="POST">
+                                            <input type="hidden" name="_id" value="{{dt._id}}">
+                                            <input type="submit" value="Delete" class="btn btn-outline-danger btn-block mt-1">
+                                        </form>
+                                    </div>
+                                </div> 
+                              
+                          
+                        </div>
+                        <hr width="100%">
+
+                    @endeach
+
+
+
+        </div>
+
+        <div class="col-md-4 p-1 pt-3 pb-4" style="margin-left:25px;">
+            
+            <h3 class="profile-services-header" style="text-align:center;font-weight:bold;text-transform:uppercase;">Greetings!</h3>
+            <hr>
+
+            @each(dt in greetings)
+                        
+                        <div class="col-md-12">
+                            <div class="col-md-8 offset-md-2 mb-2 text-center">
+                                <div class="d-flex justify-content-center">
+                                    <input type="text" id="title" name="title" class="ytedit d-inline inputInvite text-center " value="https://meelindia.com/greeting?id={{dt._id}}" placeholder="">  
+                                    <button type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-primary" data-toggle="modal" data-target="#shareModal"><i class="fa fa-share" aria-hidden="true"></i></button>
+                                </div> 
+                                <div class="d-flex justify-content-center">
+                                    <a class="socialbtn d-flex row" href="whatsapp://send?text=https://meelindia.com/greeting?id={{dt._id}}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> 
+                                    <a class="socialbtn d-flex row" href="https://www.facebook.com/sharer/sharer.php?u=https://meelindia.com/greeting?id={{dt._id}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a> 
+                                    <a class="socialbtn d-flex row" href="https://www.instagram.com/sharer.php?u=https://meelindia.com/greeting?id={{dt._id}}"><i class="fa fa-instagram" aria-hidden="true"></i></a> 
+                                    <a class="socialbtn d-flex row" onclick='myFunction2("{{ dt._id }}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>
+                            </div>
+                            </div> 
+                        
+                                <div class="invite bg-light shadowme" id="inviteBody">
+                                    <img src="{{dt.bg}}" id="bgInvite" alt="">
+                                    <div class="dataInvite">
+                                        <form action="greetingUpdate" method="POST">
+                                            <h5 class="text-center" id="head"></h5>
+                                            <input type="hidden" name="_id" value="{{dt._id}}">
+                                            <input type="text" id="title" name="title" class="ytedit h4 inputInvite text-center" value="{{dt.title}}" placeholder="" style="font-family:{{ dt.nameFont}}"> 
+                                            <input type="text" id="subtitle" name="subtitle" class="ytedit p inputInvite text-center" value="{{ dt.subtitle }}" placeholder="" style="font-family:{{ dt.subFont}}"> 
+                                            <textarea rows="4" id="content" name = "content"  class="ytedit form-control p inputInvite text-center"  id="content" style="font-family:{{ dt.bodyFont}}">{{ dt.content}}</textarea><br>
+                                            <input type="submit" class="btn btn-outline-primary btn-block btn-update" value="Update">
+                                        </form>
+                                        <form action="greetingDelete" method="POST">
+                                            <input type="hidden" name="_id" value="{{dt._id}}">
+                                            <input type="submit" value="Delete" class="btn btn-outline-danger btn-block mt-1">
+                                        </form>
+                                    </div>
+                                </div> 
+                                
+                          
+                        </div>
+
+                        <hr width="100%">
+                    @endeach
+
+
+        </div>
+
+        <div class="col-md-1"></div>
+        
+    </div>
+
+
+    <!-- Modal -->
+<div class="modal" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Share Link!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row socialrow d-flex justify-content-center">
+            <button class="socialbtn" onclick="location.href='whatsapp://send?text=https://meelindia.com/greeting?id={{dt._id}}';"><i class="fa fa-whatsapp" aria-hidden="true"></i></button>
+            <button class="socialbtn" onclick="location.href='https://www.facebook.com/sharer/sharer.php?u=https://meelindia.com/greeting?id={{dt._id}}';"><i class="fa fa-facebook-official" aria-hidden="true"></i></button>
+            <button class="socialbtn" onclick="location.href='https://www.instagram.com/sharer.php?u=https://meelindia.com/greeting?id={{dt._id}}';" ><i class="fa fa-instagram" aria-hidden="true"></i></button>
+            <button class="socialbtn" onclick="myFunction()"><i class="fa fa-copy" aria-hidden="true"></i></button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+        function myFunction(str) {
+            var copyText = 'https://meelindia.com/invitation?id='+str;
+            navigator.clipboard.writeText(copyText);
+            alert("Copied the text: " + copyText);
+        }
+        function myFunction2(str) {
+            var copyText = 'https://meelindia.com/greeting?id='+str;
+            navigator.clipboard.writeText(copyText);
+            alert("Copied the text: " + copyText);
+        }
+  </script>
+	
+@endsection
