@@ -217,14 +217,15 @@ crossorigin=""></script>
         bgImg = "./InviteBG/invites/engagement.png";
         document.getElementById("title").placeholder  = "Enter the Names ";
         document.getElementById("subtitle").placeholder = "Enter the subtitle";
-        document.getElementById("content").value = "Enter the Desription,Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, accusamus. ";
+        document.getElementById("content").value = "Enter the Desription.";
         type = "innogration";
     }
     function inviteOther(){
         document.getElementById("bgInvite").src = "./InviteBG/invites/other.png";
         bgImg = "./InviteBG/invites/other.png";
-        document.getElementById("title").value  = "Something";
-        document.getElementById("subtitle").value = "write sub title";
+        document.getElementById("title").placeholder  = "Enter the Title";
+        document.getElementById("subtitle").placeholder = "Enter the subtitle";
+        document.getElementById("content").value = "Enter the Desription.";
         type = "other";
     }
     inviteBirthday()

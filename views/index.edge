@@ -389,14 +389,14 @@ crossorigin=""></script>
  
                          http.onreadystatechange = function() {
                              if(http.readyState == 4 && http.status == 200) {
+                                strText = this.responseText;
+                                strText = strText.slice(1,-1);
+                                window.location="invitation?id="+strText;
                                  alert("Invtation Created Successfully Please check Profile Page!");
                              }
                          }
  
                      http.send(params);
-                     alert("Your invite created successfully");
-                     window.location="/profileUser";
- 
                  }
              }
  </script>

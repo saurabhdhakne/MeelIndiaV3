@@ -129,7 +129,7 @@ h1{
             <div class="dataInvite">
                 <input type="text" id="title" name="title" class="ytedit h4 inputInvite text-center" value="" placeholder=""> 
                 <input type="text" id="subtitle" name="subtitle" class="ytedit p inputInvite text-center" value="" placeholder=""> 
-                <textarea rows="4" id="content" name = "content"  class="ytedit form-control p inputInvite text-center"  id="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, non. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos, suscipit. </textarea><br>
+                <textarea rows="4" id="content" name = "content"  class="ytedit form-control p inputInvite text-center"  id="content">Enter the Description.</textarea><br>
             </div>
         </div>
     </div>
@@ -208,14 +208,13 @@ h1{
 
                     http.onreadystatechange = function() {
                         if(http.readyState == 4 && http.status == 200) {
-                            alert("Invtation Created Successfully Please check Profile Page!");
+                            alert("Greeting Created Successfully!");
+                            strText = this.responseText;
+                                strText = strText.slice(1,-1);
+                                window.location="greeting?id="+strText;
                         }
                     }
-
                     http.send(params);
-                    alert("Your greeting created successfully");
-                    window.location="/profileUser";
-
                 }
 			}
 </script>
@@ -226,7 +225,7 @@ h1{
         {
         var idee = document.getElementById("title").style.fontFamily; 
     
-        var fontfamilies = ["Comic Sans, Comic Sans MS, cursive", "Edwardian Script ITC, bold","Bauhaus 93","Eras Bold ITC","Impact, fantasy","Pacifico, cursive" ,"Dancing Script, cursive"];    
+        var fontfamilies = ["Comic Sans, Comic Sans MS, cursive", "Edwardian Script ITC, bold","Bauhaus 93","Eras Bold ITC","Impact, fantasy","Pacifico, cursive" ,"Dancing Script, cursive"];
             
             const randoms = Math.floor(Math.random()*fontfamilies.length);
 
