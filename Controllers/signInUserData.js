@@ -56,9 +56,11 @@ module.exports = (req, res) => {
                     userData,
                     user: req.session.userType,
                     invitations : invitationData,
-                    greetings : greetingData,
-
+                    greetings : greetingData 
                   });
+
+                //res.redirect('/');
+
               } else {
                 res.render("accountCreated");
               }

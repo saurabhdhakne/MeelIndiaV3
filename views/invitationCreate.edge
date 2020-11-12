@@ -35,17 +35,17 @@ crossorigin=""></script>
 		text-shadow: 1px 2px 5px;
 	}
     .headingmain
-{
-    font-family: 'Righteous', cursive;
-    color: #000;
-    font-size: 100px;
-}    
+    {
+        font-family: 'Righteous', cursive;
+        color: #000;
+        font-size: 100px;
+    }    
 
-.subheadingmain
-{
-    font-family: 'Cookie', cursive;
-    font-size: 35px;
-}
+    .subheadingmain
+    {
+        font-family: 'Cookie', cursive;
+        font-size: 35px;
+    }
     .btn-danger
     {
         font-family: 'Amaranth', sans-serif;
@@ -89,10 +89,24 @@ crossorigin=""></script>
     }
     .search-input {
     font-family:Courier;
-}
+    }
     .search-input,
     .leaflet-control-search {
-        max-width:600px;
+        max-width:400px;
+        background: black;
+    }
+    
+    @media(max-width:522px)
+    {
+                
+        .headingmain
+        {
+            font-size: 50px;
+        }    
+        .subheadingmain
+        {
+            font-size: 25px;
+        }
 
     }
     
@@ -230,9 +244,8 @@ crossorigin=""></script>
     }
     inviteBirthday()
 </script>
-
 <script>
-    
+     
     var lngg, latt,hlat,hlng;
     var marker;
     
@@ -256,16 +269,23 @@ crossorigin=""></script>
                     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
         
-
-
-    function getLocation() {
-        if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-        } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
-        }
-        return false;
-    }
+       function theLocation(){
+           if (navigator.geolocation) {
+               navigator.geolocation.getCurrentPosition(showPosition);
+           } else { 
+               x.innerHTML = "Geolocation is not supported by this browser.";
+           }
+           
+       } theLocation();
+     
+       function getLocation() {
+           if (navigator.geolocation) {
+           navigator.geolocation.getCurrentPosition(showPosition2);
+           } else { 
+           x.innerHTML = "Geolocation is not supported by this browser.";
+           }
+           return false;
+       }
             
     function showPosition(position) {
         latt = position.coords.latitude;
@@ -273,13 +293,23 @@ crossorigin=""></script>
             document.getElementById('demo').innerHTML = "Latitude: " + latt + 
             "<br>Longitude: " + lngg;
             
-        marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map)
-        .bindPopup('My location')
-                    .openPopup();
+       marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map)
+       .bindPopup('My location')
+                   .openPopup();
+           
+           map.locate({setView : true});
+   
+           marker.dragging.enable();
+   
+       }
 
-        map.locate({setView : true});
+    function showPosition2(position) {
+        latt = position.coords.latitude;
+        lngg = position.coords.longitude;
+            document.getElementById('demo').innerHTML = "Latitude: " + latt + 
+            "<br>Longitude: " + lngg;
 
-        marker.dragging.enable();
+           marker.setLatLng([position.coords.latitude, position.coords.longitude]);
 
             }
         

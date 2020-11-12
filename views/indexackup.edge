@@ -157,22 +157,82 @@ crossorigin=""></script>
         <div class="col-md-4 text-center mb-4 mt-2 ">
             <button class="createbtn" onclick="window.location='greetingCreate'">Create New Greeting</button>
         </div>
-        
-        <div class="col-md-4 offset-md-4 text-center mb-4 mt-2 ">
-            
-    @if(user == "")
-            <input type="button" value="Sign In" onclick="window.location='signInUser' " class="btn btn-outline-primary">
-    @else
-            <input type="button" value="Sign out" onclick="window.location='logout' " class="btn btn-outline-primary">
 
-    @endif
-        </div>
-
-
-  
-    
+     @if(user == "")
+         <div class="col-12 text-center mb-4"><input type="button" class="btn btn-outline-success" value="Sign Up to Create Invitation"  onclick=" window.location='/signUpUser' "></div>    
+     @endif
+     <h4 class="col-12 text-center subheadingmain">Your Online Invitation Creator</h4>
+     <br>
+        <div class="col-md-4"></div>
+     <div class="col-md-4 changeclass">
+         <h5 class="d-inline">Select Type of Invitation : </h5>
+         <button type="button" class="btn btn-primary dropdown-toggle d-inline" data-toggle="dropdown">
+             Type
+           </button>
+         <div class="dropdown-menu">
+         <input type="button" onclick="inviteBirthday()" class="dropdown-item" value="Birthday">
+         <input type="button" onclick="inviteWedding()" class="dropdown-item" value="Wedding">
+         <input type="button" onclick="inviteAnniversary()" class="dropdown-item" value="Anniversary">
+         <input type="button" onclick="inviteInnogration()" class="dropdown-item" value="Innogration">
+         <input type="button" onclick="inviteEngagement()" class="dropdown-item" value="Engagement">
+         <input type="button" onclick="inviteOther()" class="dropdown-item" value="Other">
      </div>
+     <div class="forpadding">
+             <h5 class="d-inline">Change Fonts : </h5>
+         <button type="button" class="btn btn-primary dropdown-toggle d-inline" data-toggle="dropdown">
+             Fonts
+           </button>
+         <div class="dropdown-menu">
+             <input type="button" onclick="changeNameFont()" class="dropdown-item" value="Change Name Font">
+         
+             <input type="button" onclick="changeBodyFont()" class="dropdown-item" value="Change Body Font">
      
+             <input type="button" onclick="changeSubFont()" class="dropdown-item" value="Change Sub Title Font">
+             </div>
+ 
+         </div>
+     </div>
+     </div>
+     <div class="row">
+     <div class="col-md-6 p-1 col-sm-6 ibd">
+         <div class="invite bg-light shadowme" id="inviteBody">
+             <img src="" id="bgInvite" alt="">
+             <div class="dataInvite">
+                 <h5 class="text-center" id="head">Celebrating</h5>
+                 <input type="text" id="title" name="title" class="ytedit h4 inputInvite text-center" value="" placeholder=""> 
+                 <input type="text" id="subtitle" name="subtitle" class="ytedit p inputInvite text-center" value="" placeholder=""> 
+                 <textarea rows="4" id="content" name = "content"  class="ytedit form-control p inputInvite text-center"  id="content">The fun of a special day is incomplete without the presence of our friends. You are most cordially invited to our baby’s birthday party!
+                 </textarea><br>
+                 <input type="datetime-local" class="ytedit form-control p inputInvite text-center" name="dateTime" id="dateTime"  value="2021-06-12T19:30">
+             </div>
+         </div>  
+     </div>
+     <div class="col-md-6 col-sm-6" onload="getLocation()">
+         <form action="" class="col-md-12 col-sm-12">
+             <div class="form-group">
+                 <input type="text" class="form-control" id="lat" name="lat" aria-describedby="mobile" placeholder="lat" required>
+             </div>
+             <div class="form-group">
+                 <input type="text" class="form-control" id="lng" name="lng" aria-describedby="mobile" placeholder="lng" required>
+             </div>
+             
+             <input type="hidden" name="location" value="">
+             
+             <div id="map" class="mb-5 shadowme" style="width:100%; height:60vh;z-index:8"></div>
+         
+             <p id="demo"></p>
+     
+             <input type="button" onclick="getLocation()" class=" btn btn-outline-primary btn-block mt-2" value="Get Current Location">
+ 
+             <input type="button" onclick="setLocation()" class=" btn btn-outline-primary btn-block mt-2" value="Set Your Location">
+ 
+             <input type="button" name="Save" value="Share" onclick="sendInvite()" class="submitinvitation btn btn-primary btn-block mt-3">
+ 
+ 
+         </form>
+ 
+     </div>
+    </div>
     <div class="row footer">
     
     
@@ -187,9 +247,8 @@ crossorigin=""></script>
 
         </div>
 
-    </div>
-     </div>
-
+</div>
+ </div>
  <script>
      var bgImg, type, nameFont = " Dancing Script, cursive",bodyFont= " Dancing Script, cursive",subFont =  " Dancing Script, cursive";
   
