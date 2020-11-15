@@ -178,8 +178,8 @@ crossorigin=""></script>
         
             <p id="demo"></p>
     
-            <input type="button" onclick="getLocation()" class=" btn btn-outline-primary btn-block mt-2" value="Get Current Location">
-
+            <!-- <input type="button" onclick="getLocation()" class=" btn btn-outline-primary btn-block mt-2" value="Get Current Location">
+            -->
             <input type="button" onclick="setLocation()" class=" btn btn-outline-primary btn-block mt-2" value="Set Your Location">
 
             <input type="button" name="Save" value="Share" onclick="sendInvite()" class="submitinvitation btn btn-primary btn-block mt-3">
@@ -252,18 +252,41 @@ crossorigin=""></script>
             var map = L.map('map').setView([19.8684798, 75.3218784], 10);
            
             map.addLayer(new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'));	
-
-            map.addControl( new L.Control.Search({
+            var search = new L.Control.Search({
                     url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
-                    jsonpParam: 'json_callback',
-                    propertyName: 'display_name',
-                    propertyLoc: ['lat','lon'],
-                    marker: L.marker([0,0]),
-                    autoCollapse: true,
-                    autoType: false,
-                    minLength: 2
-                })
-            );
+                                    jsonpParam: 'json_callback',
+                                    propertyName: 'display_name',
+                                    propertyLoc: ['lat','lon'],
+                                    marker: L.marker([0,0]),
+                                    autoCollapse: true,
+                                    autoType: false,
+                                    minLength: 2
+                });
+
+            // map.addControl( new L.Control.Search({
+            //         url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
+            //         jsonpParam: 'json_callback',
+            //         propertyName: 'display_name',
+            //         propertyLoc: ['lat','lon'],
+            //         marker: L.marker([0,0]),
+            //         autoCollapse: true,
+            //         autoType: false,
+            //         minLength: 2
+            //     })
+            // );
+
+            search.on('search:locationfound',
+                    function(e) {
+                        console.log(e.latlng);
+                        marker.setLatLng([e.latlng.lat, e.latlng.lng]);
+                                        
+                            latt = e.latlng.lat;
+                            lngg = e.latlng.lng;
+                            document.getElementById('demo').innerHTML = "Latitude: " + latt + "<br>Longitude: " + lngg;
+                        
+                        });
+                        
+            map.addControl(search);
 
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -280,7 +303,7 @@ crossorigin=""></script>
      
        function getLocation() {
            if (navigator.geolocation) {
-           navigator.geolocation.getCurrentPosition(showPosition2);
+                navigator.geolocation.getCurrentPosition(showPosition2);
            } else { 
            x.innerHTML = "Geolocation is not supported by this browser.";
            }
@@ -309,7 +332,7 @@ crossorigin=""></script>
             document.getElementById('demo').innerHTML = "Latitude: " + latt + 
             "<br>Longitude: " + lngg;
 
-           marker.setLatLng([position.coords.latitude, position.coords.longitude]);
+                marker.setLatLng([position.coords.latitude, position.coords.longitude]);
 
             }
         
