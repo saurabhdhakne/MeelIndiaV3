@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
   
-    <title> MeelIndia Greeting : {{ greetings[0].title   }} </title>
+    <title> MeelIndia Greeting : {{ greetings[0].title   }} : {{ greetings[0].subtitle }} </title>
     
     <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
   
@@ -20,7 +20,19 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    
+    <script src="./dist/html2canvas.js"></script>
+    <script>
+        function doCapture(){
+            html2canvas(document.getElementById("inviteBody")).then(function (canvas){
+                //console.log(canvas.toDataURL("image/jpeg",0.9));
+                image = canvas.toDataURL("image/jpeg",0.9);
+                var link = document.createElement('a');
+                link.download = "greeting.png";
+                link.href = image;
+                link.click();
+            });
+        }
+    </script>
     <style>
         
     @import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@700&display=swap');
@@ -105,8 +117,8 @@
                     <div class="d-flex justify-content-center">
                         <a class="socialbtn d-flex row" href="whatsapp://send?text=https://meelindia.com/greeting?id={{dt._id}}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> 
                         <a class="socialbtn d-flex row" href="https://www.facebook.com/sharer/sharer.php?u=https://meelindia.com/greeting?id={{dt._id}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a> 
-                        <a class="socialbtn d-flex row" href="https://www.instagram.com/sharer.php?u=https://meelindia.com/greeting?id={{dt._id}}"><i class="fa fa-instagram" aria-hidden="true"></i></a> 
                         <a class="socialbtn d-flex row" onclick='myFunction2("{{ dt._id }}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>
+                        <a class="socialbtn d-flex row text-primary" onclick="doCapture();" > <i class="fa fa-download" aria-hidden="true"></i></a>
                 </div>
                 </div> 
             

@@ -7,19 +7,34 @@
     <meta name="description" content="">
     <meta name="author" content="">
   
-    <title> MeelIndia Invitation : {{ invitations[0].title   }} </title>
+    <title> MeelIndia Invitation : {{ invitations[0].title   }} : {{ invitations[0].subtitle   }} </title>
     <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
   
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   
-	<script src= "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"> 
-    </script>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./dist/html2canvas.js"></script>
+    <script>
+        function doCapture(){
+            html2canvas(document.getElementById("inviteBody")).then(function (canvas){
+                console.log(canvas.toDataURL("image/jpeg",0.9));
+                image = canvas.toDataURL("image/jpeg",0.9);
+                var link = document.createElement('a');
+                link.download = "invitation.png";
+                link.href = image;
+                link.click();
+            });
+        }
+    </script>
     <style>
         
     @import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@700&display=swap');
@@ -83,7 +98,7 @@
 </style>
 </head>
 <body>
-    
+    <img src="images/icon.jpeg" height="100px" alt="">
 <div class="containetr">
     <div class="row">
         <div class="col-12 text-center">
@@ -103,8 +118,10 @@
                         <div class="d-flex justify-content-center">
                                 <a class="socialbtn d-flex row" href="whatsapp://send?text=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> 
                                 <a class="socialbtn d-flex row" href="https://www.facebook.com/sharer/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a> 
-                                <a class="socialbtn d-flex row" href="https://www.instagram.com/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-instagram" aria-hidden="true"></i></a> 
-                                <a class="socialbtn d-flex row" onclick='myFunction("{{ dt._id }}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>
+                                <!-- <a class="socialbtn d-flex row" href="https://www.instagram.com/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-instagram" aria-hidden="true"></i></a>  -->
+                                <a class="socialbtn d-flex row text-primary" onclick='myFunction("{{ dt._id }}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>
+                                <a class="socialbtn d-flex row text-primary" onclick="doCapture();" > <i class="fa fa-download" aria-hidden="true"></i></a>
+                              
                         </div>
                 </div> 
                 <div class="invite bg-light shadowme" id="inviteBody">
@@ -117,34 +134,44 @@
                         <h4 class="col-12 inputInvite text-center">{{ dt.dateTime}} </h4>
                     </div>
                 </div> 
+                
         </div>
              
             @endeach
             <input type="button" value="Create Your Own Invitation / Greeting" class="btn btn-danger mt-4 mb-5 btn-block" onclick="window.location='SignUpUser'">
+            <br> <br>
+            
 
         </div>
     </div>
 </div>
 
 <script>
-    addEventListener('load', async ()=>{
-        let sw = await navigator.serviceWorker.register('./sw.js');
-        console.log(sw);
-    })
-    async function suscribe() {
-        let sw = await navigator.serviceWorker.ready;
-        let push = await sw.pushManager.subscribe({
-            userVisibleOnly:true,
-            applicationServerKey: "Todo!!"
-        })
-        console.log(JSON.stringify(push))
-    }
+ //   addEventListener('load', async ()=>{
+ //       let sw = await navigator.serviceWorker.register('./sw.js');
+ //       console.log(sw);
+ //   })
+ //   async function suscribe() {
+ //       let sw = await navigator.serviceWorker.ready;
+ //       let push = await sw.pushManager.subscribe({
+ //           userVisibleOnly:true,
+ //           applicationServerKey: "Todo!!"
+ //       })
+ //       console.log(JSON.stringify(push))
+ //   }
     function myFunction(str) {
             var copyText = 'https://meelindia.com/invitation?id='+str;
             navigator.clipboard.writeText(copyText);
             alert("Copied the text: " + copyText);
         }
-</script>
+        var doc = new jsPDF();
+        var specialElementHandlers = {
+            '#editor': function (element, renderer) {
+                return true;
+            }
+        };
+
+        </script>
 
 </body>
 </html>
