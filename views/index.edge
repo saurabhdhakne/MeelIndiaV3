@@ -25,6 +25,9 @@ crossorigin=""></script>
 		background-attachment: fixed;
 		background-position: center;
 	}
+    .indexC{
+        min-height: 100vh;
+    }
     .btn-primary
     {
         font-family: 'Amaranth', sans-serif;
@@ -148,7 +151,7 @@ crossorigin=""></script>
 
 </style>
 <div class="container-fluid">
-    <div class="row">
+    <div class="row indexC">
      <h1 class="col-12 text-center headingmain">MeelIndia</h1>
 
         <div class="col-md-4 text-center mb-4 mt-2 offset-md-2">
@@ -161,7 +164,7 @@ crossorigin=""></script>
         <div class="col-md-4 offset-md-4 text-center mb-4 mt-2 ">
             
     @if(user == "")
-            <input type="button" value="Sign In" onclick="window.location='signInUser' " class="btn btn-outline-primary">
+            <input type="button" value="Sign In" onclick="window.location='signInUser' " class="btn btn-outline-primary btn-lg pt-3 pb-3">
     @else
             <input type="button" value="Sign out" onclick="window.location='logout' " class="btn btn-outline-primary">
 

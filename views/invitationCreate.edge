@@ -11,6 +11,7 @@ crossorigin=""/>
 integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
 crossorigin=""></script>
 <script src="./leaflet/leaflet-search.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
@@ -49,7 +50,6 @@ crossorigin=""></script>
     .btn-danger
     {
         font-family: 'Amaranth', sans-serif;
-        
     }
 
     .btn-primary:hover{
@@ -88,12 +88,14 @@ crossorigin=""></script>
         
     }
     .search-input {
-    font-family:Courier;
+    font-family:'play';
+
     }
     .search-input,
     .leaflet-control-search {
-        max-width:400px;
+        max-width:450px;
         background: black;
+        padding:5px;
     }
     
     @media(max-width:522px)
@@ -260,30 +262,17 @@ crossorigin=""></script>
                                     marker: L.marker([0,0]),
                                     autoCollapse: true,
                                     autoType: false,
+                                    textPlaceholder: ' search the location... ',
                                     minLength: 2
                 });
-
-            // map.addControl( new L.Control.Search({
-            //         url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
-            //         jsonpParam: 'json_callback',
-            //         propertyName: 'display_name',
-            //         propertyLoc: ['lat','lon'],
-            //         marker: L.marker([0,0]),
-            //         autoCollapse: true,
-            //         autoType: false,
-            //         minLength: 2
-            //     })
-            // );
 
             search.on('search:locationfound',
                     function(e) {
                         console.log(e.latlng);
                         marker.setLatLng([e.latlng.lat, e.latlng.lng]);
-                                        
                             latt = e.latlng.lat;
                             lngg = e.latlng.lng;
                             document.getElementById('demo').innerHTML = "Latitude: " + latt + "<br>Longitude: " + lngg;
-                        
                         });
                         
             map.addControl(search);
