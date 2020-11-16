@@ -161,29 +161,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 
-<script type="text/javascript">
-    $(document).ready(function(){
-      var width = screen.width,
-        height = screen.height;
- 
-        if (screen.width <= 768) {
-		
-		$('.profiledetails').remove();
-        }
-});
-</script>
+
 
     <div class="container-fluid">
-        <div class="row" style="margin-bottom:55px;">
-            <div class="col-md-2"></div>
-            <div class="col-md-3">
-                <button class="createbtn" onclick="window.location='invitationCreate'">Create New Invitation</button>
+        <div class="row p-2" style="margin-bottom:55px;">
+            <div class="col-md-3 offset-md-1 pt-3 pb-3 text-center shadowme bg-light">
+                <div class="col-md-12 text-center">{{ userData.email }}  <br>
+                    <img src="{{userData.image}}" class="img rounded" width="50px" alt="">
+                
+                </div>
+                <input type="button" class="btn btn-outline-primary shadowme mt-4" value="Show Profile" onclick="window.location='profileUserData'">
             </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-3">
-                <button class="createbtn" onclick="window.location='greetingCreate'">Create New Greeting</button>
+            <div class="col-md-4">
+                <button class="createbtn" onclick="window.location='invitationCreate'">Create New <br> Invitation</button>
             </div>
-            <div class="col-md-2"></div>
+            <div class="col-md-3">
+                <button class="createbtn" onclick="window.location='greetingCreate'">Create New <br> Greeting</button>
+            </div>
+            <div class="col-md-1"></div>
         </div>
         <div class="row">
             <!--

@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
             console.log("1 document updated");
           }
         );
-        res.redirect("ProfileUser");
+        res.redirect("ProfileUserData");
       }
       db.close();
     });

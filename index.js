@@ -64,6 +64,8 @@ const help = require("./Controllers/help");
 //proflie
 const profileUser = require("./Controllers/profileUser");
 
+const profileUserData = require("./Controllers/profileUserData");
+
 const profileBusiness = require("./Controllers/profileBusiness");
 
 // others
@@ -224,6 +226,8 @@ app.post("/signInBusinessData", urlencodedParser, signInBusinessData);
 // profile
 
 app.get("/profileUser", redirectLoginUser, profileUser);
+
+app.get("/profileUserData", redirectLoginUser, profileUserData);
 
 app.get("/profileBusiness", redirectLoginBusiness, profileBusiness);
 
