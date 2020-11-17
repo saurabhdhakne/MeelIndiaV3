@@ -57,7 +57,7 @@ module.exports = async (req, res) => {
                   subject: "MeelIndia : Password Reset",
                   html: `<h1> MeelIndia Account Password Reset.</h1> <br> <br> 
                   <h2> <a href='${process.env.ip}/FPUserReset?enc=${randomString}'> <strong> Click Here </strong> </a> <br> to Reset Password, Please do not share your password with anyone else.</h2> <br><br> 
-                  <h2 style="float:right"> Thank You. from : Saurabh Dhakne </h2>`,
+                  <h2 style="float:right"> Thank You. from : MeelIndia </h2>`,
                 };
                 transporter.sendMail(mailOptions, (error, info) => {
                   if (error) {
