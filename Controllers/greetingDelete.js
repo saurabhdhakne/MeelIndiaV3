@@ -14,7 +14,7 @@ mongoose.set("useUnifiedTopology", true);
 module.exports = async (req, res) => {
   try {
     var url = `${process.env.db}`;
-
+    var flag = 0;
     await mongoose.connect(url, async (err, db) => {
       console.log(req.body);
       if (err) {
@@ -28,16 +28,19 @@ module.exports = async (req, res) => {
           (err, result) => {
             if (err) throw err;
             if (result.length > 0) {
-              greeting.deleteOne({ _id: req.body._id }, function (err, res) {
-                if (err) throw err;
-                console.log("1 document Deleted");
-              });
-              res.redirect("/profileUser");
+              flag = 1;
             } else {
               res.render("notfound");
             }
           }
         );
+        if(flag){
+              await greeting.deleteOne({ _id: req.body._id }, function (err, res) {
+                if (err) throw err;
+                console.log("1 document Deleted");
+              });
+              res.redirect("/profileUser");
+        }
       }
       db.close();
     });

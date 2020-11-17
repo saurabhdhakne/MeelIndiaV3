@@ -338,7 +338,7 @@ app.post("/inviteUpdate", urlencodedParser, redirectLoginUser, inviteUpdate);
 app.post(
   "/inviteDelete",
   urlencodedParser,
-  //redirectLoginUser,
+  redirectLoginUser,
   inviteDelete
 );
 
