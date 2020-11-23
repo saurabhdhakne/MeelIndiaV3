@@ -173,7 +173,7 @@ crossorigin=""></script>
             <div class="form-group">
                 <input type="hidden" class="form-control" id="lng" name="lng" aria-describedby="mobile" placeholder="lng" required>
             </div>
-            <h5 id="notice"> No access</h5>
+            <h5 id="notice"> Please give access to location...If you haven't. </h5>
             <input type="hidden" name="location" value="">
             
             <div id="map" class="mb-5 shadowme" style="width:100%; height:60vh;z-index:8"></div>
@@ -252,8 +252,47 @@ crossorigin=""></script>
     var marker;
     
             var map = L.map('map').setView([19.8684798, 75.3218784], 10);
+            map.locate({setView : true});
            
             map.addLayer(new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'));	
+            marker = L.marker([19.8684798, 75.3218784]).addTo(map)
+            .bindPopup('My location')
+                        .openPopup();
+           
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+                        
+         marker.dragging.enable();
+
+        function theLocation(){
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else { 
+                x = document.getElementById('notice');
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+            
+        } theLocation();
+     
+    function showPosition(position) {
+        latt = position.coords.latitude;
+        lngg = position.coords.longitude;
+            document.getElementById('demo').innerHTML = "Latitude: " + latt + 
+            "<br>Longitude: " + lngg;
+            marker.setLatLng([position.coords.latitude, position.coords.longitude]);
+    }
+
+            function setLocation(){
+                position = marker.getLatLng();
+                hlat = position.lat;
+                hlng = position.lng;
+                document.getElementById('lat').value = hlat;
+                document.getElementById('lng').value = hlng;
+                alert('Location is Set.');
+            }
+
+
             var search = new L.Control.Search({
                     url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
                                     jsonpParam: 'json_callback',
@@ -264,109 +303,47 @@ crossorigin=""></script>
                                     autoType: false,
                                     textPlaceholder: ' search the location... ',
                                     minLength: 2
-                });
+            });
 
             search.on('search:locationfound',
                     function(e) {
-                        if(map.hasLayer(marker)){
+                        map.removeLayer(marker);
 
-                            marker.setLatLng([e.latlng.lat, e.latlng.lng]);
-                            latt = e.latlng.lat;
-                            lngg = e.latlng.lng;
-                            document.getElementById('demo').innerHTML = "Latitude: " + latt + "<br>Longitude: " + lngg;
-                        }
-                        else{
-                            marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map)
-                                    .bindPopup('My location')
-                                                .openPopup();
-                                                latt = e.latlng.lat;
-                            lngg = e.latlng.lng;
-                            document.getElementById('demo').innerHTML = "Latitude: " + latt + "<br>Longitude: " + lngg;
-                     
+                        map.addLayer(new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'));	
+                        marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map)
+                        .bindPopup('My location')
+                                    .openPopup();
 
-                        }
+                        marker.dragging.enable();
 
-                    });
-                        
+                    latt = e.latlng.lat;
+                    lngg = e.latlng.lng;
+                    document.getElementById('demo').innerHTML = "Latitude: " + latt + "<br>Longitude: " + lngg;
+            });
+          
             map.addControl(search);
 
-            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-        
-       function theLocation(){
-           if (navigator.geolocation) {
-               navigator.geolocation.getCurrentPosition(showPosition);
-           } else { 
-               x = document.getElementById('notice');
-               x.innerHTML = "Geolocation is not supported by this browser.";
-           }
-           
-       } theLocation();
-     
-    function showPosition(position) {
-        latt = position.coords.latitude;
-        lngg = position.coords.longitude;
-            document.getElementById('demo').innerHTML = "Latitude: " + latt + 
-            "<br>Longitude: " + lngg;
             
-       marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map)
-       .bindPopup('My location')
-                   .openPopup();
-           
-           map.locate({setView : true});
-   
-           marker.dragging.enable();
-   
-       }
-
-    function showPosition2(position) {
-        latt = position.coords.latitude;
-        lngg = position.coords.longitude;
-            document.getElementById('demo').innerHTML = "Latitude: " + latt + 
-            "<br>Longitude: " + lngg;
-
-                marker.setLatLng([position.coords.latitude, position.coords.longitude]);
-
-            }
-        
-            function setLocation(){
-            position = marker.getLatLng();
-            hlat = position.lat;
-            hlng = position.lng;
-            document.getElementById('lat').value = hlat;
-            document.getElementById('lng').value = hlng;
-            alert('Location is Set.')
-            }
-
-            function setLocation2(){
-        
-            hlat = position.lat;
-            hlng = position.lng;
-            document.getElementById('lat').value = hlat;
-            document.getElementById('lng').value = hlng;
-            alert('Location is Set.')
-            }
-
             function onMapClick(e) {
 
-            marker.on("dragend", function(ev) {
-                var chagedPos = ev.target.getLatLng();
-                this.bindPopup("ME at " +chagedPos.toString()).openPopup();
-                loc1 = [chagedPos.lat,chagedPos.lng];
-                hlat = chagedPos.lat;
-                hlng = chagedPos.lng;
-                document.getElementById('lat').value = hlat;
-                document.getElementById('lng').value = hlng;
-                document.getElementById('demo').innerHTML = "Latitude: " + hlat + 
-                "<br>Longitude: " + hlng;
-                console.log(loc1);
+                    marker.on("dragend", function(ev) {
+                        var chagedPos = ev.target.getLatLng();
+                        this.bindPopup("ME at " +chagedPos.toString()).openPopup();
+                        loc1 = [chagedPos.lat,chagedPos.lng];
+                        hlat = chagedPos.lat;
+                        hlng = chagedPos.lng;
+                        document.getElementById('lat').value = hlat;
+                        document.getElementById('lng').value = hlng;
+                        document.getElementById('demo').innerHTML = "Latitude: " + hlat + 
+                        "<br>Longitude: " + hlng;
+                        console.log(loc1);
 
-            });
+                    });
 
-            }
+                    }
 
-            map.on('click', onMapClick);
+                    map.on('click', onMapClick);
+
 
 </script>
 <script>
