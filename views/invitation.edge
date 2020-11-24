@@ -130,7 +130,7 @@
                         <h4 class="col-12 Caveat inputInvite text-center" style="font-family:{{ dt.nameFont}}"> {{ dt.title }}</h4>
                         <h5 class="col-12  Caveat inputInvite text-center" style="font-family:{{ dt.subFont}}">{{ dt.subtitle }}</h5>
                         <p class="col-12 Caveat inputInvite text-center" style="font-family:{{ dt.bodyFont}}">{{ dt.content}} </p>
-                        <h4 class="col-12 inputInvite text-center">{{ dt.dateTime}} </h4>
+                        <h4 class="col-12 inputInvite text-center" id="dateTime">  </h4>
                     </div>
                 </div> 
                 
@@ -170,6 +170,11 @@
             }
         };
 
+        function dateTimeFormat(){
+            fullDate = '{{ invitations[0].dateTime }}';
+            dateArray = fullDate.split("T");
+            document.getElementById('dateTime').innerHTML = dateArray[0] + "<br> Start At " + dateArray[1] +"<br><br>";
+        }dateTimeFormat();
         </script>
 
 </body>
