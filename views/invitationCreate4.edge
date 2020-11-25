@@ -298,7 +298,7 @@ crossorigin=""></script>
                                     jsonpParam: 'json_callback',
                                     propertyName: 'display_name',
                                     propertyLoc: ['lat','lon'],
-                                    marker: false,
+                                    marker: L.marker([0,0]),
                                     autoCollapse: true,
                                     autoType: false,
                                     textPlaceholder: ' search the location... ',
@@ -307,9 +307,8 @@ crossorigin=""></script>
 
             search.on('search:locationfound',
                     function(e) {
-                        
                         map.removeLayer(marker);
-                        
+
                         map.addLayer(new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'));	
                         marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map)
                         .bindPopup('My location')
