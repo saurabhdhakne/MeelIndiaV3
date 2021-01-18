@@ -180,6 +180,10 @@ app.get("/new", (req, res) => {
   res.render("newInvite");
 });
 
+app.get("/weeding", (req, res) => {
+  res.render("weeding");
+});
+
 app.get("/help", help);
 
 app.get("/about", about);
