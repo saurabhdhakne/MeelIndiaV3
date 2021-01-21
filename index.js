@@ -184,6 +184,10 @@ app.get("/weeding", (req, res) => {
   res.render("weeding");
 });
 
+app.get("/ajayShital", (req, res) => {
+  res.render("ajayShital");
+});
+
 app.get("/help", help);
 
 app.get("/about", about);
