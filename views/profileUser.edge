@@ -26,28 +26,11 @@
         background: dodgerblue;
         transition: .2s ease-in;
     }
-    .invite{
-        min-height: 600px;
-        width: 350px;
-        margin:auto;
-        background: cover;
-        font-family: 'Caveat', cursive;
-    }   
+   
     .Caveat{
         font-family: 'Caveat', cursive;
     }
-    #bgInvite{
-        width: 350px;
-        padding: 0;
-        margin-top: 0;
-    }
-    .dataInvite{
-        width: 100%;
-    }
-    .inputInvite{
-        width: 350px;
-    }
-
+ 
 
 .profile-details-heading
 {
@@ -88,7 +71,7 @@
 	padding: 25px;
 	width: 100%;
 	border-radius: 23px;
-	background-color: #fff;
+	/* background-color: #fff; */
 	font-family: "Century Gothic";
 	font-size: 1.3rem;
     text-transform: uppercase;
@@ -99,34 +82,15 @@
 	margin-bottom: 10px;
 	transition: background 0.3s ease-in-out;
 	box-shadow: 0px 5px 7px 0px rgba(0,0,0,0.3);
-	color: #000;
+	/* color: #000; */
 }
 
-
+.createbtn i{
+    font-size: 3.5em;
+}
 .createbtn:hover{
-    
 	background: rgba(0,0,0,0.9);
     color: #fff; 
-}
-
-.socialbtn
-{
-    border: none;
-    background: transparent;
-    font-size: 2em;
-    margin: 15px;
-    cursor: pointer;
-    transition: 0.2s;
-    
-}
-
-.socialbtn:hover{
-    color: #37A079;
-}
-    
-.socialrow
-{
-    text-align: center;
 }
 
 .nameheading
@@ -141,6 +105,124 @@
     margin-left:5px;
     font-size:12px;
 }
+
+.socialbtn{
+    text-decoration: none;
+       color: black;
+}
+.socialbtn:hover{
+    color: dodgerblue;
+    cursor: pointer;
+}
+.btn-primary
+{
+    font-family: 'Amaranth', sans-serif;
+}
+h1{
+    font-size: 4em;
+    font-family: 'play', cursive;
+    color: #76BAA1;
+    text-shadow: 1px 2px 5px;
+}
+
+.headingmain
+{
+    font-family: 'Righteous', cursive;
+    color: #000;
+    font-size: 100px;
+}    
+
+.subheadingmain
+{
+    font-family: 'Cookie', cursive;
+    font-size: 35px;
+}
+.btn-danger
+{
+    font-family: 'Amaranth', sans-serif;
+}
+
+
+
+#inviteBody{
+    min-height: 700px;
+    width: 350px;
+    margin:auto;
+    background: cover;
+    font-family: 'Dancing Script', cursive;
+    background: url('{{ invitations[0].bg }}');
+    background-size:100% 100% ;
+    padding-top: 350px;
+}   
+#inviteBody{
+    box-shadow: 0px 2px 10px black;
+    margin-bottom: 20px;
+}
+#bgInvite{
+    width: 350px;
+    position: absolute;
+    padding: 0;
+    margin-top: 0;
+    z-index: 1;
+    display: none;
+}
+.dataInvite{
+    width: 100%;
+}
+.inputInvite{
+    width: 350px;
+    z-index: 9;
+
+}
+
+.changeclass
+{
+    text-align: center;
+    padding: 20px;
+}
+
+.forpadding
+{
+    padding-top: 20px;
+    
+}
+.search-input {
+font-family:'play';
+
+}
+.search-input,
+.leaflet-control-search {
+    max-width:450px;
+    background: black;
+    padding:5px;
+}
+
+@media(max-width:522px)
+{
+        
+    .headingmain
+    {
+        font-size: 50px;
+    }    
+    .subheadingmain
+    {
+        font-size: 25px;
+    }
+
+} 
+
+@media(max-width:522px)
+    {
+        .headingmain
+        {
+            font-size: 50px;
+        }    
+        .subheadingmain
+        {
+            font-size: 25px;
+        }
+
+    }
 
 @media(max-width:768px)
 {
@@ -165,22 +247,30 @@
 
     <div class="container-fluid">
         <div class="row p-2" style="margin-bottom:55px;">
-            <div class="col-md-3 offset-md-1 pt-3 pb-3 mb-3 text-center shadowme bg-light">
-                <div class="col-md-12 text-center">{{ userData.email }}  <br>
-                    <img src="{{userData.image}}" class="img rounded" width="50px" alt="">
-                
+            <div class="col-md-4 offset-md-1 pt-3 pb-3 mb-3 text-center shadowme bg-primary text-light d-flex">
+                <div class="col-md-4">
+                     <img src="{{userData.image}}" class="img rounded" alt="" style="height:100px; max-width:200px">
                 </div>
-                <input type="button" class="btn btn-outline-primary shadowme mt-4" value="Show Profile" onclick="window.location='profileUserData'">
-            </div>
-            <div class="col-md-4">
-                <button class="createbtn" onclick="window.location='invitationCreate'">Create New <br> Invitation</button>
+                <div class="col-md-8 text-center">{{ userData.email }}  <br>
+                    <input type="button" class="btn btn-light shadowme mt-4" value="Show Profile" onclick="window.location='profileUserData'">
+                </div>
             </div>
             <div class="col-md-3">
-                <button class="createbtn" onclick="window.location='greetingCreate'">Create New <br> Greeting</button>
+                <button class="createbtn d-flex btn btn-success" onclick="window.location='invitationCreate'"> 
+                    <i class="fa fa-plus-square col-md-3" aria-hidden="true"></i>
+                    <p class="col-md-9"> Create New <br> Invitation</p> 
+                </button>
+            </div>
+            <div class="col-md-3">
+                <button class="createbtn d-flex btn btn-danger" onclick="window.location='greetingCreate'">
+                    <i class="fa fa-plus-square col-md-4 text-white" aria-hidden="true"></i>
+                    <p class="col-md-8"> Create New <br> Greeting </p>
+                </button>
             </div>
             <div class="col-md-1"></div>
         </div>
         <div class="row">
+            
             <!--
             <div class="col-md-1"></div>
             <div class="col-md-2" style="">
@@ -249,28 +339,27 @@
                                                 -->
                                                 </div>
                                                 <div class="d-flex justify-content-center">
-                                                        <a class="socialbtn d-flex row" href="whatsapp://send?text=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> 
-                                                        <a class="socialbtn d-flex row" href="https://www.facebook.com/sharer/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a> 
-                                                        <a class="socialbtn d-flex row" href="https://www.instagram.com/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-instagram" aria-hidden="true"></i></a> 
-                                                        <a class="socialbtn d-flex row" onclick='myFunction("{{ dt._id }}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>
+                                                        <a class="socialbtn h1 m-2" href="whatsapp://send?text=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> 
+                                                        <a class="socialbtn h1 m-2" href="https://www.facebook.com/sharer/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a> 
+                                                        {{--  <a class="socialbtn h1 m-2" href="https://www.instagram.com/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-instagram" aria-hidden="true"></i></a>   --}}
+                                                        <a class="socialbtn h1 m-2" onclick='myFunction("{{ dt._id }}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>
                                                 </div>
                                         </div> 
-                                        <div class="invite bg-light shadowme" id="inviteBody">
+                                        <div class="invite bg-light shadowme" id="inviteBody" style="background: url({{dt.bg}}); background-size:cover;">
                                             <img src="{{dt.bg}}" id="bgInvite" alt="">
                                             <div class="dataInvite">
                                                 <form action="inviteUpdate" method="POST">
-                                                <h5 class="text-center" id="head">Celebrating</h5>
                                                 <input type="hidden" name="_id" value="{{dt._id}}">
                                                 
-                                                    <input type="text" id="title" name="title" class="ytedit h4 inputInvite text-center" value="{{dt.title}}" placeholder="" style="font-family:{{ dt.nameFont}}"> 
                                                     <input type="text" id="subtitle" name="subtitle" class="ytedit p inputInvite text-center" value="{{ dt.subtitle }}" placeholder="" style="font-family:{{ dt.subFont}}"> 
+                                                    <input type="text" id="title" name="title" class="ytedit h4 inputInvite text-center" value="{{dt.title}}" placeholder="" style="font-family:{{ dt.nameFont}}"> 
                                                     <textarea rows="4" id="content" name = "content"  class="ytedit form-control p inputInvite text-center"  id="content" style="font-family:{{ dt.bodyFont}}">{{ dt.content}}</textarea><br>
                                                     <input type="datetime-local" class="ytedit form-control p inputInvite text-center" name="dateTime" id="dateTime"  value="{{dt.dateTime}}">
-                                                    <input type="submit" class="btn btn-outline-primary btn-block btn-update" value="Update">
+                                                    <input type="submit" class="btn btn-primary btn-block btn-update" value="Update">
                                                 </form>
                                                 <form action="inviteDelete" method="POST">
                                                     <input type="hidden" name="_id" value="{{dt._id}}">
-                                                    <input type="submit" value="Delete" class="btn btn-outline-danger btn-block mt-1">
+                                                    <input type="submit" value="Delete" class="btn btn-danger btn-block mt-1">
                                                 </form>
                                             </div>
                                         </div> 
@@ -302,7 +391,7 @@
                                         <div class="d-flex justify-content-center">
                                             <a class="socialbtn d-flex row" href="whatsapp://send?text=https://meelindia.com/greeting?id={{dt._id}}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> 
                                             <a class="socialbtn d-flex row" href="https://www.facebook.com/sharer/sharer.php?u=https://meelindia.com/greeting?id={{dt._id}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a> 
-                                            <a class="socialbtn d-flex row" href="https://www.instagram.com/sharer.php?u=https://meelindia.com/greeting?id={{dt._id}}"><i class="fa fa-instagram" aria-hidden="true"></i></a> 
+                                            {{--  <a class="socialbtn d-flex row" href="https://www.instagram.com/sharer.php?u=https://meelindia.com/greeting?id={{dt._id}}"><i class="fa fa-instagram" aria-hidden="true"></i></a>   --}}
                                             <a class="socialbtn d-flex row" onclick='myFunction2("{{ dt._id }}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>
                                     </div>
                                     </div> 

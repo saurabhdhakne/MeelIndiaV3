@@ -106,7 +106,9 @@ const deleteService = require("./Controllers/deleteService");
 // Invitation
 const invitationCreate = require("./Controllers/invitationCreate");
 const invitationCreateDB = require("./Controllers/invitationCreateDB");
+const invitationCustomCreateDB = require("./Controllers/invitationCustomCreateDB");
 const invitation = require("./Controllers/invitation");
+const invitationCustom = require("./Controllers/invitationCustom");
 const inviteUpdate = require("./Controllers/inviteUpdate");
 const inviteDelete = require("./Controllers/inviteDelete");
 
@@ -339,7 +341,11 @@ app.get("/invitationCreate", redirectLoginUser, invitationCreate);
 
 app.post("/invitationCreate", urlencodedParser, invitationCreateDB);
 
+app.post("/invitationCustomCreateDB", urlencodedParser, invitationCustomCreateDB);
+
 app.get("/invitation", invitation);
+
+app.get("/invitationCustom", invitationCustom);
 
 app.post("/inviteUpdate", urlencodedParser, redirectLoginUser, inviteUpdate);
 

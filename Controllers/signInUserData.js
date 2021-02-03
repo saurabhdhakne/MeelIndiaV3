@@ -65,7 +65,7 @@ module.exports = (req, res) => {
                 res.render("accountCreated");
               }
             } else {
-              res.render("notfound");
+              res.render("checkCredential");
             }
             db.close();
           }
