@@ -8,6 +8,8 @@ const { async } = require("crypto-random-string");
 
 const invitation = require("../database/models/invitation");
 
+const invitationCustom = require("../database/models/invitationCustom");
+
 const greeting = require("../database/models/greeting");
 
 mongoose.set("useNewUrlParser", true);
@@ -32,6 +34,12 @@ module.exports = (req, res) => {
             invitationData = result;
           }
         });
+        await invitationCustom.find({ email: req.session.email }, (err, result) => {
+          if (err) throw err;
+          if (result.length > 0) {
+            invitationData2 = result;
+          }
+        });
         await greeting.find({ email: req.session.email }, (err, result) => {
           if (err) throw err;
           if (result.length > 0) {
@@ -52,6 +60,7 @@ module.exports = (req, res) => {
                 userData,
                 user: req.session.userType,
                 invitations : invitationData,
+                invitationsCustom : invitationData2,
                 greetings : greetingData,
               });
             } else {

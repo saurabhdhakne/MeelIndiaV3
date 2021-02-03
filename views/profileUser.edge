@@ -369,7 +369,35 @@ font-family:'play';
                                 
                                 <hr width="100%">
 
-                            @endeach
+                    @endeach
+
+                    
+                    @each(dt in invitationsCustom)
+                                
+                                <div class="col-md-12 mt-3 mb-3">
+                                        <div class="col-md-8 offset-md-2 mb-2 text-center">
+                                                <div class="d-flex justify-content-center">
+                                                    <input type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-primary" value="Locate"  onclick="window.location='https://www.google.com/maps/search/?api=1&query={{dt.lat}},{{dt.lng}}' ">
+                                                    <input type="text" id="title" name="title" class="ytedit d-inline inputInvite text-center" value="https://meelindia.com/invitationCustom?id={{dt._id}}" placeholder=""> 
+                                                    <button type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-primary" data-toggle="modal" data-target="#"><i class="fa fa-bell" aria-hidden="true"></i></button>
+                                                <!--    <button type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-primary" data-toggle="modal" data-target="#shareModal"><i class="fa fa-bell" aria-hidden="true"></i></button>
+                                                -->
+                                                </div>
+                                                <div class="d-flex justify-content-center">
+                                                        <a class="socialbtn h1 m-2" href="whatsapp://send?text=https://meelindia.com/invitationCustom?id={{dt._id}}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> 
+                                                        <a class="socialbtn h1 m-2" href="https://www.facebook.com/sharer/sharer.php?u=https://meelindia.com/invitationCustom?id={{dt._id}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a> 
+                                                        {{--  <a class="socialbtn h1 m-2" href="https://www.instagram.com/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-instagram" aria-hidden="true"></i></a>   --}}
+                                                        <a class="socialbtn h1 m-2" onclick='myFunctionCustom("{{ dt._id }}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>
+                                                </div>
+                                                <div class="col-md-12 text-light bg-primary shadowme h4 pt-2 pb-2">
+                                                    {{ dt.title }}
+                                                </div>
+                                        </div> 
+                                </div>
+                                
+                                <hr width="100%">
+
+                    @endeach
 
                 </div>
 
@@ -454,6 +482,11 @@ font-family:'play';
   <script>
         function myFunction(str) {
             var copyText = 'https://meelindia.com/invitation?id='+str;
+            navigator.clipboard.writeText(copyText);
+            alert("Copied the text: " + copyText);
+        }
+        function myFunctionCustom(str) {
+            var copyText = 'https://meelindia.com/invitationCustom?id='+str;
             navigator.clipboard.writeText(copyText);
             alert("Copied the text: " + copyText);
         }
