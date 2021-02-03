@@ -141,36 +141,20 @@ crossorigin=""></script>
 </style>
 <div class="container-fluid">
    <div class="row">
-    <h1 class="col-12 text-center headingmain">MeelIndia</h1>
+    <h1 class="col-12 text-center headingmain text-primary">MeelIndia</h1>
     @if(user == "")
         <div class="col-12 text-center mb-4"><input type="button" class="btn btn-outline-success" value="Sign Up to Create Invitation"  onclick=" window.location='/signUpUser' "></div>    
     @endif
     <h4 class="col-12 text-center subheadingmain">Your Online Invitation Creator</h4>
     <br>
        <div class="col-md-4"></div>
-    <div class="col-md-4 changeclass">
-       
-        
-    <div class="forpadding">
-            <h5 class="d-inline">Change Fonts : </h5>
-        <button type="button" class="btn btn-primary dropdown-toggle d-inline" data-toggle="dropdown">
-            Fonts
-          </button>
-        <div class="dropdown-menu">
-                <input type="button" onclick="changeNameFont()" class="dropdown-item" value="Change Name Font">
-            
-                <input type="button" onclick="changeBodyFont()" class="dropdown-item" value="Change Body Font">
-        
-                <input type="button" onclick="changeSubFont()" class="dropdown-item" value="Change Sub Title Font">
-                
-            </div>
-
-        </div>
+    
     </div>
-    </div>
+    <a class="text-dark h1 bg-dark shadowme p-3 offset-md-1" href="#cyo"><i class="text-danger fa fa-plus-square mb-2 mt-3" aria-hidden="true">   Upload Your Own </i></a>
     <div class="row">
     <div class="col-md-6 p-1 col-sm-6 ibd">
-        <div class="col-md-12">
+        
+        <div class="col-md-12 mt-3">
             <ul class="d-flex text-center invite-list" style="text-decoration:none; list-style:none">
                 <li class="text-dark h1" onclick="inviteBirthday()"><i class="text-success fa fa-birthday-cake mb-2 mt-3" aria-hidden="true"> </i> <br> Birthday</li>
                 <li class="text-dark h1" onclick="inviteWedding()"><i class="text-primary fa fa-gift mb-2 mt-3" aria-hidden="true"> </i> <br> Wedding</li>
@@ -180,7 +164,7 @@ crossorigin=""></script>
                 <li class="text-dark h1" onclick="inviteOther()"><i class="text-light fa fa-caret-square-o-up mb-2 mt-3" aria-hidden="true"> </i> <br> Other </li>
             </ul>
         </div>
-                
+             
         <ul class="d-flex " style="text-decoration:none; list-style:none">
                 <li class="col-md-4"> <input type="button" onclick="changeNameFont()" class=" btn btn-primary bg-primary" value="Change Name Font"> </li>
             
@@ -231,7 +215,7 @@ crossorigin=""></script>
 
 <div class="container bg-danger pt-4 pb-4 mt-5 rounded shadowme">
     
-    <form action="invitationCustomCreateDB" class="col-md-8 offset-md-2 text-light " enctype="multipart/form-data" method="POST">
+    <form action="invitationCustomCreateDB" id="cyo" class="col-md-8 offset-md-2 text-light " enctype="multipart/form-data" method="POST">
         <h2 class="text-center mt-3  text-white">Create / Upload Your Own Invitation</h2>
         <hr>
         <div class="form-group mt-3 h4">
@@ -252,7 +236,7 @@ crossorigin=""></script>
             <input type="text" class="form-control mt-2" id="lat2" name="lat" placeholder="Enter lattitude" required>
             <input type="text" class="form-control mt-2" id="lng2" name="lng" placeholder="Enter longitude" required>
           </div>
-        <button type="submit" class="btn btn-success mt-3 col-md-4">Submit</button>
+        <button type="submit" class="btn btn-primary shadowme mt-3 col-md-12">Submit</button>
     </form>
 
 </div>
