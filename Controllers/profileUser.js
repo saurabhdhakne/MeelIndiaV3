@@ -18,6 +18,7 @@ mongoose.set("useCreateIndex", true);
 mongoose.set("useUnifiedTopology", true);
 
 invitationData = [];
+invitationData2 = [];
 greetingData = [];
 
 module.exports = (req, res) => {

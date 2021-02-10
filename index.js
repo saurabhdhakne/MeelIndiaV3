@@ -12,13 +12,7 @@ const fs = require("fs");
 
 const expressSession = require("cookie-session");
 
-const imageToBase64 = require("image-to-base64");
-
 const path = require("path");
-
-const mysql = require("mysql");
-
-const util = require("util");
 
 const app = new express();
 
@@ -38,22 +32,15 @@ const indexRoute = require("./Controllers/index");
 
 // registration
 const signUpUser = require("./Controllers/signUpUser");
-const SignUpBusiness = require("./Controllers/signUpBusiness");
-const addBusinessData = require("./Controllers/addBusinessData");
 const addUserData = require("./Controllers/addUserData");
 
 //confirm email
 const confirmEmailUser = require("./Controllers/confirmEmailUser");
-const confirmEmailBusiness = require("./Controllers/confirmEmailBusiness");
 
 // sign In
-const signInBusiness = require("./Controllers/signInBusiness");
-
 const signInUser = require("./Controllers/signInUser");
 
 const signInUserData = require("./Controllers/signInUserData");
-
-const signInBusinessData = require("./Controllers/signInBusinessData");
 
 const contact = require("./Controllers/contact");
 
@@ -66,45 +53,26 @@ const profileUser = require("./Controllers/profileUser");
 
 const profileUserData = require("./Controllers/profileUserData");
 
-const profileBusiness = require("./Controllers/profileBusiness");
-
-// others
-const businessData = require("./Controllers/businessData");
-
-const services = require("./Controllers/services");
-
 //Forget password
 const FPUser = require("./Controllers/FPUser");
 const FPUserSend = require("./Controllers/FPUserSend");
 const FPUserReset = require("./Controllers/FPUserReset");
 const FPUserResetDB = require("./Controllers/FPUserResetDB");
 
-const FPBusiness = require("./Controllers/FPBusiness");
-const FPBusinessSend = require("./Controllers/FPBusinessSend");
-const FPBusinessReset = require("./Controllers/FPBusinessReset");
-const FPBusinessResetDB = require("./Controllers/FPBusinessResetDB");
-
 //deactivate Account
 const deactivateUserAccPage = require("./Controllers/deactivateUserAccPage");
 const deactivateUserAcc = require("./Controllers/deactivateUserAcc");
-const deactivateBusinessAccPage = require("./Controllers/deactivateBusinessAccPage");
-const deactivateBusinessAcc = require("./Controllers/deactivateBusinessAcc");
 
 //update
 const updateUser = require("./Controllers/updateUser");
-const updateBusiness = require("./Controllers/updateBusiness");
-const updateBusinessImage = require("./Controllers/updateBusinessImage");
 const updateUserImage = require("./Controllers/updateUserImage");
 
-// Services
-const servicesForm = require("./Controllers/servicesForm");
-const addService = require("./Controllers/addService");
-const updateService = require("./Controllers/updateService");
-const updateServiceImage = require("./Controllers/updateServiceImage");
-const deleteService = require("./Controllers/deleteService");
+//not found
+const notfound = require("./Controllers/notfound");
 
 // Invitation
 const invitationCreate = require("./Controllers/invitationCreate");
+const invitationCreateCustom = require("./Controllers/invitationCreateCustom");
 const invitationCreateDB = require("./Controllers/invitationCreateDB");
 const invitationCustomCreateDB = require("./Controllers/invitationCustomCreateDB");
 const invitation = require("./Controllers/invitation");
@@ -112,12 +80,13 @@ const invitationCustom = require("./Controllers/invitationCustom");
 const inviteUpdate = require("./Controllers/inviteUpdate");
 const inviteDelete = require("./Controllers/inviteDelete");
 
-//Greeting
+//greeting
 const greetingCreate = require("./Controllers/greetingCreate");
 const greetingCreateDB = require("./Controllers/greetingCreateDB");
 const greeting = require("./Controllers/greeting");
 const greetingUpdate = require("./Controllers/greetingUpdate");
 const greetingDelete = require("./Controllers/greetingDelete");
+
 
 // create application/json parser
 var jsonParser = bodyParser.json();
@@ -166,39 +135,13 @@ const redirectLoginUser = (req, res, next) => {
   }
 };
 
-const redirectLoginBusiness = (req, res, next) => {
-  if (!req.session.userType) {
-    res.redirect("/businessSignIn");
-  } else if (req.session.userType == "business") {
-    next();
-  } else {
-    res.redirect("/businessSignIn");
-  }
-};
-
 app.get("/", indexRoute);
-
-app.get("/new", (req, res) => {
-  res.render("newInvite");
-});
-
-app.get("/weeding", (req, res) => {
-  res.render("weeding");
-});
-
-app.get("/ajayShital", (req, res) => {
-  res.render("ajayShital");
-});
 
 app.get("/help", help);
 
 app.get("/about", about);
 
 app.get("/contact", contact);
-
-app.get("/testing", (req, res) => {
-  res.send("application is working");
-});
 
 app.get("/logout", (req, res, next) => {
   if (req.session) {
@@ -211,27 +154,17 @@ app.get("/logout", (req, res, next) => {
 
 app.get("/signUpUser", signUpUser);
 
-app.get("/signUpBusiness", SignUpBusiness);
-
 app.post("/signUpUser", urlencodedParser, addUserData);
-
-app.post("/signUpBusiness", urlencodedParser, addBusinessData);
 
 // confirm emails
 
 app.get("/confirmEmailUser", confirmEmailUser);
 
-app.get("/confirmEmailBusiness", confirmEmailBusiness);
-
 // login
 
 app.get("/signInUser", signInUser);
 
-app.get("/signInBusiness", signInBusiness);
-
 app.post("/signInUserData", urlencodedParser, signInUserData);
-
-app.post("/signInBusinessData", urlencodedParser, signInBusinessData);
 
 // profile
 
@@ -239,12 +172,6 @@ app.get("/profileUser", redirectLoginUser, profileUser);
 
 app.get("/profileUserData", redirectLoginUser, profileUserData);
 
-app.get("/profileBusiness", redirectLoginBusiness, profileBusiness);
-
-// other
-app.get("/businessData", businessData);
-
-app.get("/services", services);
 
 // Forget Password
 app.get("/FPUser", FPUser);
@@ -255,14 +182,6 @@ app.get("/FPUserReset", FPUserReset);
 
 app.post("/FPUserReset", urlencodedParser, FPUserResetDB);
 
-app.get("/FPBusiness", FPBusiness);
-
-app.post("/FPBusiness", urlencodedParser, FPBusinessSend);
-
-app.get("/FPBusinessReset", FPBusinessReset);
-
-app.post("/FPBusinessReset", urlencodedParser, FPBusinessResetDB);
-
 //Deactivate Account
 app.get("/deactivateUserAcc", redirectLoginUser, deactivateUserAccPage);
 
@@ -271,19 +190,6 @@ app.post(
   redirectLoginUser,
   urlencodedParser,
   deactivateUserAcc
-);
-
-app.get(
-  "/deactivateBusinessAcc",
-  redirectLoginBusiness,
-  deactivateBusinessAccPage
-);
-
-app.post(
-  "/deactivateBusinessAcc",
-  redirectLoginBusiness,
-  urlencodedParser,
-  deactivateBusinessAcc
 );
 
 // update
@@ -296,48 +202,10 @@ app.post(
   updateUserImage
 );
 
-app.post(
-  "/updateBusiness",
-  urlencodedParser,
-  redirectLoginBusiness,
-  updateBusiness
-);
-
-app.post(
-  "/updateBusinessImage",
-  urlencodedParser,
-  redirectLoginBusiness,
-  updateBusinessImage
-);
-
-// services
-app.get("/serviceForm", redirectLoginBusiness, servicesForm);
-
-app.post("/addService", urlencodedParser, redirectLoginBusiness, addService);
-
-app.post(
-  "/updateService",
-  urlencodedParser,
-  redirectLoginBusiness,
-  updateService
-);
-
-app.post(
-  "/updateServiceImage",
-  urlencodedParser,
-  redirectLoginBusiness,
-  updateServiceImage
-);
-
-app.post(
-  "/deleteService",
-  urlencodedParser,
-  redirectLoginBusiness,
-  deleteService
-);
-
 //Invitation
 app.get("/invitationCreate", redirectLoginUser, invitationCreate);
+
+app.get("/invitationCreateCustom", redirectLoginUser, invitationCreateCustom);
 
 app.post("/invitationCreate", urlencodedParser, invitationCreateDB);
 
@@ -377,7 +245,8 @@ app.post(
   greetingDelete
 );
 
-app.use((req, res) => res.render("notfound"));
+
+app.use(notfound);
 
 server.listen(process.env.PORT, () => {
   console.log(`HTTP App listening on port ${process.env.PORT}`);

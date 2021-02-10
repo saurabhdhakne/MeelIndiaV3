@@ -39,26 +39,6 @@ module.exports = (req, res) => {
               db.close();
             }
           );
-        } else if (req.session.userType == "business") {
-          business.find(
-            {
-              email: req.session.email,
-              active: true,
-            },
-            (err, result) => {
-              if (err) throw err;
-              if (result.length > 0) {
-                userData = result[0];
-                res.render("about", {
-                  userData,
-                  user: req.session.userType,
-                });
-              } else {
-                res.render("about");
-              }
-              db.close();
-            }
-          );
         } else {
           res.render("about");
         }

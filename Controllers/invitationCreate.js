@@ -29,38 +29,24 @@ module.exports = (req, res) => {
               if (err) throw err;
               if (result.length > 0) {
                 userData = result[0];
-                res.render("invitationCreate", {
+                  if(req.query.type)
+                {
+                  res.render("invitationCreate", {
                   userData,
                   user: req.session.userType,
-                });
+                  type:req.query.type
+                  });
+                }else{
+                  res.redirect("/")
+                }
               } else {
-                res.render("notfound");
-              }
-              db.close();
-            }
-          );
-        } else if (req.session.userType == "business") {
-          business.find(
-            {
-              email: req.session.email,
-              active: true,
-            },
-            (err, result) => {
-              if (err) throw err;
-              if (result.length > 0) {
-                userData = result[0];
-                res.render("invitationCreate", {
-                  userData,
-                  user: req.session.userType,
-                });
-              } else {
-                res.render("notfound");
+                res.redirect("SignInUser");
               }
               db.close();
             }
           );
         } else {
-          res.render("notfound");
+            res.redirect("SignInUser");
         }
       }
     });

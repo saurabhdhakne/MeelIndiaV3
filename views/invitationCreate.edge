@@ -40,7 +40,8 @@ crossorigin=""></script>
     {
         font-family: 'Righteous', cursive;
         color: #000;
-        font-size: 100px;
+        font-size: 50px;
+        margin-top:5vh;
     }    
 
     .subheadingmain
@@ -128,7 +129,7 @@ crossorigin=""></script>
     {
         .headingmain
         {
-            font-size: 50px;
+            font-size: 30px;
         }    
         .subheadingmain
         {
@@ -141,30 +142,16 @@ crossorigin=""></script>
 </style>
 <div class="container-fluid">
    <div class="row">
-    <h1 class="col-12 text-center headingmain text-primary">MeelIndia</h1>
+    <h1 class="col-12 text-center headingmain text-primary mb-5">Your Online Invitation Creator</h1>
     @if(user == "")
         <div class="col-12 text-center mb-4"><input type="button" class="btn btn-outline-success" value="Sign Up to Create Invitation"  onclick=" window.location='/signUpUser' "></div>    
     @endif
-    <h4 class="col-12 text-center subheadingmain">Your Online Invitation Creator</h4>
     <br>
        <div class="col-md-4"></div>
     
     </div>
-        <a class="text-dark h1 bg-dark shadowme p-3 offset-md-2 col-xs-12 h4" href="#cyo"><i class="text-danger fa fa-plus-square mb-2 mt-3" aria-hidden="true">   Upload Your Own </i></a>
     <div class="row">
     <div class="col-md-6 p-1 col-sm-6 ibd">
-        
-        <div class="col-md-12 mt-3">
-            <ul class="d-flex text-center invite-list" style="text-decoration:none; list-style:none">
-                <li class="text-dark h1" onclick="inviteBirthday()"><i class="text-success fa fa-birthday-cake mb-2 mt-3" aria-hidden="true"> </i> <br> Birthday</li>
-                <li class="text-dark h1" onclick="inviteWedding()"><i class="text-primary fa fa-gift mb-2 mt-3" aria-hidden="true"> </i> <br> Wedding</li>
-                <li class="text-dark h1" onclick="inviteAnniversary()"><i class="text-danger fa fa-heartbeat mb-2 mt-3" aria-hidden="true"> </i> <br> Anniversary</li>
-                <li class="text-dark h1" onclick="inviteInnogration()"><i class="text-warning fa fa-openid mb-2 mt-3" aria-hidden="true"> </i> <br> Innogration</li>
-                <li class="text-dark h1" onclick="inviteEngagement()"><i class="text-info fa fa-heart mb-2 mt-3" aria-hidden="true"> </i> <br> Engangement</li>
-                <li class="text-dark h1" onclick="inviteOther()"><i class="text-light fa fa-caret-square-o-up mb-2 mt-3" aria-hidden="true"> </i> <br> Other </li>
-            </ul>
-        </div>
-             
         <ul class="d-flex " style="text-decoration:none; list-style:none">
                 <li class="col-md-4"> <input type="button" onclick="changeNameFont()" class=" btn btn-primary bg-primary" value="Change Name Font"> </li>
             
@@ -213,37 +200,10 @@ crossorigin=""></script>
    </div>
 </div>
 
-<div class="container bg-danger pt-4 pb-4 mt-5 rounded shadowme">
-    
-    <form action="invitationCustomCreateDB" id="cyo" class="col-md-8 offset-md-2 text-light " enctype="multipart/form-data" method="POST">
-        <h2 class="text-center mt-3  text-white">Create / Upload Your Own Invitation</h2>
-        <hr>
-        <div class="form-group mt-3 h4">
-          <label for="title">Invitation Title :</label>
-          <input type="text" class="form-control" id="title" name="title" aria-describedby="title" placeholder="Enter Invitation Title" required>
-        </div>
-        <div class="custom-file">
-            <input type="file" class="custom-file-input"  name="image" id="customFile">
-            <label class="custom-file-label" id="image" for="customFile">Choose file</label>
-
-            <input type="datetime-local" class="mt-2 form-control p inputInvite text-center" name="dateTime" id="dateTime"  value="2021-06-12T19:30" required>
-
-        </div>
-        <div class="form-group mt-3 h4">
-            <label for="exampleInputEmail1">Location :
-                Select the destination on map or you can upload lattitude and longitude here.
-            </label>
-            <input type="text" class="form-control mt-2" id="lat2" name="lat" placeholder="Enter lattitude" required>
-            <input type="text" class="form-control mt-2" id="lng2" name="lng" placeholder="Enter longitude" required>
-          </div>
-        <button type="submit" class="btn btn-primary shadowme mt-3 col-md-12">Submit</button>
-    </form>
-
-</div>
 <script>
     var bgImg, type, nameFont = " Dancing Script, cursive",bodyFont= " Dancing Script, cursive",subFont =  " Dancing Script, cursive";
  
-    function inviteBirthday(){
+    function invite_birthday(){
         document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/birthday.svg')";
         bgImg = "./invitationBg/birthday.svg";
         document.getElementById("title").value  = "Enter Your Name";
@@ -251,7 +211,7 @@ crossorigin=""></script>
         document.getElementById("content").value = "The fun of a special day is incomplete without the presence of our friends. You are most cordially invited to our baby’s birthday party!";
         type = "birthday";
     }
-    function inviteWedding(){
+    function invite_wedding(){
         document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/wedding.svg')";
         bgImg = "./invitationBg/Wedding.svg";
         document.getElementById("title").value  = "Bride and Groom Names";
@@ -259,7 +219,7 @@ crossorigin=""></script>
         document.getElementById("content").value = "Requested The Pleasure of Your Company To Celebrate Their Marriage.";
         type = "Wedding";
     }
-    function inviteAnniversary(){
+    function invite_anniversary(){
         document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/anniversary.svg')";
         bgImg = "./invitationBg/anniversary.svg";
         document.getElementById("title").value  = "Anniversary Year ";
@@ -267,7 +227,7 @@ crossorigin=""></script>
         document.getElementById("content").value = "We request the pleasure of your company at our wedding anniversary party. Please come and grace this occasion as we celebrate 20 years of our marriage and bonding.";
         type = "anniversary";
     }
-    function inviteInnogration(){
+    function invite_innogration(){
         document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/innogration.svg')";
         bgImg = "./invitationBg/innogration.svg";
         document.getElementById("title").value  = "The Grand Opening of";
@@ -276,7 +236,7 @@ crossorigin=""></script>
         type = "innogration";
 
     }
-    function inviteEngagement (){
+    function invite_engagement (){
         document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/engangement.svg')";
         bgImg = "./invitationBg/engangement.svg";
         document.getElementById("title").value  = "Enter the Names ";
@@ -284,7 +244,7 @@ crossorigin=""></script>
         document.getElementById("content").value = "Enter the Desription.";
         type = "innogration";
     }
-    function inviteOther(){
+    function invite_other(){
         document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/other.svg')";
         bgImg = "./invitationBg/other.svg";
         document.getElementById("title").value  = "Enter the Title";
@@ -292,7 +252,7 @@ crossorigin=""></script>
         document.getElementById("content").value = "Enter the Desription.";
         type = "other";
     }
-    inviteBirthday()
+    eval("invite_{{type}}()");
 </script>
 <script>
      
@@ -337,9 +297,6 @@ crossorigin=""></script>
                 hlng = position.lng;
                 document.getElementById('lat').value = hlat;
                 document.getElementById('lng').value = hlng;
-                
-                document.getElementById('lat2').value = hlat;
-                document.getElementById('lng2').value = hlng;
 
                 alert('Location is Set.');
             }
@@ -389,8 +346,6 @@ crossorigin=""></script>
                         document.getElementById('lat').value = hlat;
                         document.getElementById('lng').value = hlng;
                                 
-                        document.getElementById('lat2').value = hlat;
-                        document.getElementById('lng2').value = hlng;
                         document.getElementById('demo').innerHTML = "Latitude: " + hlat + 
                         "<br>Longitude: " + hlng;
                         console.log(loc1);

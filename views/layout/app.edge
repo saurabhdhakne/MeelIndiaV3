@@ -21,21 +21,28 @@
     }      
     body {
       margin: 0;
-      padding: 0;
+      padding: 0;      
       background:#E5E5E5;
+
+      color: black;
       font-family: 'Century Gothic';
       padding-top: 70px;
       padding-bottom: 50px;
     }
+    .modal{
+      font-family: 'Play';
+    }
     nav {
         font-size: 1.0em;
         font-family: 'Century Gothic', sans-serif;
+      font-family: 'Play';
+
       }
       
       nav a{
         text-decoration-color: none;
         cursor: pointer;
-        color: snow;
+        color: black;
       }
   
       nav a:hover{
@@ -47,7 +54,9 @@
       box-shadow: 1px 2px 5px black;
       cursor: pointer;
     }
-
+    .shadowme-text{
+      text-shadow: 1px 1px 7px rgba(0,0,0,.5);
+    }
     .pointer{
       cursor: pointer;
     }
@@ -129,11 +138,13 @@
     font-size: 1em;
     position: fixed;
     z-index: 9;
-    top: 5%;
+    top: 7%;
     left: 0;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+    background: white;
+    font-family: 'Play';
   }
 
   .sidenav a {
@@ -141,6 +152,8 @@
     text-decoration: none;
     display: block;
     transition: 0.3s;
+    color: black;
+
   }
 
   .sidenav a:hover {
@@ -187,6 +200,32 @@
     .accordion-section .panel-default .panel-body {
         font-size: 1rem;
     }
+    .classinitial{
+      background: none;
+      
+    }
+    .classfinal{
+      background: #fd5195;
+      color: white;
+    }
+    .classfinal a{
+      color: white;
+    }
+    .greetingBlock{
+      position:absolute; list-style:none; background:snow; padding:10px; display: none;
+    }
+    .greetingBlock a{
+        color: black;
+    }
+    .dropdown1:hover .greetingBlock{ display: inline-block; }
+    .inviteBlock{
+      position:absolute;list-style:none; background:snow; padding:10px;display: none;
+    }
+    .inviteBlock a{
+        color: black;
+    }
+    .dropdown1:hover .inviteBlock{ display: inline-block; }
+
 
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
@@ -274,61 +313,48 @@
 
 <body>
 
-<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalTitle" aria-hidden="true">
-   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content pr-2 pl-2">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Who are you ?</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-center row">
-        <div class="col-md-5 p-1 mt-3 text-center pointer " onclick=" window.location='/signInBusiness' "><img src="./gifs/gif7.gif"  width="80%" alt=""> <h4>I have Business</h4> </div>
-        <div class="col-md-5 p-1 mt-3 text-center pointer offset-md-2" onclick=" window.location='/signInUser' "><img src="./gifs/gif1.gif" width="80%" alt=""> <h4>I am User</h4> </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUnModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content pl-2 pr-2">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Who are you ?</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-center row">
-        <div class="col-md-5 p-1 mt-3 text-center pointer " onclick=" window.location='/signUpBusiness' "><img src="./gifs/gif7.gif"  width="80%" alt=""> <h4>I have Business</h4> </div>
-        <div class="col-md-5 p-1 mt-3 text-center pointer offset-md-2" onclick=" window.location='/signUpUser' "><img src="./gifs/gif1.gif" width="80%" alt=""> <h4>I am User</h4> </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="mySidenav" class="sidenav bg-dark text-light">
+<div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <hr><a href="/profileUser"><i class="fa fa-user-circle" aria-hidden="true"></i> &nbsp; Profile</a>
+  <hr><a href="/profileUserData"><i class="fa fa-user-circle" aria-hidden="true"></i> &nbsp; Profile</a>
   <ul class="navbar-nav ml-4">
     <li class="nav-item pr-3">
       <a class="nav-link" href="/"> <i class="fa fa-home" aria-hidden="true"></i> &nbsp; Home</a>
     </li>
     <li class="nav-item pr-3">
-      <a class="nav-link" href="/invitationCreate"> <i class="fa fa-envelope-open" aria-hidden="true"></i> &nbsp; Invitation</a>
+      <a class="nav-link" href="/profileUser"> <i class="fa fa-bookmark" aria-hidden="true"></i> &nbsp; Saved</a>
     </li>
-    <li class="nav-item pr-3">
-      <a class="nav-link" href="/greetingCreate">  <i class="fa fa-envelope-open-o" aria-hidden="true"></i> &nbsp;Greeting</a>
+    <li class="nav-item dropdown1">
+      {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa fa-certificate" aria-hidden="true"></i> &nbsp; Invitation
+      </a>
+      <ul class="inviteBlock " >
+        <li><a class="dropdown-item" href="./invitationCreate?type=birthday">Birthday</a></li>
+        <li><a class="dropdown-item" href="./invitationCreate?type=engagement">Engagement</a></li>
+        <li><a class="dropdown-item" href="./invitationCreate?type=wedding">Wedding</a></li>
+        <li><a class="dropdown-item" href="./invitationCreate?type=anniversary">Anniversary</a></li>
+        <li><a class="dropdown-item" href="./invitationCreate?type=innogration">Inaugration</a></li>
+      </ul>
+    </li>
+    <li class="nav-item dropdown1">
+      {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
+      <a class="nav-link dropdown-toggle greetingB" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa fa-cog" aria-hidden="true"></i> &nbsp; Greeting
+      </a>
+      <ul class="greetingBlock">
+        <li><a class="dropdown-item" href="./greetingCreate?type=birthday">Birthday</a></li>
+        <li><a class="dropdown-item" href="./greetingCreate?type=engagement">Engagement</a></li>
+        <li><a class="dropdown-item" href="./greetingCreate?type=wedding">Wedding</a></li>
+        <li><a class="dropdown-item" href="./greetingCreate?type=anniversary">Anniversary</a></li>
+        <li><a class="dropdown-item" href="./greetingCreate?type=innogration">Inaugration</a></li>
+      </ul>
     </li>
     <li class="nav-item pr-3">
       <a class="nav-link" href="/contact">  <i class="fa fa-phone" aria-hidden="true"></i> &nbsp; Contact</a>
+    </li>
+    <li class="nav-item pr-3">
+      <a class="nav-link"  onclick="alert('sbdhakne309@gmail.com')" >  <i class="fa fa-laptop" aria-hidden="true"></i> &nbsp; Developer</a>
     </li>
     <li class="nav-item pr-3">
       <a class="nav-link" href="/about">  <i class="fa fa-info" aria-hidden="true"></i> &nbsp; About</a>
@@ -338,12 +364,12 @@
 
 
     <li class="nav-item pr-3">
-      <a class="nav-link" href="/SignUpUser">
+      <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModalCenter">
         <i class="fa fa-user" aria-hidden="true"></i> &nbsp;  Sign Up</a>
     </li>
 
     <li class="nav-item pr-3">
-      <a class="nav-link" href="/SignInUser">
+      <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModalCenter2">
         <i class="fa fa-sign-in" aria-hidden="true"></i> &nbsp;  Sign In</a>
     </li>
 
@@ -365,58 +391,7 @@
   <hr>
 </div>
 
-<div id="mySidenav2" class="sidenav bg-dark text-light">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
-  <hr><a href="/profileBusiness"> <i class="fa fa-user-circle" aria-hidden="true"></i> &nbsp;Profile</a>
-  <ul class="navbar-nav ml-4">
-    <li class="nav-item pr-3">
-      <a class="nav-link" href="/"> <i class="fa fa-home" aria-hidden="true"></i> &nbsp; Home</a>
-    </li>
-    <li class="nav-item pr-3">
-      <a class="nav-link" href="/invitationCreate"> <i class="fa fa-envelope-open" aria-hidden="true"></i> &nbsp; Invitation</a>
-    </li>
-    <li class="nav-item pr-3">
-      <a class="nav-link" href="/greetingCreate">  <i class="fa fa-envelope-open-o" aria-hidden="true"></i> &nbsp;Greeting</a>
-    </li>
-    <li class="nav-item pr-3">
-      <a class="nav-link" href="/contact">  <i class="fa fa-phone" aria-hidden="true"></i> &nbsp; Contact</a>
-    </li>
-    <li class="nav-item pr-3">
-      <a class="nav-link" href="/about">  <i class="fa fa-info" aria-hidden="true"></i> &nbsp; About</a>
-    </li>
-      
-    @if(!user)
-
-
-    <li class="nav-item pr-3">
-      <a class="nav-link" href="/SignUpUser">
-        <i class="fa fa-user" aria-hidden="true"></i> &nbsp;  Sign Up</a>
-    </li>
-
-    <li class="nav-item pr-3">
-      <a class="nav-link" href="/SignInUser">
-        <i class="fa fa-sign-in" aria-hidden="true"></i> &nbsp;  Sign In</a>
-    </li>
-
-    @endif
-
-    @if(user != "")
-    
-    <li class="nav-item pr-3">
-      <a class="nav-link" href="/logout">
-        Sign out
-      </a>
-    </li>
-
-    @endif
-  </ul>
-    <hr><a href="/help"><i class="fa fa-info-circle" aria-hidden="true"></i> &nbsp; Help & Support</a>
-    <hr><a href="/FPBusiness"> <i class="fa fa-key" aria-hidden="true"></i> &nbsp;Password</a>
-    <hr><a href="/deactivateBusinessAcc"><i class="fa fa-ban" aria-hidden="true"></i> &nbsp;Deactivate</a>
-    <hr>
-</div>
-
-<div id="mySidenav3" class="sidenav bg-dark text-light">
+<div id="mySidenav3" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav3()">&times;</a>
   <hr>
   <ul class="navbar-nav ml-4">
@@ -424,13 +399,39 @@
           <a class="nav-link" href="/"> <i class="fa fa-home" aria-hidden="true"></i> &nbsp; Home</a>
         </li>
         <li class="nav-item pr-3">
-          <a class="nav-link" href="/invitationCreate"> <i class="fa fa-envelope-open" aria-hidden="true"></i> &nbsp; Invitation</a>
+          <a class="nav-link" href="/profileUser"> <i class="fa fa-bookmark" aria-hidden="true"></i> &nbsp; Saved</a>
         </li>
-        <li class="nav-item pr-3">
-          <a class="nav-link" href="/greetingCreate">  <i class="fa fa-envelope-open-o" aria-hidden="true"></i> &nbsp;Greeting</a>
+        <li class="nav-item dropdown1">
+          {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-certificate" aria-hidden="true"></i> &nbsp; Invitation
+          </a>
+          <ul class="inviteBlock " >
+            <li><a class="dropdown-item" href="./invitationCreate?type=birthday">Birthday</a></li>
+            <li><a class="dropdown-item" href="./invitationCreate?type=engagement">Engagement</a></li>
+            <li><a class="dropdown-item" href="./invitationCreate?type=wedding">Wedding</a></li>
+            <li><a class="dropdown-item" href="./invitationCreate?type=anniversary">Anniversary</a></li>
+            <li><a class="dropdown-item" href="./invitationCreate?type=innogration">Inaugration</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown1">
+          {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
+          <a class="nav-link dropdown-toggle greetingB" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-cog" aria-hidden="true"></i> &nbsp; Greeting
+          </a>
+          <ul class="greetingBlock">
+            <li><a class="dropdown-item" href="./greetingCreate?type=birthday">Birthday</a></li>
+            <li><a class="dropdown-item" href="./greetingCreate?type=engagement">Engagement</a></li>
+            <li><a class="dropdown-item" href="./greetingCreate?type=wedding">Wedding</a></li>
+            <li><a class="dropdown-item" href="./greetingCreate?type=anniversary">Anniversary</a></li>
+            <li><a class="dropdown-item" href="./greetingCreate?type=innogration">Inaugration</a></li>
+          </ul>
         </li>
         <li class="nav-item pr-3">
           <a class="nav-link" href="/contact">  <i class="fa fa-phone" aria-hidden="true"></i> &nbsp; Contact</a>
+        </li>
+        <li class="nav-item pr-3">
+          <a class="nav-link" href="/contact">  <i class="fa fa-laptop" aria-hidden="true"></i> &nbsp; Developer</a>
         </li>
         <li class="nav-item pr-3">
           <a class="nav-link" href="/about">  <i class="fa fa-info" aria-hidden="true"></i> &nbsp; About</a>
@@ -440,12 +441,12 @@
 
 
         <li class="nav-item pr-3">
-          <a class="nav-link" href="/SignUpUser">
+          <a class="nav-link" href="#"  data-toggle="modal" data-target="#exampleModalCenter">
             <i class="fa fa-user" aria-hidden="true"></i> &nbsp;  Sign Up</a>
         </li>
 
         <li class="nav-item pr-3">
-          <a class="nav-link" href="/SignInUser">
+          <a class="nav-link"  href="#" data-toggle="modal" data-target="#exampleModalCenter2">
             <i class="fa fa-sign-in" aria-hidden="true"></i> &nbsp;  Sign In</a>
         </li>
 
@@ -487,13 +488,7 @@
   }
   function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
-  }
-  function openNav2() {
-    document.getElementById("mySidenav2").style.width = "200px";
-  }
-  function closeNav2() {
-    document.getElementById("mySidenav2").style.width = "0";
-  }
+  } 
   function openNav3() {
     document.getElementById("mySidenav3").style.width = "200px";
   }
@@ -502,17 +497,19 @@
   }
 </script>  
 
-  <nav class="navbar navbar-expand-lg navbar-primary bg-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-primary fixed-top classinitial">
     <!--  Show this only on mobile to medium screens  -->
     @if(user=="user")
-    <span class="text-white mr-2 ml-2 pl-3 pr-3" style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
-    @elseif(user=="business")
-    <span class="text-white mr-2 ml-2 pl-3 pr-3" style="font-size:30px;cursor:pointer;" onclick="openNav2()">&#9776;</span>
-    @else
-    <span class="text-white mr-2 ml-2 pl-3 pr-3" style="font-size:30px;cursor:pointer;" onclick="openNav3()">&#9776;</span>
-    @endif
+    <span class=" mr-2 ml-2 pl-3" style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
+    <img src="./icons/meelindia.svg" height="70px" alt="">
 
-    <a class="navbar-brand d-lg-none text-light" href="/">MeelIndia</a>
+    @else
+    <span class=" mr-2 ml-2 pl-3" style="font-size:30px;cursor:pointer;" onclick="openNav3()">&#9776;</span>
+    <img src="./icons/meelindia.svg" height="70px" alt="">
+
+    @endif
+    {{--  <img src="./icons/meelindia.svg" height="70px" alt="">  --}}
+    <a class="navbar-brand d-lg-none" href="/"> MeelIndia</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -531,60 +528,52 @@
       id="navbarToggle"
     >
       <!--   Show this only lg screens and up   -->
-      <a class="navbar-brand d-none d-lg-block text-light" style="font-size:1rem;" href="/"> MeelIndia   </a>
+      <a class="navbar-brand d-none d-lg-block" style="font-size:1rem;" href="/"> MeelIndia   </a>
 
       <ul class="navbar-nav">
             <li class="nav-item pr-3">
               <a class="nav-link" href="/">Home</a>
             </li>
-            <li class="nav-item pr-3">
-              <a class="nav-link" href="/invitationCreate">Invitation</a>
+            <li class="nav-item dropdown1">
+              {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Invitation
+              </a>
+              <ul class="inviteBlock " >
+                <li><a class="dropdown-item" href="./invitationCreate?type=birthday">Birthday</a></li>
+                <li><a class="dropdown-item" href="./invitationCreate?type=engagement">Engagement</a></li>
+                <li><a class="dropdown-item" href="./invitationCreate?type=wedding">Wedding</a></li>
+                <li><a class="dropdown-item" href="./invitationCreate?type=anniversary">Anniversary</a></li>
+                <li><a class="dropdown-item" href="./invitationCreate?type=innogration">Inaugration</a></li>
+              </ul>
             </li>
-            <li class="nav-item pr-3">
-              <a class="nav-link" href="/greetingCreate">Greeting</a>
-            </li>
-            <li class="nav-item pr-3">
-              <a class="nav-link" href="/contact">Contact</a>
+            <li class="nav-item dropdown1">
+              {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
+              <a class="nav-link dropdown-toggle greetingB" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Greeting
+              </a>
+              <ul class="greetingBlock">
+                <li><a class="dropdown-item" href="./greetingCreate?type=birthday">Birthday</a></li>
+                <li><a class="dropdown-item" href="./greetingCreate?type=engagement">Engagement</a></li>
+                <li><a class="dropdown-item" href="./greetingCreate?type=wedding">Wedding</a></li>
+                <li><a class="dropdown-item" href="./greetingCreate?type=anniversary">Anniversary</a></li>
+                <li><a class="dropdown-item" href="./greetingCreate?type=innogration">Inaugration</a></li>
+              </ul>
             </li>
             <li class="nav-item pr-3">
               <a class="nav-link" href="/about">About</a>
             </li>
-            <!--
-            
-            <li class="nav-item pr-3">
-              <a class="nav-link" href="/services">
-                Services 
-              </a>
-            </li>
-            
-            <li class="nav-item pr-3">
-              <a class="nav-link" href="/businessData">
-                Business </a>
-            </li>
-          -->
               
             @if(!user)
 
-            <!--
-            <li class="nav-item pr-3" data-toggle="modal" data-target="#signUpModal">
-              <a class="nav-link" href="#">
-                Sign Up</a>
-            </li>
-
-            <li class="nav-item pr-3" data-toggle="modal" data-target="#signInModal">
-              <a class="nav-link" href="#">
-                Sign In</a>
-            </li>
-            
-          -->
 
             <li class="nav-item pr-3">
-              <a class="nav-link" href="/SignUpUser">
+              <a class="nav-link" href="#"  data-toggle="modal" data-target="#exampleModalCenter">
                 Sign Up</a>
             </li>
 
             <li class="nav-item pr-3">
-              <a class="nav-link" href="/SignInUser">
+              <a class="nav-link"  href="#" data-toggle="modal" data-target="#exampleModalCenter2">
                 Sign In</a>
             </li>
 
@@ -617,15 +606,128 @@
       </ul>
     </div>
   </nav>
+  
 
 @!section('content')
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src= 
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> 
+    </script> 
 
+<script> 
+  $(function () { 
+      var header = $(".classinitial"); 
+      $(window).scroll(function () { 
+          var scroll = $(window).scrollTop(); 
 
+          if (scroll >= 100) { 
+              header.removeClass('classinitial') 
+                      .addClass("classfinal"); 
+          } else { 
+              header.removeClass("classfinal") 
+                      .addClass('classinitial'); 
+          } 
+      }); 
+  }); 
+</script> 
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content ">
+        <div class="modal-header  text-center">
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <h1 class="modal-title form-header text-center col-12" id="exampleModalLongTitle">Sign Up</h1>
+          <hr>
+          <form method="POST" action="/signUpUser">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="fname">First Name</label>
+                <input type="text" name="fname" class="form-control" id="fname" aria-describedby="emailHelp" placeholder="Enter First Name" required>
+              </div>
+              <div class="col-md-6">
+                <label for="lname">Last Name</label>
+                <input type="text" name="lname" class="form-control" id="lname" aria-describedby="emailHelp" placeholder="Enter Last Name" required> 
+              </div>
+            </div>
+            <div class="form-group">
+            </div>
+            <div class="form-group">
+              <label for="signupemail">Email address</label>
+              <input type="email" class="form-control" name="email" id="signupemail" aria-describedby="emailHelp" placeholder="Enter email" required>
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="signuppassword">Password</label>
+              <input type="password" class="form-control" name="password" id="signuppassword" placeholder="Password" required>
+            </div>
+            
+            <div class="col-md-12 mt-2">
+              <a href="/SignInUser">
+                {{--  <h5>Already have an account, Login Here</h5>  --}}
+              </a>
+            </div>
+            <div class="colmd-12">
+             <input type="checkbox" name="chbox" id="chbox" required> 
+             Check <a href="https://privacyterms.io/view/2iVKpB7A-GM6p5fDY-bCE91e/" target="__blank">Disclaimer </a> 
+             and <a href="https://privacyterms.io/view/UwHuY2MV-5eks0UlK-nuUtL0/" target="__blank">> Privacy Policy</a>.
+            </div>
+            <button type="submit" class="updatebtn btn btn-outline-primary">Sign Up</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div class="modal fade" id="exampleModalCenter2" tabindex="-2" role="dialog" aria-labelledby="exampleModalCenter2Title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content ">
+        <div class="modal-header  text-center">
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <h1 class="modal-title form-header text-center col-12" id="exampleModalLongTitle">Sign In</h1>
+          <form method="POST" action="/signInUserData">
+            <div class="row">
+            <div class="form-group col-md-12 ">
+              <hr>
+              <label for="signinemail">Email address</label>
+              <input type="email" class="form-control col-12" name="email" id="signinemail" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="signinpassword">Password</label>
+              <input type="password" class="form-control col-12" name="password" id="signinpassword" placeholder="Password">
+            </div>
+            <div class="col-md-12 mt-2 ">
+              <a href="/SignUpUser">
+                <h5 class="text-dark">Dont't have an account, Create new account...</h5>
+              </a>
+            </div>
+          
+            <div class="col-md-12">
+            <button type="submit" class="updatebtn btn btn-outline-success">Sign In</button>
+          </div>
+          <div class="col-md-12 mt-2">
+            <a href="/FPUser">
+              <h5 class="text-dark">Forget Password Or Activate Account...</h5>
+            </a>
+          </div>
+      </form>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

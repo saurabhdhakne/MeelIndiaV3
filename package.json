@@ -1,4 +1,26 @@
 {
+  "name": "meelindia",
+  "version": "1.0.0",
+  "description": "web app of meelindia.com ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "meelindia",
+    "meel",
+    "india",
+    "invitation",
+    "greeting",
+    "business",
+    "card",
+    "free",
+    "creator",
+    "location",
+    "alert"
+  ],
+  "author": "saurabh b dhakne",
+  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cookie-session": "^1.4.0",
@@ -6,18 +28,11 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-edge": "^2.0.2",
-    "fs": "^0.0.1-security",
-    "googleapis": "39",
-    "http": "^0.0.1-security",
-    "https": "^1.0.0",
-    "image-to-base64": "^2.1.1",
-    "mongoose": "^5.10.7",
+    "fs": "0.0.1-security",
+    "mongoose": "^5.11.15",
     "multer": "^1.4.2",
-    "mysql": "^2.18.1",
-    "nodemailer": "^6.4.11",
+    "nodemailer": "^6.4.17",
     "path": "^0.12.7",
-    "sha256": "^0.2.0",
-    "util": "^0.12.3",
-    "web-push": "^3.4.4"
+    "sha256": "^0.2.0"
   }
 }

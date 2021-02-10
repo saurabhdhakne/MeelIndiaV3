@@ -1,0 +1,319 @@
+@layout('layout.app')
+
+@section('content')
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+crossorigin=""/>
+<link href="./leaflet/leaflet-search.css" rel="stylesheet">
+
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+crossorigin=""></script>
+<script src="./leaflet/leaflet-search.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cookie&family=Righteous&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@700&display=swap');
+    
+    .btn-primary
+    {
+        font-family: 'Amaranth', sans-serif;
+        background: #000;
+        border: #000;
+    }
+    h1{
+		font-size: 4em;
+        font-family: 'play', cursive;
+		color: #76BAA1;
+		text-shadow: 1px 2px 5px;
+	}
+   
+    .headingmain
+    {
+        font-family: 'Righteous', cursive;
+        color: #000;
+        font-size: 100px;
+    }    
+
+    .subheadingmain
+    {
+        font-family: 'Cookie', cursive;
+        font-size: 35px;
+    }
+    .btn-danger
+    {
+        font-family: 'Amaranth', sans-serif;
+    }
+
+    .btn-primary:hover{
+        background: #fff;
+        color: #000;
+    }
+	
+    #inviteBody{
+        min-height: 700px;
+        width: 350px;
+        margin:auto;
+        background: cover;
+        font-family: 'Dancing Script', cursive;
+        /* background: url( "./invitationBg/birthday.svg"); */
+        background-size:100% 100% ;
+        padding-top: 350px;
+    }   
+    #bgInvite{
+        width: 350px;
+        position: absolute;
+        padding: 0;
+        margin-top: 0;
+        z-index: 1;
+        display: none;
+    }
+    .dataInvite{
+        width: 100%;
+    }
+    .inputInvite{
+        width: 350px;
+        z-index: 9;
+
+    }
+
+    .changeclass
+    {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .forpadding
+    {
+        padding-top: 20px;
+        
+    }
+    .search-input {
+    font-family:'play';
+
+    }
+    .search-input,
+    .leaflet-control-search {
+        max-width:450px;
+        background: black;
+        padding:5px;
+    }
+    ul{
+        overflow: auto;
+    }
+    .invite-list li {
+        font-size: 1em;
+        
+    }
+    .invite-list i {
+        background: rgba(0,0,0,.9);
+        margin: 0 15px;
+        padding: 15px;
+        border-radius: 30px;
+        color: #fff;
+        font-size: 3em;
+        border:2px solid #DC143C; 
+        box-shadow: 0 2px 15px salmon;
+        cursor: pointer;
+    }
+    @media(max-width:522px)
+    {
+        .headingmain
+        {
+            font-size: 50px;
+        }    
+        .subheadingmain
+        {
+            font-size: 25px;
+        }
+
+    }
+
+
+</style>
+<div class="container-fluid">
+   <div class="row">
+    <h1 class="col-12 text-center headingmain text-primary">MeelIndia</h1>
+    @if(user == "")
+        <div class="col-12 text-center mb-4"><input type="button" class="btn btn-outline-success" value="Sign Up to Create Invitation"  onclick=" window.location='/signUpUser' "></div>    
+    @endif
+    <h4 class="col-12 text-center subheadingmain">Your Online Invitation Creator</h4>
+    <br>
+       <div class="col-md-4"></div>
+    
+    </div>
+    <div class="row">
+    <div class="col-md-6 p-1 col-sm-6 ibd">
+        <form action="invitationCustomCreateDB" id="cyo" class="col-md-8 offset-md-2 text-dark " enctype="multipart/form-data" method="POST">
+            <h2 class="text-center mt-3  text-danger">Create / Upload Your Own Invitation</h2>
+            <hr>
+            <div class="form-group mt-3 h4">
+              <label for="title">Invitation Title :</label>
+              <input type="text" class="form-control" id="title" name="title" aria-describedby="title" placeholder="Enter Invitation Title" required>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input"  name="image" id="customFile">
+                <label class="custom-file-label" id="image" for="customFile">Choose file</label>
+    
+                <input type="datetime-local" class="mt-2 form-control p inputInvite text-center" name="dateTime" id="dateTime"  value="2021-06-12T19:30" required>
+    
+            </div>
+            <div class="form-group mt-3 h4">
+                <label for="exampleInputEmail1">Location :
+                    Select the destination on map or you can upload lattitude and longitude here.
+                </label>
+                <input type="text" class="form-control mt-2" id="lat2" name="lat" placeholder="Enter lattitude" required>
+                <input type="text" class="form-control mt-2" id="lng2" name="lng" placeholder="Enter longitude" required>
+              </div>
+            <button type="submit" class="btn btn-primary shadowme mt-3 col-md-12">Submit</button>
+        </form>       
+    </div>
+    <div class="col-md-6 col-sm-6" onload="getLocation()">
+        <form action="" class="col-md-12 col-sm-12">
+            <div class="form-group">
+                <input type="hidden" class="form-control" id="lat" name="lat" aria-describedby="mobile" placeholder="lat" required>
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" id="lng" name="lng" aria-describedby="mobile" placeholder="lng" required>
+            </div>
+            <h5 id="notice"> Please give access to location...If you haven't. </h5>
+            <input type="hidden" name="location" value="">
+            
+            <div id="map" class="mb-5 shadowme" style="width:100%; height:60vh;z-index:8"></div>
+        
+            <p id="demo"></p>
+    
+            <!-- <input type="button" onclick="getLocation()" class=" btn btn-outline-primary btn-block mt-2" value="Get Current Location">
+            -->
+            <input type="button" onclick="setLocation()" class=" btn btn-outline-primary btn-block mt-2" value="Set Your Location">
+
+            {{--  <input type="button" name="Save" value="Share" onclick="sendInvite()" class="submitinvitation btn btn-primary btn-block mt-3">  --}}
+
+
+        </form>
+
+    </div>
+   </div>
+</div>
+
+<script>
+     
+    var lngg, latt,hlat,hlng;
+    var marker;
+    
+            var map = L.map('map').setView([19.8684798, 75.3218784], 10);
+            map.locate({setView : true});
+           
+            map.addLayer(new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'));	
+            marker = L.marker([19.8684798, 75.3218784]).addTo(map)
+            .bindPopup('My location')
+                        .openPopup();
+           
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+                        
+         marker.dragging.enable();
+
+        function theLocation(){
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else { 
+                x = document.getElementById('notice');
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+            
+        } theLocation();
+     
+    function showPosition(position) {
+        latt = position.coords.latitude;
+        lngg = position.coords.longitude;
+            document.getElementById('demo').innerHTML = "Latitude: " + latt + 
+            "<br>Longitude: " + lngg;
+            marker.setLatLng([position.coords.latitude, position.coords.longitude]);
+    }
+
+            function setLocation(){
+                position = marker.getLatLng();
+                hlat = position.lat;
+                hlng = position.lng;
+                document.getElementById('lat').value = hlat;
+                document.getElementById('lng').value = hlng;
+                
+                document.getElementById('lat2').value = hlat;
+                document.getElementById('lng2').value = hlng;
+
+                alert('Location is Set.');
+            }
+
+
+            var search = new L.Control.Search({
+                    url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
+                                    jsonpParam: 'json_callback',
+                                    propertyName: 'display_name',
+                                    propertyLoc: ['lat','lon'],
+                                    marker: false,
+                                    autoCollapse: true,
+                                    autoType: false,
+                                    textPlaceholder: ' search the location... ',
+                                    minLength: 2
+            });
+
+            search.on('search:locationfound',
+                    function(e) {
+                        
+                        map.removeLayer(marker);
+                        
+                        map.addLayer(new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'));	
+                        marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map)
+                        .bindPopup('My location')
+                                    .openPopup();
+
+                        marker.dragging.enable();
+
+                    latt = e.latlng.lat;
+                    lngg = e.latlng.lng;
+                    document.getElementById('demo').innerHTML = "Latitude: " + latt + "<br>Longitude: " + lngg;
+                    
+            });
+          
+            map.addControl(search);
+
+            
+            function onMapClick(e) {
+
+                    marker.on("dragend", function(ev) {
+                        var chagedPos = ev.target.getLatLng();
+                        this.bindPopup("ME at " +chagedPos.toString()).openPopup();
+                        loc1 = [chagedPos.lat,chagedPos.lng];
+                        hlat = chagedPos.lat;
+                        hlng = chagedPos.lng;
+                        document.getElementById('lat').value = hlat;
+                        document.getElementById('lng').value = hlng;
+                                
+                        document.getElementById('lat2').value = hlat;
+                        document.getElementById('lng2').value = hlng;
+                        document.getElementById('demo').innerHTML = "Latitude: " + hlat + 
+                        "<br>Longitude: " + hlng;
+                        console.log(loc1);
+
+                    });
+
+                    }
+
+                    map.on('click', onMapClick);
+
+
+</script>
+
+
+
+@endsection

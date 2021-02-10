@@ -8,8 +8,7 @@ body {
 }
 .hi-slide {
   position: relative;
-  width: 754px;
-  height: 200px;
+ 
   margin: 50px auto 0;
   margin-bottom: 180px;
 }
@@ -17,8 +16,7 @@ body {
 .hi-slide > ul {
   list-style: none;
   position: relative;
-  width: 350px;
-  height: 700px;
+  height: 20vh;
   margin: 0;
   padding: 0;
 }
@@ -57,7 +55,7 @@ section {
   --Patua: "Patua One", cursive;
   --Lobster: "lobster", cursive;
   --light-black: #2e2c2caf;
-  --bggradient: linear-gradient(to bottom, #dd2476, #ff512f);
+  --bggradient: linear-gradient(to bottom, #dc2fff, #ffffff);
   --light-gray: rgba(255, 255, 255, 0.877);
 }
 
@@ -195,10 +193,10 @@ header .container .col-md-7 p {
   font-family: var(--Patua);
 }
 
-.purchase > h1 {
+.purchase > h2 {
   padding-top: 12vmin;
   padding-bottom: 1em;
-  font-family: var(--Lobster);
+  /* font-family: var(--Lobster); */
 }
 
 .hi-slide > h1 {
@@ -210,6 +208,9 @@ header .container .col-md-7 p {
 .purchase .cards .card {
   width: 15rem;
   margin: 3vmin 3vmin;
+  padding-bottom: 60px;
+  background:url('../icons/frame.png'); 
+  background-size:100% 100%;
 }
 
 .cards div {
@@ -221,6 +222,8 @@ header .container .col-md-7 p {
   background: rgba(208, 241, 241, 0.199);
   padding: 2em 2.5em;
   font-size: 1.8vmin;
+  font-weight: 150px;
+
 }
 .cards .card-text {
   padding: 2em 2.5em;
@@ -248,9 +251,8 @@ header .container .col-md-7 p {
   background: linear-gradient(
     to right,
     #f76f61 0%,
-    #fd5195 50%,
-    #f77062 0%,
-    #fe5196 100%
+    #fd5195 50%
+    
   );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f3f3', endColorstr='#f7f7f7',GradientType=1 );
 }
@@ -268,16 +270,16 @@ header .container .col-md-7 p {
 }
 
 #two .inner article {
-  width: 50%;
+  width: 100%;
 }
 
 #two .inner article .content p {
-  font-size: 20px;
+  font-size: 30px;
   font-family: var(--Lobster);
 }
 
 #two .inner article .content h3 {
-  font-size: 40px;
+  font-size: 70px;
   font-weight: bold;
   padding-bottom: 20px;
   font-family: var(--Sniglet-font);

@@ -246,81 +246,10 @@ font-family:'play';
 
 
     <div class="container-fluid">
-        <div class="row p-2" style="margin-bottom:55px;">
-            <div class="col-md-4 offset-md-1 pt-3 pb-3 mb-3 text-center shadowme bg-primary text-light d-flex">
-                <div class="col-md-4">
-                     <img src="{{userData.image}}" class="img rounded" alt="" style="height:100px; max-width:200px">
-                </div>
-                <div class="col-md-8 text-center">{{ userData.email }}  <br>
-                    <input type="button" class="btn btn-light shadowme mt-4" value="Show Profile" onclick="window.location='profileUserData'">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <button class="createbtn d-flex btn btn-success" onclick="window.location='invitationCreate'"> 
-                    <i class="fa fa-plus-square col-md-3" aria-hidden="true"></i>
-                    <p class="col-md-9"> Create New <br> Invitation</p> 
-                </button>
-            </div>
-            <div class="col-md-3">
-                <button class="createbtn d-flex btn btn-danger" onclick="window.location='greetingCreate'">
-                    <i class="fa fa-plus-square col-md-4 text-white" aria-hidden="true"></i>
-                    <p class="col-md-8"> Create New <br> Greeting </p>
-                </button>
-            </div>
-            <div class="col-md-1"></div>
-        </div>
+      
         <div class="row">
             
-            <!--
-            <div class="col-md-1"></div>
-            <div class="col-md-2" style="">
-                <form  action="/updateUserImage" class="m-3" enctype="multipart/form-data" method="POST">
-                    <input type="hidden" name="_id" value="{{ userData._id }}">
-                    <input type="file" class="custom-file-input" name="profile_pic" id="customFile" onchange="this.form.submit()">
-                    <label class="custom-file-label mt-1 m-2" for="customFile" style="font-size:13px;">Change Profile Picture</label>
-                </form>
-                <form action="updateUser" method="POST">
-                    <div class="row">   
-                        <input type="hidden" name="_id" value="{{ userData._id }}">
-                        <div class="col-4">
-                            <img src="{{userData.image}}" class="img rounded" width="100%" alt="">
-                        </div>
-
-                        <div class="col-8 text-left header">
-                            <div class="row">
-                                <input type="text" class="ytedit h4 col-12 nameheading" name="fname" value="{{userData.fname}}"> 
-                                <input type="text" class="ytedit h4 col-12 nameheading" name="lname" value="{{userData.lname}}">
-                            </div> 
-                            <p>
-                                <div class="row">
-                                    <h6 class="emailheading">( {{ userData.email }} )</h6>
-                                </div>
-                            </p>
-
-                        </div>
-
-                    </div>
-                    <hr>
-
-                    <div class="profiledetails form-group">
-                        <h6 class="profile-details-heading" >Gender</h6>
-                        <input type="text" name="gender" class="form-control profile-details-input"  value="{{userData.gender}}">
-                        <h6 class="profile-details-heading" >Contact No</h6>
-                        <input type="text" name="contact" class="form-control profile-details-input"  value="{{userData.contact}}">
-                        
-                        <h6 class="profile-details-heading">in Link</h6> 
-                        <input type="text" id="linkedinLink" class="form-control profile-details-input" value="{{ userData.linkedinLink}}"      name="linkedinLink">
-                        <h6 class="profile-details-heading">IG Link</h6>
-                        <input type="text" id="igLink"      class="form-control profile-details-input" value="{{ userData.igLink}}"      name="igLink">
-                        <h6 class="profile-details-heading">fb Link</h6>
-                        <input type="text" id="fbLink"      class="form-control profile-details-input" value="{{ userData.fbLink}}"      name="fbLink">
-        
-                        <input type="submit" class="updatebtn" value="Update" >
-
-                    </div>
-            </div>
-
-            -->
+           
 
                 <div class="col-md-6 p-1 pt-3 pb-4 invitationsclass" style="margin-left:25px;">
                     
@@ -355,7 +284,7 @@ font-family:'play';
                                                     <input type="text" id="title" name="title" class="ytedit h4 inputInvite text-center" value="{{dt.title}}" placeholder="" style="font-family:{{ dt.nameFont}}"> 
                                                     <textarea rows="4" id="content" name = "content"  class="ytedit form-control p inputInvite text-center"  id="content" style="font-family:{{ dt.bodyFont}}">{{ dt.content}}</textarea><br>
                                                     <input type="datetime-local" class="ytedit form-control p inputInvite text-center" name="dateTime" id="dateTime"  value="{{dt.dateTime}}">
-                                                    <input type="submit" class="btn btn-primary btn-block btn-update" value="Update">
+                                                    {{--  <input type="submit" class="btn btn-primary btn-block btn-update" value="Update">  --}}
                                                 </form>
                                                 <form action="inviteDelete" method="POST">
                                                     <input type="hidden" name="_id" value="{{dt._id}}">
@@ -433,7 +362,7 @@ font-family:'play';
                                                     <input type="text" id="title" name="title" class="ytedit h4 inputInvite text-center" value="{{dt.title}}" placeholder="" style="font-family:{{ dt.nameFont}}"> 
                                                     <input type="text" id="subtitle" name="subtitle" class="ytedit p inputInvite text-center" value="{{ dt.subtitle }}" placeholder="" style="font-family:{{ dt.subFont}}"> 
                                                     <textarea rows="4" id="content" name = "content"  class="ytedit form-control p inputInvite text-center"  id="content" style="font-family:{{ dt.bodyFont}}">{{ dt.content}}</textarea><br>
-                                                    <input type="submit" class="btn btn-outline-primary btn-block btn-update" value="Update">
+                                                    {{--  <input type="submit" class="btn btn-outline-primary btn-block btn-update" value="Update">  --}}
                                                 </form>
                                                 <form action="greetingDelete" method="POST">
                                                     <input type="hidden" name="_id" value="{{dt._id}}">

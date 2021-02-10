@@ -1,7 +1,11 @@
 @layout('layout.app')
 
 @section('content')
-
+<style>
+  nav a{
+    color: snow;
+  }
+</style>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
 crossorigin="anonymous">
 <link rel="stylesheet" href="./css/style.css" />
@@ -19,8 +23,8 @@ crossorigin="anonymous">
           About Us
         </button>
       </div>
-      <div class="col-md-5 col-sm-12  h-25">
-        <img src="./example/birthday.svg" class="shadowme" height="600px" width="300px" alt="Book" />
+      <div class="col-md-5 col-sm-12  ">
+        <img src="./icons/gif2.gif"  width="100%" alt="Book" />
       </div>
     </div>
   </div>
@@ -28,34 +32,54 @@ crossorigin="anonymous">
 
 </header>
 
-<header style="background: #f0f0f0;">
-<div class="container text-center">
-    <div class="row">
-      <div class="col-md-5 col-sm-12  h-25">
-        <img src="./example/anniversary.svg" class="shadowme"height="600px" width="300px"  alt="Book" />
-      </div>
-      <div class="col-md-7 col-sm-12 ">
-        <h4>About</h4>
-        <h1>MEELINDIA</h1>
-        <p style="padding-top: 2em;">
-          Meelindia is the first ever initiative started by preneurs group which will help you generating unique kind of digital cards. Our aim is to make creating and sending invitations as well as greetings easier than before. This will benefit to both the event organizer as well as guest. It will also save time of guests in getting the event location. This will save lots of paper and trees.
-          Our ambition is to make things digital one by one. This is initiated under innovation and incubation, digital India and also make in India.
-          We also have some value added services according to need of customers.
-
-        </p>
-        <button class="btn btn-dark px-5 py-2 primary-btn" onclick="window.location='contact'">
-          Contact Us
-        </button>
-      </div>
-      
+<section id="two">
+  <div class="inner text-white">
+    <article>
+      <div class="content">
+        <h3 class="text-center">INVITATIONS!</h3>
+        
+        <p class="text-center">We have the wide range of invitation templates, this includes</p>
+       <div class="row row mt-2 pr-3 pl-3">
+        <div class="col-md-2 col-6 offset-md-1">
+          <img class="mb-2" src="./example/birthday.svg" width="100%" alt=" "/>
+          <input type="button" class="btn btn-outline-light pr-5 pl-5 btn-block ml-1" value="Birthday" onclick="window.location='invitationCreate?type=birthday'">
+        </div>
+        <div class="col-md-2 col-6 mt-2">
+          <img class="mb-2 mt-3" src="./example/engangement.svg" width="100%" alt=" "/>
+          <input type="button" class="btn btn-outline-light pr-5 pl-5 btn-block ml-1" value="Engagement" onclick="window.location='invitationCreate?type=engagement'">
+        </div>
+        <div class="col-md-2 col-6 mt-2">
+          <img class="mb-2" src="./example/wedding.svg" width="100%" alt=" "/>
+          <input type="button" class="btn btn-outline-light pr-5 pl-5 btn-block ml-1" value="Wedding" onclick="window.location='invitationCreate?type=wedding'">
+        </div>
+        <div class="col-md-2 col-6 mt-2">
+          <img class="mb-2" src="./example/anniversary.svg" width="100%" alt=" "/>
+          <input type="button" class="btn btn-outline-light pr-5 pl-5 btn-block ml-1" value="Anniversary" onclick="window.location='invitationCreate?type=anniversary'">
+        </div>
+        <div class="col-md-2 col-6 mt-2">
+          <img class="mb-2" src="./example/innogration.svg" width="100%" alt=" "/>
+          <input type="button" class="btn btn-outline-light pr-5 pl-5 btn-block ml-1" value="Inaugration " onclick="window.location='invitationCreate?type=innogration'">
+        </div>
+        
+       </div>
+       <div class="row mt-5 pt-5">
+        <div class="col-md-6 text-center">
+            <img src="./icons/gif.gif" width="60%" alt="">
+        </div>
+        <div class="col-md-6 pt-5 text-center">
+            <h1 class=" display-4 text-light mt-4 shadowme-text">Upload Your Own <br> Invitation.</h1>
+            <input type="button" class="btn btn-light shadowme btn-lg mt-3 btn-block" onclick="window.location='invitationCreateCustom'" value="Create">
+        </div>
     </div>
-  </div>
-</header>
-
-<div class="slide hi-slide" >
-  <h1 class="text-center">We have a wide variety of Cards for you to explore!</h1>
-  <ul>
+      </div>
+    </article>
     
+  </div>
+</section>
+
+<div class="slide hi-slide col-md-6 offset-md-3" >
+  <h1 class="text-center">We have a wide variety of Cards for you to explore!</h1>
+  <ul class="">
     <li><img src="./example/engangement.svg" alt="Img 1" /></li>
     <li><img src="./example/anniversary.svg" alt="Img 2" /></li>
     <li><img src="./example/innogration.svg" alt="Img 3" /></li>
@@ -71,10 +95,53 @@ crossorigin="anonymous">
 <script src="./js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="./js/jquery.hislide.js" ></script>
 <script>
-  $('.slide').hiSlide();
+  $('.slide').hiSlide(); 
 </script>
 
-
+<section id="two">
+  <div class="inner text-white">
+    <article>
+      <div class="content">
+        <h3 class="text-center ">Greeting!</h3>
+        
+        <p class="text-center">We have the wide range of greeting templates, this includes</p>
+       <div class="row mt-2 pr-3 pl-3">
+        <div class="col-md-2 col-6 mt-2 offset-md-1">
+          <img class="mb-2" src="./example/birthday.svg" width="100%" alt=" "/>
+          <input type="button" class="btn btn-outline-light pr-5 pl-5 btn-block ml-1" value="Birthday">
+        </div>
+        <div class="col-md-2 col-6 mt-2">
+          <img class="mb-2 mt-3" src="./example/engangement.svg" width="100%" alt=" "/>
+          <input type="button" class="btn btn-outline-light pr-5 pl-5 btn-block ml-1" value="Engagement">
+        </div>
+        <div class="col-md-2 col-6 mt-2">
+          <img class="mb-2" src="./example/wedding.svg" width="100%" alt=" "/>
+          <input type="button" class="btn btn-outline-light pr-5 pl-5 btn-block ml-1" value="Wedding">
+        </div>
+        <div class="col-md-2 col-6 mt-2">
+          <img class="mb-2" src="./example/anniversary.svg" width="100%" alt=" "/>
+          <input type="button" class="btn btn-outline-light pr-5 pl-5 btn-block ml-1" value="Anniversary">
+        </div>
+        <div class="col-md-2 col-6 mt-2">
+          <img class="mb-2" src="./example/innogration.svg" width="100%" alt=" "/>
+          <input type="button" class="btn btn-outline-light pr-5 pl-5 btn-block ml-1" value="Inaugration ">
+        </div>
+        
+       </div>
+       <div class="row mt-5 pt-5">
+        <div class="col-md-6 text-center">
+            <img src="./icons/gif.gif" width="60%" alt="">
+        </div>
+        <div class="col-md-6 pt-5 text-center">
+            <h1 class=" display-4 text-light mt-4 shadowme-text">Upload Your Own <br> Greeting.</h1>
+            <input type="button" class="btn btn-light shadowme btn-lg mt-3 btn-block" value="Create">
+        </div>
+    </div>
+      </div>
+    </article>
+    
+  </div>
+</section>
 
 <main>
   <section class="section-2 container-fluid p-0">
@@ -90,43 +157,51 @@ crossorigin="anonymous">
     <div class="container-fluid text-center">
       <div class="numbers d-flex flex-md-row flex-wrap justify-content-center">
         <div class="rect">
+          <i class="fa fa-map-marker text-dangerr" style="font-size:3em;" aria-hidden="true"></i>
           <p>Set </p>
           <h1>Location</h1>
         </div>
         <div class="rect">
+          <i class="fa fa-calendar" style="font-size:3em;" aria-hidden="true"></i>
           <p>Block the</p>
           <h1>Calender</h1>
         </div>
         <div class="rect">
+          <i class="fa fa-money" style="font-size:3em;" aria-hidden="true"></i>
           <p>Free of</p>
           <h1>Cost</h1>
         </div>
         <div class="rect">
+          <i class="fa fa-clock" style="font-size:3em;" aria-hidden="true"></i>
           <p>Generate within</p>
           <h1>Minute</h1>
         </div>
       </div>
     </div>
-
-
+    
     <div class="purchase text-center">
-      <h1>Reasons Why We Need this unique kind of digital cards</h1>
+      <div class="col-md-4 offset-md-4 mt-5">
+        <video width="100%"  autoplay muted loop>
+          <source src="./icons/animation.gif.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+      </div>
+      <h2>Reasons Why We Need this unique kind of digital cards</h2>
       
-      <div class="cards">
+      <div class="cards pb-5">
         <div class="d-flex flex-row justify-content-center flex-wrap">
-          <div class="card">
+          <div class="card shadowme">
             <div class="card-body">
               <div class="title">
                 <h5 class="card-title">INVITE GUESTS DIGITALLY</h5>
               </div>
-              
               <p class="card-text">
                 Share your card Via text, mail, whatsapp, facebook, instagram and many more
               </p>
               
             </div>
           </div>
-          <div class="card">
+          <div class="card shadowme">
             <div class="card-body">
               <div class="title">
                 <h5 class="card-title">INFLUENCE YOUR GUESTS </h5>
@@ -137,7 +212,7 @@ crossorigin="anonymous">
               
             </div>
           </div>
-          <div class="card">
+          <div class="card shadowme">
             <div class="card-body">
               <div class="title">
                 <h5 class="card-title">SALIENT FEATURES</h5>
@@ -149,7 +224,7 @@ crossorigin="anonymous">
               
             </div>
           </div>
-          <div class="card">
+          <div class="card shadowme" >
             <div class="card-body">
               <div class="title">
                 <h5 class="card-title">AUTO-REMINDER FEATURE</h5>
@@ -164,47 +239,28 @@ crossorigin="anonymous">
       </div>
     </div>
   </section>
-
-<section id="two">
-      <div class="inner text-white">
-        <article>
-          <div class="content">
-            <h3 class="text-center">INVITATIONS!</h3>
-            <div class="image fit" style="padding-bottom: 20px;">
-              <img class="cardfor" src="./example/engangement.svg"  alt=" "/>
-            </div>
-            <p class="text-center">We have the wide range of invitation templates, this includes</p>
-            <ul class="text-center" style="padding-top: 20px;">
-              <li>Birthday Invitations 
-              <li>Wedding Invitations
-              <li>Engagement Invitations
-              <li>Inauguration Ceremony Invitations
-              <li>And Many More!
-            </ul>
-          </div>
-        </article>
-        <article class="alt">
-          <div class="content">
-            <h3 class="text-center">GREETINGS!</h3>
-            <div class="image fit" style="padding-bottom: 20px;">
-              <img class="cardfor" src="./example/birthday.svg" alt=" "/>
-            </div>
-            <p class="text-center">We cover bountiful and beautiful greeting templates, this includes</p>
-            <ul class="text-center" style="padding-top: 20px;">
-              <li>Happy Birthday Cards 
-              <li>Congratulations cards
-              <li>Anniversary cards 
-              <li>Festivals Greetings  
-              <li>Special Event cards 
-            </ul>
-          </div>
-        </article>
-      </div>
-    </section>
-
-
-  
+    
 </main>
+<header style="background: #f0f0f0;">
+  <div class="container text-center">
+      <div class="row">
+        <div class="col-md-5 col-sm-12 ">
+          <img src="./icons/event.png"  width="90%" style="margin-top:30vh"  alt="Book" />
+        </div>
+        <div class="col-md-7 col-sm-12 ">
+          <h4>About</h4>
+          <h1>MEELINDIA</h1>
+          <p style="padding-top: 2em;">
+            Meelindia is the first ever initiative started by preneurs group which will help you generating unique kind of digital cards. Our aim is to make creating and sending invitations as well as greetings easier than before. This will benefit to both the event organizer as well as guest. It will also save time of guests in getting the event location. This will save lots of paper and trees.
+            Our ambition is to make things digital one by one. This is initiated under innovation and incubation, digital India and also make in India.
+            We also have some value added services according to need of customers.
+
+          </p>
+        </div>
+      
+      </div>
+    </div>
+  </header>
 <footer>
   <div class="container-fluid p-0">
     <div class="row text-left">
@@ -220,15 +276,17 @@ crossorigin="anonymous">
         <h6 class="text-muted" style="padding: 10px 0;">Write us on 
           <span>meelindiagroup@gmail.com</span> 
         (support mail)</h6>
-        
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=meelindiagroup@gmail.com">
+          <input type="button" class="btn btn-danger" value="Send Email" onclick="">
+        </a>
       </div>
       <div class="col-md-2 col-sm-12">
         <h4 class="text-light">Follow Us</h4>
         <p class="text-muted">Let us be social</p>
         <div class="column text-light ">
-          <a href="https://www.facebook.com/Meel-India-108546191108643/"> <i class="fab h1 fa-facebook-f"></i> </a>
-          <a href="https://instagram.com/meelindia?igshid=2vptfe32gu89"> <i class="fab h1 fa-instagram"></i> </a>
-          <a href="https://t.me/meelindiacard"> <i class="fab h1 fa-telegram"></i> </a>
+          <a href="https://www.facebook.com/Meel-India-108546191108643/"> <i class="fab h1 fa-facebook-f mr-2"></i> </a>
+          <a href="https://instagram.com/meelindia?igshid=2vptfe32gu89"> <i class="fab h1 fa-instagram mr-2"></i> </a>
+          <a href="https://t.me/meelindiacard"> <i class="fab h1 fa-telegram mr-2"></i> </a>
         </div>
       </div>
     </div>
@@ -236,5 +294,5 @@ crossorigin="anonymous">
 </footer>
 
 {{--  <script src="./js/main.js"></script>  --}}
-      
+
 @endsection
