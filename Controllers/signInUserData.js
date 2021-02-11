@@ -13,9 +13,6 @@ mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 mongoose.set("useUnifiedTopology", true);
 
-invitationData = [];
-greetingData = [];
-
 module.exports = (req, res) => {
   try {
     var url = `${process.env.db}`;
@@ -24,6 +21,14 @@ module.exports = (req, res) => {
       if (err) {
         console.log("Unable to connect");
       } else {
+
+        invitationData = [];
+        invitationData2 = [];
+        greetingData = [];
+        result = [];
+        result2 = [];
+        result3 = [];
+
         user.find(
           {
             email: req.body.email,
@@ -42,6 +47,13 @@ module.exports = (req, res) => {
                   if (err) throw err;
                   if (result.length > 0) {
                     invitationData = result;
+                  }
+                });
+                await invitationCustom.find({ email: req.session.email }, (err, result2) => {
+                  if (err) throw err;
+                  if (result2.length > 0) {
+                    console.log(result2);
+                    invitationData2 = result2;
                   }
                 });
                 await greeting.find({ email: req.session.email }, (err, result) => {
