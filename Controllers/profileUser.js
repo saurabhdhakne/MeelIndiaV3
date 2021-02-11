@@ -17,9 +17,6 @@ mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 mongoose.set("useUnifiedTopology", true);
 
-invitationData = [];
-invitationData2 = [];
-greetingData = [];
 
 module.exports = (req, res) => {
   try {
@@ -29,22 +26,31 @@ module.exports = (req, res) => {
       if (err) {
         console.log("Unable to connect");
       } else {
-        await invitation.find({ email: req.session.email }, (err, result) => {
+        
+        invitationData = [];
+        invitationData2 = [];
+        greetingData = [];
+        result = [];
+        result2 = [];
+        result3 = [];
+
+        await invitation.find({ email: req.session.email }, (err, result1) => {
           if (err) throw err;
-          if (result.length > 0) {
-            invitationData = result;
+          if (result1.length > 0) {
+            invitationData = result1;
           }
         });
-        await invitationCustom.find({ email: req.session.email }, (err, result) => {
+        await invitationCustom.find({ email: req.session.email }, (err, result2) => {
           if (err) throw err;
-          if (result.length > 0) {
-            invitationData2 = result;
+          if (result2.length > 0) {
+            console.log(result2);
+            invitationData2 = result2;
           }
         });
-        await greeting.find({ email: req.session.email }, (err, result) => {
+        await greeting.find({ email: req.session.email }, (err, result3) => {
           if (err) throw err;
-          if (result.length > 0) {
-            greetingData = result;
+          if (result3.length3 > 0) {
+            greetingData = result3;
           }
         });
 
