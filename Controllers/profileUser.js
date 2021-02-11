@@ -43,13 +43,12 @@ module.exports = (req, res) => {
         await invitationCustom.find({ email: req.session.email }, (err, result2) => {
           if (err) throw err;
           if (result2.length > 0) {
-            console.log(result2);
             invitationData2 = result2;
           }
         });
         await greeting.find({ email: req.session.email }, (err, result3) => {
           if (err) throw err;
-          if (result3.length3 > 0) {
+          if (result3.length > 0) {
             greetingData = result3;
           }
         });
