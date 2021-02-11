@@ -6,6 +6,8 @@ const invitation = require("../database/models/invitation");
 
 const greeting = require("../database/models/greeting");
 
+const invitationCustom = require("../database/models/invitationCustom");
+
 const mongoose = require("mongoose");
 
 mongoose.set("useNewUrlParser", true);
@@ -43,33 +45,32 @@ module.exports = (req, res) => {
                 req.session.userType = "user";
                 req.session.email = result[0].email;
                 
-                await invitation.find({ email: req.session.email }, (err, result) => {
+                await invitation.find({ email: req.session.email }, (err, result1) => {
                   if (err) throw err;
-                  if (result.length > 0) {
-                    invitationData = result;
+                  if (result1.length > 0) {
+                    invitationData = result1;
                   }
                 });
                 await invitationCustom.find({ email: req.session.email }, (err, result2) => {
                   if (err) throw err;
                   if (result2.length > 0) {
-                    console.log(result2);
                     invitationData2 = result2;
                   }
                 });
-                await greeting.find({ email: req.session.email }, (err, result) => {
+                await greeting.find({ email: req.session.email }, (err, result3) => {
                   if (err) throw err;
-                  if (result.length > 0) {
-                    greetingData = result;
-                    
+                  if (result3.length > 0) {
+                    greetingData = result3;
                   }
                 });
 
                 res.render("profileUser", {
-                    userData,
-                    user: req.session.userType,
-                    invitations : invitationData,
-                    greetings : greetingData 
-                  });
+                  userData,
+                  user: req.session.userType,
+                  invitations : invitationData,
+                  invitationsCustom : invitationData2,
+                  greetings : greetingData,
+                });
 
                 //res.redirect('/');
 
