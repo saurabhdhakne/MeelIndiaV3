@@ -86,16 +86,19 @@ h1{
 }
 
 
-
 #inviteBody{
     min-height: 700px;
     width: 350px;
     margin:auto;
     background: cover;
     font-family: 'Dancing Script', cursive;
+    background-color: black;
     background: url('{{ invitations[0].bg }}');
+    /* background-size: 350px 700px; */
+    background-repeat: no-repeat;
     background-size:100% 100% ;
     padding-top: 350px;
+     
 }   
 #inviteBody{
     box-shadow: 0px 2px 10px black;
@@ -112,23 +115,31 @@ h1{
 .dataInvite{
     width: 100%;
 }
+
 .inputInvite{
-    width: 350px;
-    z-index: 9;
-
-}
-
-.changeclass
-{
-    text-align: center;
-    padding: 20px;
-}
-
-.forpadding
-{
-    padding-top: 20px;
+        width: 350px;
+        z-index: 9;
+        color: #fff;
+        text-shadow: 0 2px 5px black;
+        -webkit-text-stroke-width: .5px;
+        -webkit-text-stroke-color: black;
+    }
+    .inputInvite::-webkit-scrollbar {
+        width: 5px;
+    }
+    .inputInvite::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    .inputInvite::-webkit-scrollbar-thumb {
+        background: salmon;
+    }
+    .inputInvite:hover{
+        background: transparent;
+    }
+    .inputInvite:focus{
+        background: transparent;
+    }
     
-}
 .search-input {
 font-family:'play';
 
@@ -164,26 +175,26 @@ font-family:'play';
             @each(dt in invitations)
             <div class="col-md-12 mt-5">
               
-                <div class="invite bg-light shadowme" id="inviteBody">
+                <div class="invite shadowme" id="inviteBody">
                     {{--  <img src="{{dt.bg}}" id="bgInvite" alt="">  --}}
                     <div class="dataInvite">
-                        <h5 class="col-12  Caveat inputInvite text-center" style="font-family:{{ dt.subFont}}">{{ dt.subtitle }}</h5>
-                        <h4 class="col-12 Caveat inputInvite text-center h1" style="font-family:{{ dt.nameFont}}"> {{ dt.title }}</h4>
-                        <p class="col-12 Caveat inputInvite text-center" style="font-family:{{ dt.bodyFont}}">{{ dt.content}} </p>
-                        <h4 class="col-12 inputInvite text-center" id="dateTime">  </h4>
+                        <h5 class="col-12  Caveat inputInvite h4 text-center" style="font-family:{{ dt.subFont}}">{{ dt.subtitle }}</h5>
+                        <h4 class="col-12 Caveat inputInvite text-center" style="font-family:{{ dt.nameFont}}; font-size:2.5em;"> {{ dt.title }}</h4>
+                        <p class="col-12 Caveat inputInvite text-center" style="font-family:{{ dt.bodyFont}}; font-size:1.5em;">{{ dt.content}} </p>
+                        <p class="col-12 inputInvite text-center" id="dateTime">  </p>
                     </div>
                 </div> 
                 <div class="col-md-8 offset-md-2 mb-2 text-center">
                     <div class="d-flex justify-content-center">
-                            <input type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-success" m-2 value="Locate"  onclick="window.location='https://www.google.com/maps/search/?api=1&query={{dt.lat}},{{dt.lng}}' ">
-                   
-                            <a class="socialbtn h1 d-flex  m-2" href="whatsapp://send?text=The%20generated%20link%20is%20digital%20invitation%20carddevelop%20by%20MeelIndia%20https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> 
-                            <a class="socialbtn h1 d-flex  m-2" href="https://www.facebook.com/sharer/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a> 
+                            <input type="button" class="col-12  pt-2 pb-2 mt-2 mb-2 btn btn-success" m-2 value="Locate to destination"  onclick="window.location='https://www.google.com/maps/search/?api=1&query={{dt.lat}},{{dt.lng}}' ">
+
+                            {{--  <a class="socialbtn h1 d-flex  m-2" href="whatsapp://send?text=The%20generated%20link%20is%20digital%20invitation%20carddevelop%20by%20MeelIndia%20https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>   --}}
+                            {{--  <a class="socialbtn h1 d-flex  m-2" href="https://www.facebook.com/sharer/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>   --}}
                             <!-- <a class="socialbtn d-flex row" href="https://www.instagram.com/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-instagram" aria-hidden="true"></i></a>  -->
-                            <a class="socialbtn h1 d-flex  m-2" onclick='myFunction("{{ dt._id }}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>
-                            <a class="socialbtn h1 d-flex  m-2" onclick="doCapture();" > <i class="fa fa-download" aria-hidden="true"></i></a>
-                          
-                    </div>
+                            {{--  <a class="socialbtn h1 d-flex  m-2" onclick='myFunction("{{ dt._id }}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>  --}}
+                            
+                        </div>
+                        <a class="socialbtn h1 col-12 m-2 display-1" onclick="doCapture();" > <i class="fa fa-download" aria-hidden="true"></i></a>
             </div> 
                 
         </div>

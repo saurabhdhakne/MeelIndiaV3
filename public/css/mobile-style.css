@@ -51,10 +51,24 @@ header .row .col-md-7 {
     margin-top: 8vmin;
   }
   
-.purchase > h2 {
-  font-size: 1em;
-  /* font-family: var(--Lobster); */
-}
+  .purchase > h2 {
+    font-size: 1em;
+    /* font-family: var(--Lobster); */
+  }
+  #two .inner article .content h1 {
+    font-size: 2em;    
+  }
+  #two .inner article .content h3{
+    font-size: 2em;
+  }
+  #two .inner article .content p {
+    font-size: 1em;
+
+  }
+  #two .inner article .content input {
+    font-size: 14px;
+  }
+
 }
 
 /* screen size 375px */

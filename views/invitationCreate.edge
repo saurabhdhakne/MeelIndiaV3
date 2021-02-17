@@ -64,8 +64,8 @@ crossorigin=""></script>
         width: 350px;
         margin:auto;
         background: cover;
-        font-family: 'Dancing Script', cursive;
-        /* background: url( "./invitationBg/birthday.svg"); */
+        /* font-family: 'Dancing Script', cursive; */
+        /* background: url( "./invitationBg/birthday.png"); */
         background-size:100% 100% ;
         padding-top: 350px;
     }   
@@ -83,9 +83,30 @@ crossorigin=""></script>
     .inputInvite{
         width: 350px;
         z-index: 9;
-
+        color: #fff;
+        text-shadow: 0 2px 5px black;
+        -webkit-text-stroke-width: .5px;
+        -webkit-text-stroke-color: black;
     }
-
+    .inputInvite::-webkit-scrollbar {
+        width: 5px;
+    }
+    .inputInvite::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    .inputInvite::-webkit-scrollbar-thumb {
+        background: salmon;
+    }
+    .inputInvite:hover{
+        background: transparent;
+    }
+    .inputInvite:focus{
+        background: transparent;
+    }
+    ::placeholder {
+        color: #fff;
+        font-size: .9em;
+    }
     .changeclass
     {
         text-align: center;
@@ -152,23 +173,19 @@ crossorigin=""></script>
     </div>
     <div class="row">
     <div class="col-md-6 p-1 col-sm-6 ibd">
-        <ul class="d-flex " style="text-decoration:none; list-style:none">
-                <li class="col-md-4"> <input type="button" onclick="changeNameFont()" class=" btn btn-primary bg-primary" value="Change Name Font"> </li>
-            
-                <li class="col-md-4"> <input type="button" onclick="changeBodyFont()" class=" btn btn-primary bg-primary" value="Change Body Font"> </li>
-        
-                <li class="col-md-4"> <input type="button" onclick="changeSubFont()" class=" btn btn-primary bg-primary" value="Change Sub Title Font"> </li>
+        <ul class="text-center col-12" style="text-decoration:none; list-style:none">
+                <li class=""> <input type="button" onclick="changeNameFont()" class=" btn btn-primary bg-primary" value="Change Font"> </li>
         </ul>      
-        <div class="invite bg-light shadowme" id="inviteBody">
+        <div class="invite shadowme" id="inviteBody">
             <img src="" id="bgInvite" alt="">
             <div class="dataInvite">
-                <input type="text" id="subtitle" name="subtitle" class="ytedit p inputInvite text-center" value="" placeholder=""> 
+                <input type="text" id="subtitle" name="subtitle" maxlength="30" onkeypress="return blockSpecialChar(event)" class="ytedit h4 inputInvite text-center" value="" placeholder=""> 
                 {{--  <input type="text" id="title" name="title" class="ytedit h1 inputInvite text-center" value="" placeholder="">   --}}
-                <textarea rows="2" id="title" name = "title"  class="ytedit form-control  inputInvite text-center " style="font-size:2em;"  id="content">
+                <textarea rows="1" id="title" maxlength="32" name = "title" onkeypress="return blockSpecialChar(event)"  class="ytedit form-control  inputInvite text-center text-light p-0" style="font-size:2.5em;"  id="content">
                 </textarea><br>
-                <textarea rows="4" id="content" name = "content"  class="ytedit form-control  inputInvite text-center"  id="content">The fun of a special day is incomplete without the presence of our friends. You are most cordially invited to our baby’s birthday party!
+                <textarea rows="4" id="content" name = "content" maxlength="130"  onkeypress="return blockSpecialChar(event)" class="ytedit form-control inputInvite text-center text-light h3" style="font-size:1.2em;" id="content">The fun of a special day is incomplete without the presence of our friends. You are most cordially invited to our baby’s birthday party!
                 </textarea><br>
-                <input type="datetime-local" class="ytedit form-control p inputInvite text-center" name="dateTime" id="dateTime"  value="2021-06-12T19:30">
+                <input type="datetime-local" class="ytedit form-control p inputInvite text-center text-light mb-0 col-6 offset-3 btn bg-danger" name="dateTime" id="dateTime"  value="2021-06-12T19:30">
             </div>
         </div>  
     </div>
@@ -204,49 +221,49 @@ crossorigin=""></script>
     var bgImg, type, nameFont = " Dancing Script, cursive",bodyFont= " Dancing Script, cursive",subFont =  " Dancing Script, cursive";
  
     function invite_birthday(){
-        document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/birthday.svg')";
-        bgImg = "./invitationBg/birthday.svg";
+        document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/birthday.png')";
+        bgImg = "./invitationBg/birthday.png";
         document.getElementById("title").value  = "Enter Your Name";
         document.getElementById("subtitle").placeholder = "Birthday Year ( e.g. 22th Birthday of )";
         document.getElementById("content").value = "The fun of a special day is incomplete without the presence of our friends. You are most cordially invited to our baby’s birthday party!";
         type = "birthday";
     }
     function invite_wedding(){
-        document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/wedding.svg')";
-        bgImg = "./invitationBg/Wedding.svg";
-        document.getElementById("title").value  = "Bride and Groom Names";
-        document.getElementById("subtitle").placeholder = "Together With Their Family";
-        document.getElementById("content").value = "Requested The Pleasure of Your Company To Celebrate Their Marriage.";
+        document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/wedding.png')";
+        bgImg = "./invitationBg/Wedding.png";
+        document.getElementById("title").value  = "Bride and Groom";
+        document.getElementById("subtitle").placeholder = "Wedding of";
+        document.getElementById("content").value = "Mr. and Mrs. [ Names Of Parent ] request the honor of your company at the marriage of their children.";
         type = "Wedding";
     }
     function invite_anniversary(){
-        document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/anniversary.svg')";
-        bgImg = "./invitationBg/anniversary.svg";
+        document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/anniversary.png')";
+        bgImg = "./invitationBg/anniversary.png";
         document.getElementById("title").value  = "Anniversary Year ";
         document.getElementById("subtitle").placeholder = "Whose Anniversary";
-        document.getElementById("content").value = "We request the pleasure of your company at our wedding anniversary party. Please come and grace this occasion as we celebrate 20 years of our marriage and bonding.";
+        document.getElementById("content").value = "Because you have shared in their lives by your friendship and love we invite you to joining the celebration of the25th Wedding Anniversary of our parents.";
         type = "anniversary";
     }
     function invite_innogration(){
-        document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/innogration.svg')";
-        bgImg = "./invitationBg/innogration.svg";
-        document.getElementById("title").value  = "The Grand Opening of";
-        document.getElementById("subtitle").placeholder = "Enter the Name ";
-        document.getElementById("content").value = "You have been with us from the very start and it is apt that you stand along with us on our newly fashioned store’s grand opening day. See you on [date] from [time] to [time] [location and address]. ";
+        document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/inaugration.png')";
+        bgImg = "./invitationBg/inaugration.png";
+        document.getElementById("title").value  = "Name";
+        document.getElementById("subtitle").placeholder = "The Grand Opening Of";
+        document.getElementById("content").value = "You have been with us from the very start and it is apt that you stand along with us on our newly fashioned store’s grand opening day.";
         type = "innogration";
-
+        
     }
     function invite_engagement (){
-        document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/engangement.svg')";
-        bgImg = "./invitationBg/engangement.svg";
-        document.getElementById("title").value  = "Enter the Names ";
-        document.getElementById("subtitle").placeholder = "Enter the subtitle";
-        document.getElementById("content").value = "Enter the Desription.";
+        document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/engangement.png')";
+        bgImg = "./invitationBg/engangement.png";
+        document.getElementById("title").value  = "Enter the Names";
+        document.getElementById("subtitle").placeholder = "We are getting Enganged";
+        document.getElementById("content").value = "I cordially invite you and your family to my engagement ceremony with (Name Of Bride/Groom) to be held at my residence tomorrow from Time.";
         type = "innogration";
     }
     function invite_other(){
-        document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/other.svg')";
-        bgImg = "./invitationBg/other.svg";
+        document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/other.png')";
+        bgImg = "./invitationBg/other.png";
         document.getElementById("title").value  = "Enter the Title";
         document.getElementById("subtitle").placeholder = "Enter the subtitle";
         document.getElementById("content").value = "Enter the Desription.";
@@ -398,7 +415,6 @@ crossorigin=""></script>
                 }
 			}
 </script>
-
 <script>
 
         function changeNameFont()
@@ -409,39 +425,22 @@ crossorigin=""></script>
             
             const randoms = Math.floor(Math.random()*fontfamilies.length);
             nameFont = fontfamilies[randoms];
-            document.getElementById("title").style.fontFamily = fontfamilies[randoms];
-
+            subFont = nameFont;
+            bodyFont = nameFont;
+            document.getElementById("title").style.fontFamily = nameFont;
+            document.getElementById("subtitle").style.fontFamily = nameFont;
+            document.getElementById("content").style.fontFamily = nameFont;
             }
 
-        function changeBodyFont()
-            {
-            var idee = document.getElementById("content").style.fontFamily; 
+            $('subtitle').on('input', function() {
+                  $(this).val($(this).val().replace(/[^a-z0-9]/gi, ''));
+            });
 
-            var fontfamilies = ["Comic Sans, Comic Sans MS, cursive", "Edwardian Script ITC, bold","Bauhaus 93","Eras Bold ITC","Impact, fantasy","Pacifico, cursive" ,"Dancing Script, cursive"];    
-        
-            const randoms = Math.floor(Math.random()*fontfamilies.length);
-
-            bodyFont = fontfamilies[randoms];
-            
-            document.getElementById("content").style.fontFamily = fontfamilies[randoms];
-
+            function blockSpecialChar(e){
+                var k;
+                document.all ? k = e.keyCode : k = e.which;
+                return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
             }
-            
-        function changeSubFont()
-            {
-            var idee = document.getElementById("subtitle").style.fontFamily; 
-
-            var fontfamilies = ["Comic Sans, Comic Sans MS, cursive", "Edwardian Script ITC, bold","Bauhaus 93","Eras Bold ITC","Impact, fantasy","Pacifico, cursive" ,"Dancing Script, cursive"];    
-            
-            const randoms = Math.floor(Math.random()*fontfamilies.length);
-
-            subFont = fontfamilies[randoms];
-            
-            document.getElementById("subtitle").style.fontFamily = fontfamilies[randoms];
-
-            }
-
-
 </script>
 
 @endsection

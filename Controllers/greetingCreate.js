@@ -32,6 +32,8 @@ module.exports = (req, res) => {
                 res.render("greetingCreate", {
                   userData,
                   user: req.session.userType,
+                  type:req.query.type
+
                 });
               } else {
                 res.render("notfound");

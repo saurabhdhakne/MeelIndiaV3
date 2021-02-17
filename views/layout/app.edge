@@ -115,6 +115,14 @@
         padding:5px;
         border-radius: 5px;
       }
+      .ytedit2{
+        background:none; 
+        border:none; 
+        padding:5px;
+        border-radius: 5px;
+        text-shadow: 0 0 0;
+        color: #E5E5E5;
+      }
 
       .ytedit:hover{
         background: white;
@@ -384,11 +392,11 @@
     </li>
 
     @endif
-  </ul> 
-    <a href="/help"><i class="fa fa-info-circle" aria-hidden="true"></i> &nbsp; Help & Support</a>
-    <a href="/FPUser"><i class="fa fa-key" aria-hidden="true"></i> &nbsp;Password</a>
-    <a href="/deactivateUserAcc"><i class="fa fa-ban" aria-hidden="true"></i> &nbsp;Deactivate </a>
+    <li class="nav-item"> <a class="nav-link"  href="/help"><i class="fa fa-info-circle" aria-hidden="true"></i> &nbsp; Help & Support</a> </li>
+    <li class="nav-item"> <a class="nav-link"  href="/FPUser"><i class="fa fa-key" aria-hidden="true"></i> &nbsp;Password</a> </li>
+    <li class="nav-item"> <a class="nav-link"  href="/deactivateUserAcc"><i class="fa fa-ban" aria-hidden="true"></i> &nbsp;Deactivate </a> </li>
   <hr>
+  </ul> 
 </div>
 
 <div id="mySidenav3" class="sidenav">
@@ -476,9 +484,10 @@
         </li>
 
         @endif
+            
+      <li class="nav-item "> <a href="/help" class="nav-link"> <i class="fa fa-info-circle" aria-hidden="true"></i> &nbsp; Help & Support</a> </li>
+      <li class="nav-item"> <a href="/FPUser" class="nav-link"> <i class="fa fa-key" aria-hidden="true"></i> &nbsp;Password</a> </li>
   </ul>
-  <a href="/help"><i class="fa fa-info-circle" aria-hidden="true"></i> &nbsp; Help & Support</a>
-  <a href="/FPUser"> <i class="fa fa-key" aria-hidden="true"></i> &nbsp;Password</a>
   <hr>
 </div>
 
@@ -644,7 +653,7 @@
         <div class="modal-body">
           <h1 class="modal-title form-header text-center col-12" id="exampleModalLongTitle">Sign Up</h1>
           <hr>
-          <form method="POST" action="/signUpUser">
+          <form method="POST" id="signUpForm" action="/signUpUser">
             <div class="row">
               <div class="col-md-6">
                 <label for="fname">First Name</label>
@@ -677,10 +686,31 @@
              Check <a href="https://privacyterms.io/view/2iVKpB7A-GM6p5fDY-bCE91e/" target="__blank">Disclaimer </a> 
              
             </div>
-            <button type="submit" class="updatebtn btn btn-outline-primary">Sign Up</button>
+            <button type="button" onclick="signUpForm()" class="updatebtn btn btn-outline-primary">Sign Up</button>
           </form>
+            <div class="note text-center h3 mt-4">
+                <h5 id="note" class=" mt-2 mb-2 pt-2 pb-2 bg-warning">   </h5>
+              <input type="button" value="Open Gmail" class="btn btn-danger col-12 mt-2" onclick="window.location='https://mail.google.com/mail/' ">
+            </div>
         </div>
         <div class="modal-footer">
+          <script>
+            function signUpForm() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var data = this.responseText;
+                        console.log(data);
+                        if(data == "email"){ document.getElementById("note").innerHTML = "Email Already Exist!" ;  }
+                        else if(data == "active"){  document.getElementById("signUpForm").submit() }
+                        else{ document.getElementById("note").innerHTML = "Some Unknown Error Occured! Try after Some Time.";   }
+                  }
+                };
+                xhttp.open("GET", "signUpUser2?email="+document.getElementById("signupemail").value , true);
+                xhttp.send();
+            }
+            
+          </script>
         </div>
       </div>
     </div>
@@ -696,7 +726,7 @@
         </div>
         <div class="modal-body">
           <h1 class="modal-title form-header text-center col-12" id="exampleModalLongTitle">Sign In</h1>
-          <form method="POST" action="/signInUserData">
+          <form method="POST" id="signInForm" action="/signInUserData">
             <div class="row">
             <div class="form-group col-md-12 ">
               <hr>
@@ -714,7 +744,7 @@
             </div>
           
             <div class="col-md-12">
-            <button type="submit" class="updatebtn btn btn-outline-success">Sign In</button>
+            <button type="button" onclick="signInForm()"  class="updatebtn btn btn-outline-success">Sign In</button>
           </div>
           <div class="col-md-12 mt-2">
             <a href="/FPUser">
@@ -722,8 +752,30 @@
             </a>
           </div>
       </form>
+          <div class="note text-center h3 mt-4 col-12">
+            <h5 id="note2" class=" mt-2 mb-2 pt-2 pb-2 bg-warning">   </h5>
+          <input type="button" value="Open Gmail" class="btn btn-danger col-12 mt-2" onclick="window.location='https://mail.google.com/mail/' ">
+        </div>
         </div>
         <div class="modal-footer">
+          <script>
+            function signInForm() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var data = this.responseText;
+                        console.log(data);
+                        if(data == "notPesent"){ document.getElementById("note2").innerHTML = "You dont't have an account with this email!" ;  }
+                        else if(data == "inactive"){ document.getElementById("note2").innerHTML = "Activate Your Account! Check Your Email" ;  }
+                        else if(data == "active"){  document.getElementById("signInForm").submit() }
+                        else{ document.getElementById("note2").innerHTML = "Some Unknown Error Occured! Try after Some Time.";   }
+                  }
+                };
+                xhttp.open("GET", "signUpUser3?email="+document.getElementById("signinemail").value , true);
+                xhttp.send();
+            }
+            
+          </script>
         </div>
       </div>
     </div>

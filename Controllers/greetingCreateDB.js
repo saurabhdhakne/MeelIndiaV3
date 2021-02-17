@@ -76,6 +76,7 @@ module.exports = (req, res) => {
         },
         (error, post) => {
           console.log(error, post);
+          res.send(post._id);
         }
       );
     }

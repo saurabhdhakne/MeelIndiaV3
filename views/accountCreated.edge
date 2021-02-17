@@ -12,10 +12,18 @@
             <h2>Account Created Successfully </h2>
             <br>
             <h5>Please check you Email Inbox to activate your account.</h5>
+            <h5>Web page redirects after 5 seconds.<br>
+                <script>
+                        setTimeout(function(){
+                            window.location.href = '/';
+                        }, 5000);
+                </script>
+                        
             <br>
-            <input type="button"  class="btn btn-outline-primary btn-lg btn-block m-3" onclick=" window.location='/signInUser' " value="Sign In">
-
+                <input type="button" value="Open Gmail" class="btn btn-danger col-12 m-2 mb-2" onclick="window.location='https://mail.google.com/mail/' ">
+                <input type="button"  class="btn btn-outline-primary btn-lg btn-block m-2" onclick=" window.location='/signInUser' " value="Sign In">
         </div>
+       
     </div>
 </div>
 @endsection

@@ -33,6 +33,7 @@ const indexRoute = require("./Controllers/index");
 // registration
 const signUpUser = require("./Controllers/signUpUser");
 const addUserData = require("./Controllers/addUserData");
+const addUserData2 = require("./Controllers/addUserData2");
 
 //confirm email
 const confirmEmailUser = require("./Controllers/confirmEmailUser");
@@ -79,6 +80,7 @@ const invitation = require("./Controllers/invitation");
 const invitationCustom = require("./Controllers/invitationCustom");
 const inviteUpdate = require("./Controllers/inviteUpdate");
 const inviteDelete = require("./Controllers/inviteDelete");
+const inviteCustomDelete = require("./Controllers/inviteCustomDelete");
 
 //greeting
 const greetingCreate = require("./Controllers/greetingCreate");
@@ -86,6 +88,7 @@ const greetingCreateDB = require("./Controllers/greetingCreateDB");
 const greeting = require("./Controllers/greeting");
 const greetingUpdate = require("./Controllers/greetingUpdate");
 const greetingDelete = require("./Controllers/greetingDelete");
+const addUserData3 = require("./Controllers/addUserData3");
 
 
 // create application/json parser
@@ -156,6 +159,10 @@ app.get("/signUpUser", signUpUser);
 
 app.post("/signUpUser", urlencodedParser, addUserData);
 
+app.get("/signUpUser2", addUserData2);
+
+app.get("/signUpUser3", addUserData3);
+
 // confirm emails
 
 app.get("/confirmEmailUser", confirmEmailUser);
@@ -222,6 +229,13 @@ app.post(
   urlencodedParser,
   redirectLoginUser,
   inviteDelete
+);
+
+app.post(
+  "/inviteCustomDelete",
+  urlencodedParser,
+  redirectLoginUser,
+  inviteCustomDelete
 );
 
 //Greeting

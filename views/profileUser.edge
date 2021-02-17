@@ -14,7 +14,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cookie&family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@700&display=swap');
-
     body{
         font-family: 'play';
     }
@@ -145,36 +144,54 @@ h1{
 
 
 #inviteBody{
-    min-height: 700px;
-    width: 350px;
-    margin:auto;
-    background: cover;
-    font-family: 'Dancing Script', cursive;
-    background: url('{{ invitations[0].bg }}');
-    background-size:100% 100% ;
-    padding-top: 350px;
-}   
-#inviteBody{
-    box-shadow: 0px 2px 10px black;
-    margin-bottom: 20px;
-}
-#bgInvite{
-    width: 350px;
-    position: absolute;
-    padding: 0;
-    margin-top: 0;
-    z-index: 1;
-    display: none;
-}
-.dataInvite{
-    width: 100%;
-}
-.inputInvite{
-    width: 350px;
-    z-index: 9;
-
-}
-
+        min-height: 700px;
+        width: 350px;
+        margin:auto;
+        background: cover;
+        font-family: 'Dancing Script', cursive;
+        /* background: url( "./invitationBg/birthday.png"); */
+        background-size:100% 100% ;
+        padding-top: 350px;
+    }   
+    #bgInvite{
+        width: 350px;
+        position: absolute;
+        padding: 0;
+        margin-top: 0;
+        z-index: 1;
+        display: none;
+    }
+    .dataInvite{
+        width: 100%;
+    }
+    .inputInvite{
+        width: 350px;
+        z-index: 9;
+        color: #fff;
+        text-shadow: 0 2px 5px black;
+        -webkit-text-stroke-width: .5px;
+        -webkit-text-stroke-color: black;
+    }
+    .inputInvite::-webkit-scrollbar {
+        width: 5px;
+    }
+    .inputInvite::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    .inputInvite::-webkit-scrollbar-thumb {
+        background: salmon;
+    }
+    .inputInvite:hover{
+        background: transparent;
+    }
+    .inputInvite:focus{
+        background: transparent;
+    }
+    .changeclass
+    {
+        text-align: center;
+        padding: 20px;
+    }
 .changeclass
 {
     text-align: center;
@@ -262,7 +279,7 @@ font-family:'play';
                                         <div class="col-md-8 offset-md-2 mb-2 text-center">
                                                 <div class="d-flex justify-content-center">
                                                     <input type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-primary" value="Locate"  onclick="window.location='https://www.google.com/maps/search/?api=1&query={{dt.lat}},{{dt.lng}}' ">
-                                                    <input type="text" id="title" name="title" class="ytedit d-inline inputInvite text-center" value="https://meelindia.com/invitation?id={{dt._id}}" placeholder=""> 
+                                                    <input type="text" id="title" name="title" class="ytedit2  d-inline text-center" value="https://meelindia.com/invitation?id={{dt._id}}" placeholder=""> 
                                                     <button type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-primary" data-toggle="modal" data-target="#"><i class="fa fa-bell" aria-hidden="true"></i></button>
                                                 <!--    <button type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-primary" data-toggle="modal" data-target="#shareModal"><i class="fa fa-bell" aria-hidden="true"></i></button>
                                                 -->
@@ -274,24 +291,25 @@ font-family:'play';
                                                         <a class="socialbtn h1 m-2" onclick='myFunction("{{ dt._id }}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>
                                                 </div>
                                         </div> 
-                                        <div class="invite bg-light shadowme" id="inviteBody" style="background: url({{dt.bg}}); background-size:cover;">
+                                        <div class="invite shadowme" id="inviteBody" style="background: url({{dt.bg}}); background-size:cover;">
                                             <img src="{{dt.bg}}" id="bgInvite" alt="">
                                             <div class="dataInvite">
                                                 <form action="inviteUpdate" method="POST">
                                                 <input type="hidden" name="_id" value="{{dt._id}}">
                                                 
-                                                    <input type="text" id="subtitle" name="subtitle" class="ytedit p inputInvite text-center" value="{{ dt.subtitle }}" placeholder="" style="font-family:{{ dt.subFont}}"> 
-                                                    <input type="text" id="title" name="title" class="ytedit h4 inputInvite text-center" value="{{dt.title}}" placeholder="" style="font-family:{{ dt.nameFont}}"> 
-                                                    <textarea rows="4" id="content" name = "content"  class="ytedit form-control p inputInvite text-center"  id="content" style="font-family:{{ dt.bodyFont}}">{{ dt.content}}</textarea><br>
+                                                <p class="ytedit h4 inputInvite text-center" style="font-family:{{ dt.subFont}};"> {{ dt.subtitle }} </p> 
+                                                <p class="ytedit h4 inputInvite text-center" style="font-family:{{ dt.nameFont}}; font-size:2.5em;"> {{dt.title}} </p>    
+                                                <p class="inputInvite text-center"  style="font-family:{{ dt.bodyFont}}; font-size:1.5em;" >{{ dt.content}}</p><br>
                                                     <input type="datetime-local" class="ytedit form-control p inputInvite text-center" name="dateTime" id="dateTime"  value="{{dt.dateTime}}">
                                                     {{--  <input type="submit" class="btn btn-primary btn-block btn-update" value="Update">  --}}
                                                 </form>
-                                                <form action="inviteDelete" method="POST">
-                                                    <input type="hidden" name="_id" value="{{dt._id}}">
-                                                    <input type="submit" value="Delete" class="btn btn-danger btn-block mt-1">
-                                                </form>
+                                               
                                             </div>
                                         </div> 
+                                        <form action="inviteDelete" class="mt-2" method="POST">
+                                            <input type="hidden" name="_id" value="{{dt._id}}">
+                                            <input type="submit" value="Delete" class="btn btn-danger col-10 offset-1 mt-1">
+                                        </form>
                                     
                                 
                                 </div>
@@ -306,8 +324,8 @@ font-family:'play';
                                 <div class="col-md-12 mt-3 mb-3">
                                         <div class="col-md-8 offset-md-2 mb-2 text-center">
                                                 <div class="d-flex justify-content-center">
-                                                    <input type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-primary" value="Locate"  onclick="window.location='https://www.google.com/maps/search/?api=1&query={{dt.lat}},{{dt.lng}}' ">
-                                                    <input type="text" id="title" name="title" class="ytedit d-inline inputInvite text-center" value="https://meelindia.com/invitationCustom?id={{dt._id}}" placeholder=""> 
+                                                    <input type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-primary" value="Locate"  onclick="window.location='https://www.google.com/maps/search/?api=1&query={{dt.lat}},{{dt.lng}}' " >
+                                                    <input type="text" id="title" name="title" class="ytedit2 text-dark d-inline text-center" value="https://meelindia.com/invitationCustom?id={{dt._id}}" placeholder=""> 
                                                     <button type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-primary" data-toggle="modal" data-target="#"><i class="fa fa-bell" aria-hidden="true"></i></button>
                                                 <!--    <button type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-primary" data-toggle="modal" data-target="#shareModal"><i class="fa fa-bell" aria-hidden="true"></i></button>
                                                 -->
@@ -318,11 +336,13 @@ font-family:'play';
                                                         {{--  <a class="socialbtn h1 m-2" href="https://www.instagram.com/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-instagram" aria-hidden="true"></i></a>   --}}
                                                         <a class="socialbtn h1 m-2" onclick='myFunctionCustom("{{ dt._id }}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>
                                                 </div>
-                                                <div class="col-md-12 text-light bg-primary shadowme h4 pt-2 pb-2">
-                                                    {{ dt.title }}
-                                                </div>
+                                                <img src="{{dt.image}}" width="80%" alt="">
                                         </div> 
                                 </div>
+                                <form action="inviteCustomDelete" class="mt-2" method="POST">
+                                    <input type="hidden" name="_id" value="{{dt._id}}">
+                                    <input type="submit" value="Delete" class="btn btn-danger col-10 offset-1 mt-1">
+                                </form>
                                 
                                 <hr width="100%">
 
@@ -336,47 +356,44 @@ font-family:'play';
                     <hr>
 
                     @each(dt in greetings)
-                                
-                                <div class="col-md-12 mt-3 mb-3">
-                                    <div class="col-md-8 offset-md-2 mb-2 text-center">
+                            <div class="col-md-12 mt-3 mb-3">
+                                <div class="col-md-8 offset-md-2 mb-2 text-center">
                                         <div class="d-flex justify-content-center">
-                                            <input type="text" id="title" name="title" class="ytedit d-inline inputInvite text-center " value="https://meelindia.com/greeting?id={{dt._id}}" placeholder="">  
-                                        <!--    <button type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-primary" data-toggle="modal" data-target="#shareModal"><i class="fa fa-share" aria-hidden="true"></i></button>
+                                            <input type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-primary" value="Locate"  onclick="window.location='https://www.google.com/maps/search/?api=1&query={{dt.lat}},{{dt.lng}}' ">
+                                            <input type="text" id="title" name="title" class="ytedit2 text-dark d-inline text-center" value="https://meelindia.com/greeting?id={{dt._id}}" placeholder=""> 
+                                            <button type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-primary" data-toggle="modal" data-target="#"><i class="fa fa-bell" aria-hidden="true"></i></button>
+                                        <!--    <button type="button" class=" d-inline pt-2 pb-2 mt-2 mb-2 btn btn-primary" data-toggle="modal" data-target="#shareModal"><i class="fa fa-bell" aria-hidden="true"></i></button>
                                         -->
-                                        
-                                        </div> 
+                                        </div>
                                         <div class="d-flex justify-content-center">
-                                            <a class="socialbtn d-flex row" href="whatsapp://send?text=https://meelindia.com/greeting?id={{dt._id}}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> 
-                                            <a class="socialbtn d-flex row" href="https://www.facebook.com/sharer/sharer.php?u=https://meelindia.com/greeting?id={{dt._id}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a> 
-                                            {{--  <a class="socialbtn d-flex row" href="https://www.instagram.com/sharer.php?u=https://meelindia.com/greeting?id={{dt._id}}"><i class="fa fa-instagram" aria-hidden="true"></i></a>   --}}
-                                            <a class="socialbtn d-flex row" onclick='myFunction2("{{ dt._id }}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>
+                                                <a class="socialbtn h1 m-2" href="whatsapp://send?text=https://meelindia.com/greeting?id={{dt._id}}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> 
+                                                <a class="socialbtn h1 m-2" href="https://www.facebook.com/sharer/sharer.php?u=https://meelindia.com/greeting?id={{dt._id}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a> 
+                                                <a class="socialbtn h1 m-2" onclick='myFunction2("{{ dt._id }}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>
+                                        </div>
+                                </div> 
+                                <div class="invite shadowme" id="inviteBody" style="background: url({{dt.bg}}); background-size:cover;">
+                                    <img src="{{dt.bg}}" id="bgInvite" alt="">
+                                    <div class="dataInvite">
+                                        <form action="inviteUpdate" method="POST">
+                                            <input type="hidden" name="_id" value="{{dt._id}}">
+                                            
+                                            <p class="ytedit h4 inputInvite text-center" style="font-family:{{ dt.nameFont}}; font-size:2.5em;"> {{dt.title}} </p>    
+                                            <p class="inputInvite text-center"  style="font-family:{{ dt.bodyFont}}; font-size:1.5em;" >{{ dt.content}}</p><br>
+                                        </form>
+                                    
                                     </div>
-                                    </div> 
+                                </div> 
+                                <form action="greetingDelete" class="mt-2" method="POST">
+                                    <input type="hidden" name="_id" value="{{dt._id}}">
+                                    <input type="submit" value="Delete" class="btn btn-danger col-10 offset-1 mt-1">
+                                </form>
+                            
+                        
+                        </div>
+                
+                         <hr width="100%">
                                 
-                                        <div class="invite bg-light shadowme" id="inviteBody">
-                                            <img src="{{dt.bg}}" id="bgInvite" alt="">
-                                            <div class="dataInvite">
-                                                <form action="greetingUpdate" method="POST">
-                                                    <h5 class="text-center" id="head"></h5>
-                                                    <input type="hidden" name="_id" value="{{dt._id}}">
-                                                    <input type="text" id="title" name="title" class="ytedit h4 inputInvite text-center" value="{{dt.title}}" placeholder="" style="font-family:{{ dt.nameFont}}"> 
-                                                    <input type="text" id="subtitle" name="subtitle" class="ytedit p inputInvite text-center" value="{{ dt.subtitle }}" placeholder="" style="font-family:{{ dt.subFont}}"> 
-                                                    <textarea rows="4" id="content" name = "content"  class="ytedit form-control p inputInvite text-center"  id="content" style="font-family:{{ dt.bodyFont}}">{{ dt.content}}</textarea><br>
-                                                    {{--  <input type="submit" class="btn btn-outline-primary btn-block btn-update" value="Update">  --}}
-                                                </form>
-                                                <form action="greetingDelete" method="POST">
-                                                    <input type="hidden" name="_id" value="{{dt._id}}">
-                                                    <input type="submit" value="Delete" class="btn btn-outline-danger btn-block mt-1">
-                                                </form>
-                                            </div>
-                                        </div> 
-                                        
-                                
-                                </div>
-
-                                <hr width="100%">
-                                
-                            @endeach
+                    @endeach
 
 
                 </div>

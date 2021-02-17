@@ -64,13 +64,7 @@ module.exports = (req, res) => {
                   }
                 });
 
-                res.render("profileUser", {
-                  userData,
-                  user: req.session.userType,
-                  invitations : invitationData,
-                  invitationsCustom : invitationData2,
-                  greetings : greetingData,
-                });
+               res.redirect("/");
 
                 //res.redirect('/');
 
