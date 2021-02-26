@@ -89,6 +89,7 @@ const greeting = require("./Controllers/greeting");
 const greetingUpdate = require("./Controllers/greetingUpdate");
 const greetingDelete = require("./Controllers/greetingDelete");
 const addUserData3 = require("./Controllers/addUserData3");
+const engangementPravinNikita = require("./Controllers/engangementPravinNikita");
 
 
 // create application/json parser
@@ -221,6 +222,8 @@ app.post("/invitationCustomCreateDB", urlencodedParser, invitationCustomCreateDB
 app.get("/invitation", invitation);
 
 app.get("/invitationCustom", invitationCustom);
+
+app.get("/engangement", engangementPravinNikita);
 
 app.post("/inviteUpdate", urlencodedParser, redirectLoginUser, inviteUpdate);
 

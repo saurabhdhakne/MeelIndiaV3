@@ -189,7 +189,7 @@ crossorigin=""></script>
             </div>
         </div>  
     </div>
-    <div class="col-md-6 col-sm-6" onload="">
+    <div class="col-md-6 col-sm-6" onload="getLocation()">
         <form action="" class="col-md-12 col-sm-12">
             <div class="form-group">
                 <input type="hidden" class="form-control" id="lat" name="lat" aria-describedby="mobile" placeholder="lat" required>
@@ -442,6 +442,5 @@ crossorigin=""></script>
                 return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
             }
 </script>
-
 
 @endsection
