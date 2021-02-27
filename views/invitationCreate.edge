@@ -1,16 +1,11 @@
 @layout('layout.app')
 
 @section('content')
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-crossorigin=""/>
-<link href="./leaflet/leaflet-search.css" rel="stylesheet">
 
-<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-crossorigin=""></script>
-<script src="./leaflet/leaflet-search.js" crossorigin="anonymous"></script>
+<script src="https://apis.mapmyindia.com/advancedmaps/v1/whlo5caw3pypkf9tiiarog3w541aptjl/map_load?v=1.3"></script>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
@@ -192,10 +187,10 @@ crossorigin=""></script>
     <div class="col-md-6 col-sm-6" onload="">
         <form action="" class="col-md-12 col-sm-12">
             <div class="form-group">
-                <input type="hidden" class="form-control" id="lat" name="lat" aria-describedby="mobile" placeholder="lat" required>
+                <input type="text" class="form-control" id="lat" name="lat" aria-describedby="mobile" placeholder="lat" required>
             </div>
             <div class="form-group">
-                <input type="hidden" class="form-control" id="lng" name="lng" aria-describedby="mobile" placeholder="lng" required>
+                <input type="text" class="form-control" id="lng" name="lng" aria-describedby="mobile" placeholder="lng" required>
             </div>
             <h5 id="notice"> Please give access to location...If you haven't. </h5>
             <input type="hidden" name="location" value="">
@@ -217,6 +212,29 @@ crossorigin=""></script>
    </div>
 </div>
 
+<script>
+    var map=new MapmyIndia.Map("map",{ center:[28.61, 77.23],zoomControl: true,hybrid:true });
+    var marker = L.marker([28.61, 77.23],{draggable:"draggable"}).addTo(map);
+
+  
+    function onMapClick(e) {
+
+            var pt = e.latlng;
+            marker.setLatLng(pt);
+            document.getElementById('lat').value = pt.lat;
+            document.getElementById('lng').value = pt.lng;
+
+    }
+
+    function setLocation(){
+        pt = marker.getLatLng();
+        document.getElementById('lat').value = pt.lat;
+        document.getElementById('lng').value = pt.lng;
+    }
+
+    map.on('click', onMapClick);
+
+</script>
 <script>
     var bgImg, type, nameFont = " Dancing Script, cursive",bodyFont= " Dancing Script, cursive",subFont =  " Dancing Script, cursive";
  
@@ -272,111 +290,8 @@ crossorigin=""></script>
     eval("invite_{{type}}()");
 </script>
 <script>
-     
-    var lngg, latt,hlat,hlng;
-    var marker;
-    
-            var map = L.map('map').setView([19.8684798, 75.3218784], 10);
-            map.locate({setView : true});
-           
-            map.addLayer(new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'));	
-            marker = L.marker([19.8684798, 75.3218784]).addTo(map)
-            .bindPopup('My location')
-                        .openPopup();
-           
-            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-                        
-         marker.dragging.enable();
-
-        function theLocation(){
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else { 
-                x = document.getElementById('notice');
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-            
-        } theLocation();
-     
-    function showPosition(position) {
-        latt = position.coords.latitude;
-        lngg = position.coords.longitude;
-            document.getElementById('demo').innerHTML = "Latitude: " + latt + 
-            "<br>Longitude: " + lngg;
-            marker.setLatLng([position.coords.latitude, position.coords.longitude]);
-    }
-
-            function setLocation(){
-                position = marker.getLatLng();
-                hlat = position.lat;
-                hlng = position.lng;
-                document.getElementById('lat').value = hlat;
-                document.getElementById('lng').value = hlng;
-
-                alert('Location is Set.');
-            }
-
-
-            var search = new L.Control.Search({
-                    url: 'https://nominatim.openstreetmap.org/search?format=json&q={s}',
-                                    jsonpParam: 'json_callback',
-                                    propertyName: 'display_name',
-                                    propertyLoc: ['lat','lon'],
-                                    marker: false,
-                                    autoCollapse: true,
-                                    autoType: false,
-                                    textPlaceholder: ' search the location... ',
-                                    minLength: 2
-            });
-
-            search.on('search:locationfound',
-                    function(e) {
-                        
-                        map.removeLayer(marker);
-                        
-                        map.addLayer(new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'));	
-                        marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map)
-                        .bindPopup('My location')
-                                    .openPopup();
-
-                        marker.dragging.enable();
-
-                    latt = e.latlng.lat;
-                    lngg = e.latlng.lng;
-                    document.getElementById('demo').innerHTML = "Latitude: " + latt + "<br>Longitude: " + lngg;
-                    
-            });
-          
-            map.addControl(search);
-
-            
-            function onMapClick(e) {
-
-                    marker.on("dragend", function(ev) {
-                        var chagedPos = ev.target.getLatLng();
-                        this.bindPopup("ME at " +chagedPos.toString()).openPopup();
-                        loc1 = [chagedPos.lat,chagedPos.lng];
-                        hlat = chagedPos.lat;
-                        hlng = chagedPos.lng;
-                        document.getElementById('lat').value = hlat;
-                        document.getElementById('lng').value = hlng;
-                                
-                        document.getElementById('demo').innerHTML = "Latitude: " + hlat + 
-                        "<br>Longitude: " + hlng;
-                        console.log(loc1);
-
-                    });
-
-                    }
-
-                    map.on('click', onMapClick);
-
-
-</script>
-<script>
     	function sendInvite(){
+                setLocation();
 				var title = document.getElementById('title').value;
 				var subtitle = document.getElementById('subtitle').value;
 				var content = document.getElementById('content').value;
@@ -442,6 +357,5 @@ crossorigin=""></script>
                 return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
             }
 </script>
-
 
 @endsection
