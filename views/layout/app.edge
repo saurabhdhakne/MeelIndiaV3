@@ -370,36 +370,75 @@
     <li class="nav-item pr-3">
       <a class="nav-link" href="/profileUser"> <i class="fa fa-bookmark" aria-hidden="true"></i> &nbsp; Saved</a>
     </li>
-    <li class="nav-item dropdown1">
-      {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fa fa-certificate" aria-hidden="true"></i> &nbsp; Invitation
-      </a>
-      <ul class="inviteBlock " >
-        <li><a class="dropdown-item" href="./invitationCreate?type=birthday">Birthday</a></li>
-        <li><a class="dropdown-item" href="./invitationCreate?type=engagement">Engagement</a></li>
-        <li><a class="dropdown-item" href="./invitationCreate?type=wedding">Wedding</a></li>
-        <li><a class="dropdown-item" href="./invitationCreate?type=anniversary">Anniversary</a></li>
-        <li><a class="dropdown-item" href="./invitationCreate?type=innogration">Inaugration</a></li>
-        <li><a class="dropdown-item" href="./invitationCreateCustom">Upload Your Own</a></li>
+  @if(user != "")
 
-      </ul>
-    </li>
-    <li class="nav-item dropdown1">
-      {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
-      <a class="nav-link dropdown-toggle greetingB" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fa fa-cog" aria-hidden="true"></i> &nbsp; Greeting
-      </a>
-      <ul class="greetingBlock">
-        <li><a class="dropdown-item" href="./greetingCreate?type=birthday">Birthday</a></li>
-        <li><a class="dropdown-item" href="./greetingCreate?type=engagement">Engagement</a></li>
-        <li><a class="dropdown-item" href="./greetingCreate?type=wedding">Wedding</a></li>
-        <li><a class="dropdown-item" href="./greetingCreate?type=anniversary">Anniversary</a></li>
-        <li><a class="dropdown-item" href="./greetingCreate?type=innogration">Inaugration</a></li>
-        <li><a class="dropdown-item" href="./greetingCreateCustom">Upload Your Own</a></li>
+      <li class="nav-item dropdown1">
+        {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa fa-certificate" aria-hidden="true"></i> &nbsp; Invitation
+        </a>
+        <ul class="inviteBlock " >
+          <li><a class="dropdown-item" href="./invitationCreate?type=birthday">Birthday</a></li>
+          <li><a class="dropdown-item" href="./invitationCreate?type=engagement">Engagement</a></li>
+          <li><a class="dropdown-item" href="./invitationCreate?type=wedding">Wedding</a></li>
+          <li><a class="dropdown-item" href="./invitationCreate?type=anniversary">Anniversary</a></li>
+          <li><a class="dropdown-item" href="./invitationCreate?type=innogration">Inaugration</a></li>
+          <li><a class="dropdown-item" href="./invitationCreateCustom">Upload Your Own</a></li>
 
-      </ul>
-    </li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown1">
+        {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
+        <a class="nav-link dropdown-toggle greetingB" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa fa-cog" aria-hidden="true"></i> &nbsp; Greeting
+        </a>
+        <ul class="greetingBlock">
+          <li><a class="dropdown-item" href="./greetingCreate?type=birthday">Birthday</a></li>
+          <li><a class="dropdown-item" href="./greetingCreate?type=engagement">Engagement</a></li>
+          <li><a class="dropdown-item" href="./greetingCreate?type=wedding">Wedding</a></li>
+          <li><a class="dropdown-item" href="./greetingCreate?type=anniversary">Anniversary</a></li>
+          <li><a class="dropdown-item" href="./greetingCreate?type=innogration">Inaugration</a></li>
+          <li><a class="dropdown-item" href="./greetingCreateCustom">Upload Your Own</a></li>
+
+        </ul>
+      </li>
+  
+  @else
+
+      <li class="nav-item dropdown2">
+        {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Invitation
+        </a>
+        <ul class="inviteBlock2 " >
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Birthday</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Engagement</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Wedding</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Anniversary</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Inaugration</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Upload Your Own</a></li>
+
+        </ul>
+      </li>
+      <li class="nav-item dropdown2">
+        {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
+        <a class="nav-link dropdown-toggle greetingB" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Greeting
+        </a>
+        <ul class="greetingBlock2">
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Birthday</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Engagement</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Wedding</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Anniversary</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Inaugration</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Upload Your Own</a></li>
+          
+        </ul>
+      </li>
+
+  @endif
+
+
     <li class="nav-item pr-3">
       <a class="nav-link" href="/contact">  <i class="fa fa-phone" aria-hidden="true"></i> &nbsp; Contact</a>
     </li>
@@ -451,39 +490,78 @@
         <li class="nav-item pr-3">
           <a class="nav-link" href="/profileUser"> <i class="fa fa-bookmark" aria-hidden="true"></i> &nbsp; Saved</a>
         </li>
-        <li class="nav-item dropdown1">
-          {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa fa-certificate" aria-hidden="true"></i> &nbsp; Invitation
-          </a>
-          <ul class="inviteBlock " >
-            <li><a class="dropdown-item" href="./invitationCreate?type=birthday">Birthday</a></li>
-            <li><a class="dropdown-item" href="./invitationCreate?type=engagement">Engagement</a></li>
-            <li><a class="dropdown-item" href="./invitationCreate?type=wedding">Wedding</a></li>
-            <li><a class="dropdown-item" href="./invitationCreate?type=anniversary">Anniversary</a></li>
-            <li><a class="dropdown-item" href="./invitationCreate?type=innogration">Inaugration</a></li>
-            <li><a class="dropdown-item" href="./invitationCreateCustom">Upload Your Own</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown1">
-          {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
-          <a class="nav-link dropdown-toggle greetingB" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa fa-cog" aria-hidden="true"></i> &nbsp; Greeting
-          </a>
-          <ul class="greetingBlock">
-            <li><a class="dropdown-item" href="./greetingCreate?type=birthday">Birthday</a></li>
-            <li><a class="dropdown-item" href="./greetingCreate?type=engagement">Engagement</a></li>
-            <li><a class="dropdown-item" href="./greetingCreate?type=wedding">Wedding</a></li>
-            <li><a class="dropdown-item" href="./greetingCreate?type=anniversary">Anniversary</a></li>
-            <li><a class="dropdown-item" href="./greetingCreate?type=innogration">Inaugration</a></li>
-            <li><a class="dropdown-item" href="./greetingCreateCustom">Upload Your Own</a></li>
-          </ul>
-        </li>
+        @if(user != "")
+
+      <li class="nav-item dropdown1">
+        {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa fa-certificate" aria-hidden="true"></i> &nbsp; Invitation
+        </a>
+        <ul class="inviteBlock " >
+          <li><a class="dropdown-item" href="./invitationCreate?type=birthday">Birthday</a></li>
+          <li><a class="dropdown-item" href="./invitationCreate?type=engagement">Engagement</a></li>
+          <li><a class="dropdown-item" href="./invitationCreate?type=wedding">Wedding</a></li>
+          <li><a class="dropdown-item" href="./invitationCreate?type=anniversary">Anniversary</a></li>
+          <li><a class="dropdown-item" href="./invitationCreate?type=innogration">Inaugration</a></li>
+          <li><a class="dropdown-item" href="./invitationCreateCustom">Upload Your Own</a></li>
+
+        </ul>
+      </li>
+      <li class="nav-item dropdown1">
+        {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
+        <a class="nav-link dropdown-toggle greetingB" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa fa-cog" aria-hidden="true"></i> &nbsp; Greeting
+        </a>
+        <ul class="greetingBlock">
+          <li><a class="dropdown-item" href="./greetingCreate?type=birthday">Birthday</a></li>
+          <li><a class="dropdown-item" href="./greetingCreate?type=engagement">Engagement</a></li>
+          <li><a class="dropdown-item" href="./greetingCreate?type=wedding">Wedding</a></li>
+          <li><a class="dropdown-item" href="./greetingCreate?type=anniversary">Anniversary</a></li>
+          <li><a class="dropdown-item" href="./greetingCreate?type=innogration">Inaugration</a></li>
+          <li><a class="dropdown-item" href="./greetingCreateCustom">Upload Your Own</a></li>
+
+        </ul>
+      </li>
+  
+  @else
+
+      <li class="nav-item dropdown2">
+        {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Invitation
+        </a>
+        <ul class="inviteBlock2 " >
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Birthday</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Engagement</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Wedding</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Anniversary</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Inaugration</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Upload Your Own</a></li>
+
+        </ul>
+      </li>
+      <li class="nav-item dropdown2">
+        {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
+        <a class="nav-link dropdown-toggle greetingB" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Greeting
+        </a>
+        <ul class="greetingBlock2">
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Birthday</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Engagement</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Wedding</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Anniversary</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Inaugration</a></li>
+          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Upload Your Own</a></li>
+          
+        </ul>
+      </li>
+
+  @endif 
         <li class="nav-item pr-3">
           <a class="nav-link" href="/contact">  <i class="fa fa-phone" aria-hidden="true"></i> &nbsp; Contact</a>
         </li>
         <li class="nav-item pr-3">
-          <a class="nav-link" href="/contact">  <i class="fa fa-laptop" aria-hidden="true"></i> &nbsp; Developer</a>
+          <a class="nav-link" href="/" onclick="alert('sbdhakne309@gmail.com')">  <i class="fa fa-laptop" aria-hidden="true"></i> &nbsp; Developer</a>
         </li>
         <li class="nav-item pr-3">
           <a class="nav-link" href="/about">  <i class="fa fa-info" aria-hidden="true"></i> &nbsp; About</a>
@@ -587,18 +665,25 @@
             <li class="nav-item pr-3">
               <a class="nav-link" href="/">Home</a>
             </li>
+            
+            <li class="nav-item pr-3">
+              <a class="nav-link" href="/about">About</a>
+            </li>
+              
+            @if(!user)
+           
             <li class="nav-item dropdown2">
               {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Invitation
               </a>
               <ul class="inviteBlock2 " >
-                <li><a class="dropdown-item" href="./invitationCreate?type=birthday">Birthday</a></li>
-                <li><a class="dropdown-item" href="./invitationCreate?type=engagement">Engagement</a></li>
-                <li><a class="dropdown-item" href="./invitationCreate?type=wedding">Wedding</a></li>
-                <li><a class="dropdown-item" href="./invitationCreate?type=anniversary">Anniversary</a></li>
-                <li><a class="dropdown-item" href="./invitationCreate?type=innogration">Inaugration</a></li>
-                <li><a class="dropdown-item" href="./invitationCreateCustom">Upload Your Own</a></li>
+                <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Birthday</a></li>
+                <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Engagement</a></li>
+                <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Wedding</a></li>
+                <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Anniversary</a></li>
+                <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Inaugration</a></li>
+                <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Upload Your Own</a></li>
 
               </ul>
             </li>
@@ -608,21 +693,15 @@
                 Greeting
               </a>
               <ul class="greetingBlock2">
-                <li><a class="dropdown-item" href="./greetingCreate?type=birthday">Birthday</a></li>
-                <li><a class="dropdown-item" href="./greetingCreate?type=engagement">Engagement</a></li>
-                <li><a class="dropdown-item" href="./greetingCreate?type=wedding">Wedding</a></li>
-                <li><a class="dropdown-item" href="./greetingCreate?type=anniversary">Anniversary</a></li>
-                <li><a class="dropdown-item" href="./greetingCreate?type=innogration">Inaugration</a></li>
-                <li><a class="dropdown-item" href="./greetingCreateCustom">Upload Your Own</a></li>
+                <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Birthday</a></li>
+                <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Engagement</a></li>
+                <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Wedding</a></li>
+                <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Anniversary</a></li>
+                <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Inaugration</a></li>
+                <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Upload Your Own</a></li>
                 
               </ul>
             </li>
-            <li class="nav-item pr-3">
-              <a class="nav-link" href="/about">About</a>
-            </li>
-              
-            @if(!user)
-
 
             <li class="nav-item pr-3">
               <a class="nav-link" href="#"  data-toggle="modal" data-target="#exampleModalCenter">
@@ -653,6 +732,36 @@
 
             @if(user != "")
             
+            <li class="nav-item dropdown2">
+              {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Invitation
+              </a>
+              <ul class="inviteBlock2 " >
+                <li><a class="dropdown-item" href="./invitationCreate?type=birthday">Birthday</a></li>
+                <li><a class="dropdown-item" href="./invitationCreate?type=engagement">Engagement</a></li>
+                <li><a class="dropdown-item" href="./invitationCreate?type=wedding">Wedding</a></li>
+                <li><a class="dropdown-item" href="./invitationCreate?type=anniversary">Anniversary</a></li>
+                <li><a class="dropdown-item" href="./invitationCreate?type=innogration">Inaugration</a></li>
+                <li><a class="dropdown-item" href="./invitationCreateCustom">Upload Your Own</a></li>
+
+              </ul>
+            </li>
+            <li class="nav-item dropdown2">
+              {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
+              <a class="nav-link dropdown-toggle greetingB" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Greeting
+              </a>
+              <ul class="greetingBlock2">
+                <li><a class="dropdown-item" href="./greetingCreate?type=birthday">Birthday</a></li>
+                <li><a class="dropdown-item" href="./greetingCreate?type=engagement">Engagement</a></li>
+                <li><a class="dropdown-item" href="./greetingCreate?type=wedding">Wedding</a></li>
+                <li><a class="dropdown-item" href="./greetingCreate?type=anniversary">Anniversary</a></li>
+                <li><a class="dropdown-item" href="./greetingCreate?type=innogration">Inaugration</a></li>
+                <li><a class="dropdown-item" href="./greetingCreateCustom">Upload Your Own</a></li>
+                
+              </ul>
+            </li>
             <li class="nav-item pr-3">
               <a class="nav-link" href="/logout">
                 Sign out
@@ -736,10 +845,10 @@
             </div>
             <button type="button" onclick="signUpForm()" class="updatebtn btn btn-outline-primary">Sign Up</button>
           </form>
-            <div class="note text-center h3 mt-4">
+            {{--  <div class="note text-center h3 mt-4">
                 <h5 id="note" class=" mt-2 mb-2 pt-2 pb-2 bg-warning">   </h5>
               <input type="button" value="Open Gmail" class="btn btn-danger col-12 mt-2" onclick="window.location='https://mail.google.com/mail/' ">
-            </div>
+            </div>  --}}
         </div>
         <div class="modal-footer">
           <script>
