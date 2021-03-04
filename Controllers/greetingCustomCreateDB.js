@@ -4,7 +4,7 @@ const multer = require("multer");
 const path = require("path");
 const nodemailer = require("nodemailer");
 
-const invitation = require("../database/models/invitationCustom");
+const invitation = require("../database/models/greetingCustom");
 
 mongoose.set("useNewUrlParser", true);
 mongoose.set("useFindAndModify", false);
@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
         console.log("Unable to connect");
       } else {
 
-      image2 = `./uploads/invitations/${fname}`,
+      image2 = `./uploads/greetings/${fname}`,
           
       toEmail = req.session.email;
       console.log(toEmail);
@@ -59,10 +59,10 @@ module.exports = async (req, res) => {
         },
         (error, post) => {
             
-          console.log(error, post);
-          res.redirect("invitationCustom?id="+post._id)
-
-          // nodemailer.createTestAccount((err, account) => {
+            console.log(error, post);
+            res.redirect("greetingCustom?id="+post._id)
+          
+            // nodemailer.createTestAccount((err, account) => {
           //   let transporter = nodemailer.createTransport({
           //     host: "smtp.googlemail.com", // Gmail Host
           //     port: 465, // Port
@@ -108,7 +108,7 @@ const imageFilter = function (req, file, cb) {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./public/uploads/invitations");
+    cb(null, "./public/uploads/greetings");
   },
 
   filename: function (req, file, cb) {

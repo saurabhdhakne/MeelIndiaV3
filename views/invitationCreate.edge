@@ -182,7 +182,10 @@
                 </textarea><br>
                 <input type="datetime-local" class="ytedit form-control p inputInvite text-center text-light mb-0 col-6 offset-3 btn bg-danger" name="dateTime" id="dateTime"  value="2021-06-12T19:30">
             </div>
-        </div>  
+        </div>
+        <div class="col-12 text-center">
+            <input type="button" value="Create Your Own" class="btn btn-outline-danger mt-2 btn-lg" onclick="window.location='invitationCreateCustom' ">  
+        </div>
     </div>
     <div class="col-md-6 col-sm-6" onload="">
         <form action="" class="col-md-12 col-sm-12">
@@ -195,6 +198,7 @@
             <h5 id="notice"> Please give access to location...If you haven't. </h5>
             <input type="hidden" name="location" value="">
             
+            {{--  <input type="text" class="form-control mb-2" placeholder="Search Location..." onchange="getLocations()">  --}}
             <div id="map" class="mb-5 shadowme" style="width:100%; height:60vh;z-index:8"></div>
         
             <p id="demo"></p>

@@ -1,0 +1,174 @@
+@layout('layout.app')
+
+@section('content')
+
+<script src="https://apis.mapmyindia.com/advancedmaps/v1/whlo5caw3pypkf9tiiarog3w541aptjl/map_load?v=1.3"></script>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cookie&family=Righteous&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@700&display=swap');
+    
+    .btn-primary
+    {
+        font-family: 'Amaranth', sans-serif;
+        background: #000;
+        border: #000;
+    }
+    h1{
+		font-size: 4em;
+        font-family: 'play', cursive;
+		color: #76BAA1;
+		text-shadow: 1px 2px 5px;
+	}
+   
+    .headingmain
+    {
+        font-family: 'Righteous', cursive;
+        color: #000;
+        font-size: 100px;
+    }    
+
+    .subheadingmain
+    {
+        font-family: 'Cookie', cursive;
+        font-size: 35px;
+    }
+    .btn-danger
+    {
+        font-family: 'Amaranth', sans-serif;
+    }
+
+    .btn-primary:hover{
+        background: #fff;
+        color: #000;
+    }
+	
+    #inviteBody{
+        min-height: 700px;
+        width: 350px;
+        margin:auto;
+        background: cover;
+        font-family: 'Dancing Script', cursive;
+        /* background: url( "./invitationBg/birthday.svg"); */
+        background-size:100% 100% ;
+        padding-top: 350px;
+    }   
+    #bgInvite{
+        width: 350px;
+        position: absolute;
+        padding: 0;
+        margin-top: 0;
+        z-index: 1;
+        display: none;
+    }
+    .dataInvite{
+        width: 100%;
+    }
+    .inputInvite{
+        width: 350px;
+        z-index: 9;
+
+    }
+
+    .changeclass
+    {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .forpadding
+    {
+        padding-top: 20px;
+        
+    }
+    .search-input {
+    font-family:'play';
+
+    }
+    .search-input,
+    .leaflet-control-search {
+        max-width:450px;
+        background: black;
+        padding:5px;
+    }
+    ul{
+        overflow: auto;
+    }
+    .invite-list li {
+        font-size: 1em;
+        
+    }
+    .invite-list i {
+        background: rgba(0,0,0,.9);
+        margin: 0 15px;
+        padding: 15px;
+        border-radius: 30px;
+        color: #fff;
+        font-size: 3em;
+        border:2px solid #DC143C; 
+        box-shadow: 0 2px 15px salmon;
+        cursor: pointer;
+    }
+    @media(max-width:522px)
+    {
+        .headingmain
+        {
+            font-size: 50px;
+        }    
+        .subheadingmain
+        {
+            font-size: 25px;
+        }
+
+    }
+
+
+</style>
+
+<div class="container-fluid">
+   <div class="row">
+    <h1 class="col-12 text-center headingmain text-primary">MeelIndia</h1>
+    @if(user == "")
+        <div class="col-12 text-center mb-4"><input type="button" class="btn btn-outline-success" value="Sign Up to Create Invitation"  onclick=" window.location='/signUpUser' "></div>    
+    @endif
+    <h4 class="col-12 text-center subheadingmain">Your Online Invitation Creator</h4>
+    <br>
+       <div class="col-md-4"></div>
+    
+    </div>
+    <div class="row">
+    <div class="col-md-6 p-1 offset-md-3 ibd">
+        <form action="greetingCustomCreateDB" id="cyo" class="col-md-8 offset-md-2 text-dark " enctype="multipart/form-data" method="POST">
+            <h2 class="text-center mt-3  text-danger">Create / Upload Your Own Greeting</h2>
+            <hr>
+            <div class="form-group mt-3 h4">
+              <label for="title">Greeting Title :</label>
+              <input type="text" class="form-control" id="title" name="title" aria-describedby="title" placeholder="Enter Invitation Title" required>
+            </div>
+
+            <div class="custom-file">
+                <input type="file" class="custom-file-input"  name="image" id="customFile">
+                
+                <label class="custom-file-label" id="image" for="customFile">Choose file</label>
+    
+                {{--  <input type="datetime-local" class="mt-2 form-control p inputInvite text-center" name="dateTime" id="dateTime"  value="2021-06-12T19:30" required>  --}}
+    
+            </div>
+            <button type="submit" class="btn btn-primary shadowme mt-3 col-md-12">Submit</button>
+        </form>       
+    </div>
+
+   </div>
+</div>
+
+
+
+
+
+@endsection

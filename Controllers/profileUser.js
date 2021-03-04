@@ -10,6 +10,8 @@ const invitation = require("../database/models/invitation");
 
 const invitationCustom = require("../database/models/invitationCustom");
 
+const greetingCustom = require("../database/models/greetingCustom");
+
 const greeting = require("../database/models/greeting");
 
 mongoose.set("useNewUrlParser", true);
@@ -30,9 +32,11 @@ module.exports = (req, res) => {
         invitationData = [];
         invitationData2 = [];
         greetingData = [];
+        greetingData2 = [];
         result = [];
         result2 = [];
         result3 = [];
+        result4 = [];
 
         await invitation.find({ email: req.session.email }, (err, result1) => {
           if (err) throw err;
@@ -52,6 +56,12 @@ module.exports = (req, res) => {
             greetingData = result3;
           }
         });
+        await greetingCustom.find({ email: req.session.email }, (err, result4) => {
+          if (err) throw err;
+          if (result4.length > 0) {
+            greetingData2 = result4;
+          }
+        });
 
         await user.find(
           {
@@ -67,6 +77,7 @@ module.exports = (req, res) => {
                 user: req.session.userType,
                 invitations : invitationData,
                 invitationsCustom : invitationData2,
+                greetingsCustom : greetingData2,
                 greetings : greetingData,
               });
             } else {

@@ -81,6 +81,7 @@ const invitationCustom = require("./Controllers/invitationCustom");
 const inviteUpdate = require("./Controllers/inviteUpdate");
 const inviteDelete = require("./Controllers/inviteDelete");
 const inviteCustomDelete = require("./Controllers/inviteCustomDelete");
+const engangementPravinNikita = require("./Controllers/engangementPravinNikita");
 
 //greeting
 const greetingCreate = require("./Controllers/greetingCreate");
@@ -89,7 +90,9 @@ const greeting = require("./Controllers/greeting");
 const greetingUpdate = require("./Controllers/greetingUpdate");
 const greetingDelete = require("./Controllers/greetingDelete");
 const addUserData3 = require("./Controllers/addUserData3");
-const engangementPravinNikita = require("./Controllers/engangementPravinNikita");
+const greetingCustomCreateDB = require("./Controllers/greetingCustomCreateDB");
+const greetingCustom = require("./Controllers/greetingCustom");
+const greetingCreateCustom = require("./Controllers/greetingCreateCustom");
 
 
 // create application/json parser
@@ -244,9 +247,15 @@ app.post(
 //Greeting
 app.get("/greetingCreate", redirectLoginUser, greetingCreate);
 
+app.get("/greetingCreateCustom", redirectLoginUser, greetingCreateCustom);
+
 app.post("/greetingCreate", urlencodedParser, greetingCreateDB);
 
+app.post("/greetingCustomCreateDB", urlencodedParser, greetingCustomCreateDB);
+
 app.get("/greeting", greeting);
+
+app.get("/greetingCustom", greetingCustom);
 
 app.post(
   "/greetingUpdate",

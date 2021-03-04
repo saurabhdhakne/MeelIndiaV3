@@ -219,21 +219,53 @@
     .classfinal a{
       color: white;
     }
+    .classfinal .inviteBlock a{
+        color: black;
+    }
+    .classfinal .inviteBlock2 a{
+        color: black;
+    }
+    .classfinal .greetingBlock a{
+        color: black;
+    }
+    .classfinal .greetingBlock2 a{
+        color: black;
+    }
     .greetingBlock{
+      position:absolute; list-style:none; background:snow; padding:10px; display: none;
+    }
+    .greetingBlock2{
       position:absolute; list-style:none; background:snow; padding:10px; display: none;
     }
     .greetingBlock a{
         color: black;
     }
     .dropdown1:hover .greetingBlock{ display: inline-block; }
+    .dropdown2:hover .greetingBlock2{ display: inline-block; }
     .inviteBlock{
+      position:absolute;list-style:none; background:snow; padding:10px;display: none;
+    }
+    .inviteBlock2{
       position:absolute;list-style:none; background:snow; padding:10px;display: none;
     }
     .inviteBlock a{
         color: black;
     }
     .dropdown1:hover .inviteBlock{ display: inline-block; }
-
+    .dropdown2:hover .inviteBlock2{ display: inline-block; }
+    .inviteBlock{
+        position: fixed;
+        left: 100px;
+        z-index: 99;
+        /* border: 2px solid black; */
+        box-shadow: 1px 0px 10px;
+      }
+      .greetingBlock{
+        position: fixed;
+        left: 100px;
+        z-index: 99;
+        box-shadow: 1px 0px 10px;
+      }
 
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
@@ -244,6 +276,12 @@
         nav{
           text-align: right;
         }
+      .inviteBlock{
+          left: 170px;
+      }
+      .greetingBlock{
+        left: 170px;
+      }
               .navbar-brand.abs {
                 position: absolute;
                 width: 100%;
@@ -343,6 +381,8 @@
         <li><a class="dropdown-item" href="./invitationCreate?type=wedding">Wedding</a></li>
         <li><a class="dropdown-item" href="./invitationCreate?type=anniversary">Anniversary</a></li>
         <li><a class="dropdown-item" href="./invitationCreate?type=innogration">Inaugration</a></li>
+        <li><a class="dropdown-item" href="./invitationCreateCustom">Upload Your Own</a></li>
+
       </ul>
     </li>
     <li class="nav-item dropdown1">
@@ -356,6 +396,8 @@
         <li><a class="dropdown-item" href="./greetingCreate?type=wedding">Wedding</a></li>
         <li><a class="dropdown-item" href="./greetingCreate?type=anniversary">Anniversary</a></li>
         <li><a class="dropdown-item" href="./greetingCreate?type=innogration">Inaugration</a></li>
+        <li><a class="dropdown-item" href="./greetingCreateCustom">Upload Your Own</a></li>
+
       </ul>
     </li>
     <li class="nav-item pr-3">
@@ -420,6 +462,7 @@
             <li><a class="dropdown-item" href="./invitationCreate?type=wedding">Wedding</a></li>
             <li><a class="dropdown-item" href="./invitationCreate?type=anniversary">Anniversary</a></li>
             <li><a class="dropdown-item" href="./invitationCreate?type=innogration">Inaugration</a></li>
+            <li><a class="dropdown-item" href="./invitationCreateCustom">Upload Your Own</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown1">
@@ -433,6 +476,7 @@
             <li><a class="dropdown-item" href="./greetingCreate?type=wedding">Wedding</a></li>
             <li><a class="dropdown-item" href="./greetingCreate?type=anniversary">Anniversary</a></li>
             <li><a class="dropdown-item" href="./greetingCreate?type=innogration">Inaugration</a></li>
+            <li><a class="dropdown-item" href="./greetingCreateCustom">Upload Your Own</a></li>
           </ul>
         </li>
         <li class="nav-item pr-3">
@@ -543,30 +587,34 @@
             <li class="nav-item pr-3">
               <a class="nav-link" href="/">Home</a>
             </li>
-            <li class="nav-item dropdown1">
+            <li class="nav-item dropdown2">
               {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Invitation
               </a>
-              <ul class="inviteBlock " >
+              <ul class="inviteBlock2 " >
                 <li><a class="dropdown-item" href="./invitationCreate?type=birthday">Birthday</a></li>
                 <li><a class="dropdown-item" href="./invitationCreate?type=engagement">Engagement</a></li>
                 <li><a class="dropdown-item" href="./invitationCreate?type=wedding">Wedding</a></li>
                 <li><a class="dropdown-item" href="./invitationCreate?type=anniversary">Anniversary</a></li>
                 <li><a class="dropdown-item" href="./invitationCreate?type=innogration">Inaugration</a></li>
+                <li><a class="dropdown-item" href="./invitationCreateCustom">Upload Your Own</a></li>
+
               </ul>
             </li>
-            <li class="nav-item dropdown1">
+            <li class="nav-item dropdown2">
               {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
               <a class="nav-link dropdown-toggle greetingB" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Greeting
               </a>
-              <ul class="greetingBlock">
+              <ul class="greetingBlock2">
                 <li><a class="dropdown-item" href="./greetingCreate?type=birthday">Birthday</a></li>
                 <li><a class="dropdown-item" href="./greetingCreate?type=engagement">Engagement</a></li>
                 <li><a class="dropdown-item" href="./greetingCreate?type=wedding">Wedding</a></li>
                 <li><a class="dropdown-item" href="./greetingCreate?type=anniversary">Anniversary</a></li>
                 <li><a class="dropdown-item" href="./greetingCreate?type=innogration">Inaugration</a></li>
+                <li><a class="dropdown-item" href="./greetingCreateCustom">Upload Your Own</a></li>
+                
               </ul>
             </li>
             <li class="nav-item pr-3">

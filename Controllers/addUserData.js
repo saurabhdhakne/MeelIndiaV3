@@ -49,7 +49,7 @@ module.exports = (req, res) => {
             });
     
             let mailOptions = {
-              from: "Saurabh Dhakne",
+              from: "MeelIndia",
               to: toEmail, // Recepient email address. Multiple emails can send separated by commas
               subject: "MeelIndia : Account Confirmation",
               html: `<h1> Your MeelIndia Account created Successfully. </h1> <br> <br> 
