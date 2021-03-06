@@ -231,36 +231,35 @@
     .classfinal .greetingBlock2 a{
         color: black;
     }
+
+
     .greetingBlock{
       position:absolute; list-style:none; background:snow; padding:10px; display: none;
     }
     .greetingBlock2{
       position:absolute; list-style:none; background:snow; padding:10px; display: none;
     }
-    .greetingBlock a{
-        color: black;
-    }
-    .dropdown1:hover .greetingBlock{ display: inline-block; }
+
+    .dropdown:hover .greetingBlock{ display: inline-block; }
     .dropdown2:hover .greetingBlock2{ display: inline-block; }
     .inviteBlock{
-      position:absolute;list-style:none; background:snow; padding:10px;display: none;
+      position:absolute;list-style:none; background:snow; padding:10px; display: none;
     }
     .inviteBlock2{
-      position:absolute;list-style:none; background:snow; padding:10px;display: none;
+      position:absolute;list-style:none; background:snow; padding:10px; display: none;
     }
     .inviteBlock a{
         color: black;
     }
-    .dropdown1:hover .inviteBlock{ display: inline-block; }
+    .dropdown:hover .inviteBlock{ display: inline-block; }
     .dropdown2:hover .inviteBlock2{ display: inline-block; }
-    .inviteBlock, .inviteBlock2{
+    .inviteBlock2{
         position: fixed;
         left: 100px;
         z-index: 99;
-        /* border: 2px solid black; */
         box-shadow: 1px 0px 10px;
       }
-      .greetingBlock, .greetingBlock2{
+    .greetingBlock2{
         position: fixed;
         left: 100px;
         z-index: 99;
@@ -291,9 +290,6 @@
                 background: black;
                 display: none;
                 border-radius: 50%;
-            }
-            .appBarExtra{
-
             }
 
       }
@@ -367,14 +363,13 @@
     <li class="nav-item pr-3">
       <a class="nav-link" href="/profileUser"> <i class="fa fa-bookmark" aria-hidden="true"></i> &nbsp; Saved</a>
     </li>
-  @if(user != "")
 
-      <li class="nav-item dropdown1">
+      <li class="nav-item dropdown2">
         {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa fa-certificate" aria-hidden="true"></i> &nbsp; Invitation
         </a>
-        <ul class="inviteBlock " >
+        <ul class="inviteBlock2">
           <li><a class="dropdown-item" href="./invitationCreate?type=birthday">Birthday</a></li>
           <li><a class="dropdown-item" href="./invitationCreate?type=engagement">Engagement</a></li>
           <li><a class="dropdown-item" href="./invitationCreate?type=wedding">Wedding</a></li>
@@ -384,12 +379,12 @@
 
         </ul>
       </li>
-      <li class="nav-item dropdown1">
+      <li class="nav-item dropdown2">
         {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
         <a class="nav-link dropdown-toggle greetingB" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa fa-cog" aria-hidden="true"></i> &nbsp; Greeting
         </a>
-        <ul class="greetingBlock">
+        <ul class="greetingBlock2">
           <li><a class="dropdown-item" href="./greetingCreate?type=birthday">Birthday</a></li>
           <li><a class="dropdown-item" href="./greetingCreate?type=engagement">Engagement</a></li>
           <li><a class="dropdown-item" href="./greetingCreate?type=wedding">Wedding</a></li>
@@ -399,42 +394,6 @@
 
         </ul>
       </li>
-  
-  @else
-
-      <li class="nav-item dropdown2">
-        {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Invitation
-        </a>
-        <ul class="inviteBlock2 " >
-          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Birthday</a></li>
-          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Engagement</a></li>
-          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Wedding</a></li>
-          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Anniversary</a></li>
-          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Inaugration</a></li>
-          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Upload Your Own</a></li>
-
-        </ul>
-      </li>
-      <li class="nav-item dropdown2">
-        {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
-        <a class="nav-link dropdown-toggle greetingB" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Greeting
-        </a>
-        <ul class="greetingBlock2">
-          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Birthday</a></li>
-          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Engagement</a></li>
-          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Wedding</a></li>
-          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Anniversary</a></li>
-          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Inaugration</a></li>
-          <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Upload Your Own</a></li>
-          
-        </ul>
-      </li>
-
-  @endif
-
 
     <li class="nav-item pr-3">
       <a class="nav-link" href="/contact">  <i class="fa fa-phone" aria-hidden="true"></i> &nbsp; Contact</a>
@@ -447,7 +406,6 @@
     </li>
       
     @if(!user)
-
 
     <li class="nav-item pr-3">
       <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModalCenter">
@@ -487,47 +445,14 @@
         <li class="nav-item pr-3">
           <a class="nav-link" href="/profileUser"> <i class="fa fa-bookmark" aria-hidden="true"></i> &nbsp; Saved</a>
         </li>
-        @if(user != "")
 
-      <li class="nav-item dropdown1">
-        {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fa fa-certificate" aria-hidden="true"></i> &nbsp; Invitation
-        </a>
-        <ul class="inviteBlock " >
-          <li><a class="dropdown-item" href="./invitationCreate?type=birthday">Birthday</a></li>
-          <li><a class="dropdown-item" href="./invitationCreate?type=engagement">Engagement</a></li>
-          <li><a class="dropdown-item" href="./invitationCreate?type=wedding">Wedding</a></li>
-          <li><a class="dropdown-item" href="./invitationCreate?type=anniversary">Anniversary</a></li>
-          <li><a class="dropdown-item" href="./invitationCreate?type=innogration">Inaugration</a></li>
-          <li><a class="dropdown-item" href="./invitationCreateCustom">Upload Your Own</a></li>
-
-        </ul>
-      </li>
-      <li class="nav-item dropdown1">
-        {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
-        <a class="nav-link dropdown-toggle greetingB" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fa fa-cog" aria-hidden="true"></i> &nbsp; Greeting
-        </a>
-        <ul class="greetingBlock">
-          <li><a class="dropdown-item" href="./greetingCreate?type=birthday">Birthday</a></li>
-          <li><a class="dropdown-item" href="./greetingCreate?type=engagement">Engagement</a></li>
-          <li><a class="dropdown-item" href="./greetingCreate?type=wedding">Wedding</a></li>
-          <li><a class="dropdown-item" href="./greetingCreate?type=anniversary">Anniversary</a></li>
-          <li><a class="dropdown-item" href="./greetingCreate?type=innogration">Inaugration</a></li>
-          <li><a class="dropdown-item" href="./greetingCreateCustom">Upload Your Own</a></li>
-
-        </ul>
-      </li>
-  
-  @else
 
       <li class="nav-item dropdown2">
         {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Invitation
         </a>
-        <ul class="inviteBlock2 " >
+        <ul class="inviteBlock2" >
           <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Birthday</a></li>
           <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Engagement</a></li>
           <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Wedding</a></li>
@@ -553,7 +478,7 @@
         </ul>
       </li>
 
-  @endif 
+
         <li class="nav-item pr-3">
           <a class="nav-link" href="/contact">  <i class="fa fa-phone" aria-hidden="true"></i> &nbsp; Contact</a>
         </li>
@@ -627,13 +552,15 @@
 
   <nav class="navbar navbar-expand-lg navbar-primary fixed-top classinitial">
     <!--  Show this only on mobile to medium screens  -->
-    @if(user=="user")
-    <span class=" mr-2 ml-2 pl-3" style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
-    <img src="./icons/meelindia.svg" height="70px" alt="">
+    @if(user)
+
+      <span class=" mr-2 ml-2 pl-3" style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
+      <img src="./icons/meelindia.svg" height="70px" alt="">
 
     @else
-    <span class=" mr-2 ml-2 pl-3" style="font-size:30px;cursor:pointer;" onclick="openNav3()">&#9776;</span>
-    <img src="./icons/meelindia.svg" height="70px" alt="">
+    
+      <span class=" mr-2 ml-2 pl-3" style="font-size:30px;cursor:pointer;" onclick="openNav3()">&#9776;</span>
+      <img src="./icons/meelindia.svg" height="70px" alt="">
 
     @endif
     {{--  <img src="./icons/meelindia.svg" height="70px" alt="">  --}}
@@ -669,12 +596,12 @@
               
             @if(!user)
            
-            <li class="nav-item dropdown2">
+            <li class="nav-item dropdown">
               {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Invitation
               </a>
-              <ul class="inviteBlock2 " >
+              <ul class="inviteBlock">
                 <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Birthday</a></li>
                 <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Engagement</a></li>
                 <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Wedding</a></li>
@@ -684,12 +611,12 @@
 
               </ul>
             </li>
-            <li class="nav-item dropdown2">
+            <li class="nav-item dropdown">
               {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
               <a class="nav-link dropdown-toggle greetingB" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Greeting
               </a>
-              <ul class="greetingBlock2">
+              <ul class="greetingBlock">
                 <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Birthday</a></li>
                 <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Engagement</a></li>
                 <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModalCenter2" href="">Wedding</a></li>
@@ -729,12 +656,12 @@
 
             @if(user != "")
             
-            <li class="nav-item dropdown2">
+            <li class="nav-item dropdown">
               {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Invitation
               </a>
-              <ul class="inviteBlock2 " >
+              <ul class="inviteBlock" >
                 <li><a class="dropdown-item" href="./invitationCreate?type=birthday">Birthday</a></li>
                 <li><a class="dropdown-item" href="./invitationCreate?type=engagement">Engagement</a></li>
                 <li><a class="dropdown-item" href="./invitationCreate?type=wedding">Wedding</a></li>
@@ -744,12 +671,12 @@
 
               </ul>
             </li>
-            <li class="nav-item dropdown2">
+            <li class="nav-item dropdown">
               {{--  <a class="nav-link" href="/invitationCreate">Invitation</a>  --}}
               <a class="nav-link dropdown-toggle greetingB" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Greeting
               </a>
-              <ul class="greetingBlock2">
+              <ul class="greetingBlock">
                 <li><a class="dropdown-item" href="./greetingCreate?type=birthday">Birthday</a></li>
                 <li><a class="dropdown-item" href="./greetingCreate?type=engagement">Engagement</a></li>
                 <li><a class="dropdown-item" href="./greetingCreate?type=wedding">Wedding</a></li>

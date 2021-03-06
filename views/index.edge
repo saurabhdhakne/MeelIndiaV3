@@ -41,26 +41,59 @@ crossorigin="anonymous">
         <p class="text-center">We have the wide range of invitation templates, this includes</p>
        <div class="row row mt-2 pr-3 pl-3 pb-5">
           <div class="col-md-2 offset-md-1 col-4 mt-2">
-            <img class="mb-2 shadowme" src="./example/birthday.png" width="100%" alt=" " onclick="window.location='invitationCreate?type=birthday'" />
-            <input type="button" class="btn btn-outline-light btn-block" value="Birthday" onclick="window.location='invitationCreate?type=birthday'">
+            @if(user)  
+                <a href="invitationCreate?type=birthday">
+            @else
+                <a data-toggle="modal" data-target="#exampleModalCenter2">
+            @endif
+              <img class="mb-2 shadowme" src="./example/birthday.png" width="100%" alt=" " />
+              <input type="button" class="btn btn-outline-light btn-block" value="Birthday" >
+            </a>
           </div>
           <div class="col-md-2 col-4 mt-2">
-            <img class="mb-2 shadowme" src="./example/engangement.png" width="100%" onclick="window.location='invitationCreate?type=engagement'"  alt=" "/>
-            <input type="button" class="btn btn-outline-light btn-block" value="Engagement" onclick="window.location='invitationCreate?type=engagement'">
+            @if(user)  
+                <a href="invitationCreate?type=engagement">
+            @else
+                <a data-toggle="modal" data-target="#exampleModalCenter2">
+            @endif
+                <img class="mb-2 shadowme" src="./example/engangement.png" width="100%" alt=" "/>
+                <input type="button" class="btn btn-outline-light btn-block" value="Engagement">
+            </a>
           </div>
+
           <div class="col-md-2 col-4 mt-2">
-            <img class="mb-2 shadowme" src="./example/wedding.png" width="100%"  onclick="window.location='invitationCreate?type=wedding'" alt=" "/>
-            <input type="button" class="btn btn-outline-light btn-block" value="Wedding" onclick="window.location='invitationCreate?type=wedding'">
+            @if(user)  
+                <a href="invitationCreate?type=wedding">
+            @else
+                <a data-toggle="modal" data-target="#exampleModalCenter2">
+            @endif
+                <img class="mb-2 shadowme" src="./example/wedding.png" width="100%"   alt=" "/>
+                <input type="button" class="btn btn-outline-light btn-block" value="Wedding">
+            </a>
           </div>
+
           <div class="col-md-2 col-4 mt-2">
-            <img class="mb-2 shadowme" src="./example/anniversary.png" width="100%"  onclick="window.location='invitationCreate?type=anniversary'" alt=" "/>
-            <input type="button" class="btn btn-outline-light btn-block" value="Anniversary" onclick="window.location='invitationCreate?type=anniversary'">
+            @if(user)  
+                <a href="invitationCreate?type=anniversary">
+            @else
+                <a data-toggle="modal" data-target="#exampleModalCenter2">
+            @endif
+                <img class="mb-2 shadowme" src="./example/anniversary.png" width="100%" alt=" "/>
+                <input type="button" class="btn btn-outline-light btn-block" value="Anniversary">
+            </a>
           </div>
+
           <div class="col-md-2 col-4 mt-2">
-            <img class="mb-2 shadowme" src="./example/innogration.png" width="100%"  onclick="window.location='invitationCreate?type=innogration'" alt=" "/>
-            <input type="button" class="btn btn-outline-light btn-block" value="Inaugration " onclick="window.location='invitationCreate?type=innogration'">
+            @if(user)  
+                <a href="invitationCreate?type=innogration">
+            @else
+                <a data-toggle="modal" data-target="#exampleModalCenter2">
+            @endif
+              <img class="mb-2 shadowme" src="./example/innogration.png" width="100%"  alt=" "/>
+              <input type="button" class="btn btn-outline-light btn-block" value="Inaugration" >
+            </a>
           </div>
-        
+              
        </div>
        <div class="row mt-5 pt-5">
         <div class="col-md-6 text-center">
@@ -108,24 +141,54 @@ crossorigin="anonymous">
        <div class="row mt-2 pr-3 pl-3">
 
           <div class="col-md-2 col-4 mt-2 offset-md-1">
-            <img class="mb-2 shadowme" src="./example/greetingBirthday.png" width="100%" onclick="window.location='greetingCreate?type=birthday'" alt=" "/>
-            <input type="button" class="btn btn-outline-light btn-block" value="Birthday" onclick="window.location='greetingCreate?type=birthday'" />
+            @if(user)  
+                <a href="greetingCreate?type=birthday">
+            @else
+                <a data-toggle="modal" data-target="#exampleModalCenter2">
+            @endif
+            <img class="mb-2 shadowme" src="./example/greetingBirthday.png" width="100%"  alt=" "/>
+            <input type="button" class="btn btn-outline-light btn-block" value="Birthday" />
+                </a>
           </div>
           <div class="col-md-2 col-4 mt-2">
-            <img class="mb-2 shadowme" src="./example/greetingEngangement.png" width="100%" alt=" " onclick="window.location='greetingCreate?type=engangement'" />
-            <input type="button" class="btn btn-outline-light btn-block ml-1" value="Engagement"  onclick="window.location='greetingCreate?type=engangement'" >
+            @if(user)  
+                <a href="greetingCreate?type=engangement">
+            @else
+                <a data-toggle="modal" data-target="#exampleModalCenter2">
+            @endif
+            <img class="mb-2 shadowme" src="./example/greetingEngangement.png" width="100%" alt=" " />
+            <input type="button" class="btn btn-outline-light btn-block ml-1" value="Engagement"   >
+                </a>
           </div>
           <div class="col-md-2 col-4 mt-2">
-            <img class="mb-2 shadowme" src="./example/greetingWedding.png" width="100%" alt=" " onclick="window.location='greetingCreate?type=wedding'" />
-            <input type="button" class="btn btn-outline-light btn-block" value="Wedding" onclick="window.location='greetingCreate?type=wedding'" >
-          </div>
+            @if(user)  
+                <a href="greetingCreate?type=wedding">
+            @else
+                <a data-toggle="modal" data-target="#exampleModalCenter2">
+            @endif
+                <img class="mb-2 shadowme" src="./example/greetingWedding.png" width="100%" alt=" " />
+                <input type="button" class="btn btn-outline-light btn-block" value="Wedding" >
+                </a>
+            </div>
           <div class="col-md-2 col-4 mt-2">
+            @if(user)  
+                <a href="greetingCreate?type=anniversary">
+            @else
+                <a data-toggle="modal" data-target="#exampleModalCenter2">
+            @endif
             <img class="mb-2 shadowme" src="./example/greetingAnniversary.png" width="100%" alt=" " onclick="window.location='greetingCreate?type=anniversary'" />
             <input type="button" class="btn btn-outline-light btn-block" value="Anniversary" onclick="window.location='greetingCreate?type=anniversary'" >
+              </a>
           </div>
           <div class="col-md-2 col-4 mt-2">
-            <img class="mb-2 shadowme" src="./example/greetingInaugration.png" width="100%" alt=" " onclick="window.location='greetingCreate?type=innogration'" />
-            <input type="button" class="btn btn-outline-light btn-block" value="Inaugration " onclick="window.location='greetingCreate?type=innogration'" >
+            @if(user)  
+                <a href="greetingCreate?type=innogration">
+            @else
+                <a data-toggle="modal" data-target="#exampleModalCenter2">
+            @endif
+            <img class="mb-2 shadowme" src="./example/greetingInaugration.png" width="100%" alt=" " />
+            <input type="button" class="btn btn-outline-light btn-block" value="Inaugration " >
+                </a>
           </div>
         
        </div>
