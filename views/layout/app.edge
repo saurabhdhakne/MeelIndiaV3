@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
       
     html{
@@ -767,12 +767,27 @@
              Check <a href="https://privacyterms.io/view/2iVKpB7A-GM6p5fDY-bCE91e/" target="__blank">Disclaimer </a> 
              
             </div>
-            <button type="button" onclick="signUpForm()" class="updatebtn btn btn-outline-primary">Sign Up</button>
+            <button type="button" onclick="signUpForm()" class="updatebtn btn btn-outline-primary btn-block mt-2">Sign Up</button>
+            
+            <h5 id="note" class=" mt-2 mb-2 pt-2 pb-2 bg-warning mb-3 text-center">   </h5>
+
+            <button class="btn btn-primary btn-block" onclick="googleSignUp()"> 
+              <i class="fa fa-google mr-3" aria-hidden="true"></i>
+              Sign Up with Google
+            </button>
+            <script>
+              function googleSignUp(){
+                if(document.getElementById("chbox").checked){
+                  window.location = "/google";
+                }
+                else{
+                  alert("Please check the Disclaimer before Sign up!!!");
+                  document.getElementById("note").innerHTML = "Please check the Disclaimer!!!"
+                }
+              }
+            </script>
           </form>
-            {{--  <div class="note text-center h3 mt-4">
-                <h5 id="note" class=" mt-2 mb-2 pt-2 pb-2 bg-warning">   </h5>
-              <input type="button" value="Open Gmail" class="btn btn-danger col-12 mt-2" onclick="window.location='https://mail.google.com/mail/' ">
-            </div>  --}}
+          
         </div>
         <div class="modal-footer">
           <script>
@@ -809,34 +824,38 @@
           <h1 class="modal-title form-header text-center col-12" id="exampleModalLongTitle">Sign In</h1>
           <form method="POST" id="signInForm" action="/signInUserData">
             <div class="row">
-            <div class="form-group col-md-12 ">
-              <hr>
-              <label for="signinemail">Email address</label>
-              <input type="email" class="form-control col-12" name="email" id="signinemail" aria-describedby="emailHelp" placeholder="Enter email">
-            </div>
-            <div class="form-group col-md-12">
-              <label for="signinpassword">Password</label>
-              <input type="password" class="form-control col-12" name="password" id="signinpassword" placeholder="Password">
-            </div>
-            <div class="col-md-12 mt-2 ">
-              <a href="/SignUpUser">
-                <h5 class="text-dark">Dont't have an account, Create new account...</h5>
-              </a>
-            </div>
+                <div class="form-group col-md-12 ">
+                  <hr>
+                  <label for="signinemail">Email address</label>
+                  <input type="email" class="form-control col-12" name="email" id="signinemail" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <div class="form-group col-md-12">
+                  <label for="signinpassword">Password</label>
+                  <input type="password" class="form-control col-12" name="password" id="signinpassword" placeholder="Password">
+                </div>
+                <div class="col-md-12 mt-2 ">
+                  <a href="/SignUpUser">
+                    <h5 class="text-dark">Dont't have an account, Create new account...</h5>
+                  </a>
+                </div>
           
-            <div class="col-md-12">
-            <button type="button" onclick="signInForm()"  class="updatebtn btn btn-outline-success">Sign In</button>
-          </div>
-          <div class="col-md-12 mt-2">
-            <a href="/FPUser">
-              <h5 class="text-dark">Forget Password Or Activate Account...</h5>
-            </a>
-          </div>
-      </form>
-          <div class="note text-center h3 mt-4 col-12">
-            <h5 id="note2" class=" mt-2 mb-2 pt-2 pb-2 bg-warning">   </h5>
-          <input type="button" value="Open Gmail" class="btn btn-danger col-12 mt-2" onclick="window.location='https://mail.google.com/mail/' ">
-        </div>
+                <div class="col-md-12">
+                  <button type="button" onclick="signInForm()"  class="updatebtn btn btn-outline-success">Sign In</button>
+                </div>
+                <div class="col-md-12 mt-2">
+                  <a href="/FPUser">
+                    <h5 class="text-dark">Forget Password Or Activate Account...</h5>
+                  </a>
+                </div>
+                <h5 id="note2" class=" mt-2 mb-2 pt-2 pb-2 bg-warning text-center mb-3">   </h5>
+            </div>
+        </form>
+        
+        <button class="btn btn-primary btn-block" onclick="window.location='/google'"> 
+          <i class="fa fa-google mr-3" aria-hidden="true"></i>
+          Sign In with Google
+        </button>
+          
         </div>
         <div class="modal-footer">
           <script>
@@ -861,6 +880,8 @@
       </div>
     </div>
   </div>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </body>
 
 </html>

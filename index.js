@@ -8,6 +8,9 @@ const { config, engine } = require("express-edge");
 
 const fs = require("fs");
 
+const passport = require('passport')
+
+require('./passport-setup')
 //const expressSession = require("express-session");
 
 const expressSession = require("cookie-session");
@@ -34,6 +37,7 @@ const indexRoute = require("./Controllers/index");
 const signUpUser = require("./Controllers/signUpUser");
 const addUserData = require("./Controllers/addUserData");
 const addUserData2 = require("./Controllers/addUserData2");
+const registerWithGoogle = require("./Controllers/registerWithGoogle");
 
 //confirm email
 const confirmEmailUser = require("./Controllers/confirmEmailUser");
@@ -87,12 +91,13 @@ const engangementPravinNikita = require("./Controllers/engangementPravinNikita")
 const greetingCreate = require("./Controllers/greetingCreate");
 const greetingCreateDB = require("./Controllers/greetingCreateDB");
 const greeting = require("./Controllers/greeting");
+const greetingCustom = require("./Controllers/greetingCustom");
 const greetingUpdate = require("./Controllers/greetingUpdate");
 const greetingDelete = require("./Controllers/greetingDelete");
 const addUserData3 = require("./Controllers/addUserData3");
 const greetingCustomCreateDB = require("./Controllers/greetingCustomCreateDB");
-const greetingCustom = require("./Controllers/greetingCustom");
 const greetingCreateCustom = require("./Controllers/greetingCreateCustom");
+const greetingCustomDelete = require("./Controllers/greetingCustomDelete");
 
 
 // create application/json parser
@@ -270,6 +275,39 @@ app.post(
   redirectLoginUser,
   greetingDelete
 );
+
+app.post(
+  "/greetingCustomDelete",
+  urlencodedParser,
+  redirectLoginUser,
+  greetingCustomDelete
+);
+
+// Google auth
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+const isLoggedIn = (req, res, next) => {
+  if(req.user){
+    next();
+  }else{
+    res.send("Erro!! Try After some time...");
+  }
+}
+
+app.get("/failed", (req, res) =>  res.send('You Failed to login!') );
+
+app.get("/registerWithGoogle", isLoggedIn, registerWithGoogle);
+
+// app.get("/registerWithGoogle", isLoggedIn, (req, res) => { console.log(req.user);console.log(req.user.emails[0].value); res.send(`Welcome ${req.user.displayName}!`) } );
+
+app.get('/google', passport.authenticate('google', { scope: ['profile','email'] }));
+
+app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
+  function(req, res) {
+    res.redirect('/registerWithGoogle');
+});
 
 
 app.use(notfound);
