@@ -11,6 +11,7 @@ const fs = require("fs");
 const passport = require('passport')
 
 require('./passport-setup')
+
 //const expressSession = require("express-session");
 
 const expressSession = require("cookie-session");
@@ -308,7 +309,6 @@ app.get('/google/callback', passport.authenticate('google', { failureRedirect: '
   function(req, res) {
     res.redirect('/registerWithGoogle');
 });
-
 
 app.use(notfound);
 

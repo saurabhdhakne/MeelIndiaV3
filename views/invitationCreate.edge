@@ -203,12 +203,21 @@
         
             <p id="demo"></p>
     
-            <!-- <input type="button" onclick="getLocation()" class=" btn btn-outline-primary btn-block mt-2" value="Get Current Location">
+            <!-- 
+                <input type="button" onclick="getLocation()" class=" btn btn-outline-primary btn-block mt-2" value="Get Current Location">
             -->
+            <h3> Select Location on Map OR paste the Google Map link.</h3>
+            <input type="text" class="form-control" id="loc" name="loc" aria-describedby="mobile" placeholder="google map link (Optional)" required>
+            <a class="h3 text-primary" data-toggle="modal" data-target="#howToGetLink" style="cursor:pointer"> How to get Link...? </a>
+            
+            <input type="button" class="col-12  pt-2 pb-2 mt-2 mb-2 btn btn-danger" m-2 value="Open Google Map"  onclick="window.location='https://www.google.com/maps/' ">
+            
             <input type="button" onclick="setLocation()" class=" btn btn-outline-primary btn-block mt-2" value="Set Your Location">
 
             <input type="button" name="Save" value="Share" onclick="sendInvite()" class="submitinvitation btn btn-primary btn-block mt-3">
-
+            <small>
+                Note : If you Want to set location with MellIndia's map then don't add google map Link...! 
+            </small>
 
         </form>
 
@@ -300,9 +309,12 @@
 				var subtitle = document.getElementById('subtitle').value;
 				var content = document.getElementById('content').value;
 				var dateTime = document.getElementById('dateTime').value;
-
+                
 				var Mlat = document.getElementById('lat').value ; 
-				var Mlng = document.getElementById('lng').value ; 
+			    var Mlng = document.getElementById('lng').value ; 
+			    
+                var loc = document.getElementById('loc').value ; 
+
 
 				if( title == "" && subtitle == "" && content == "" ){
                     alert("Please fill all the details.");
@@ -313,9 +325,10 @@
                 else{
                     
                     var http = new XMLHttpRequest();
+
                     var url = '/invitationCreate';
                     
-                    var params = 'title='+title+'&subtitle='+subtitle+'&content='+content+'&bg='+bgImg+'&lat='+Mlat+'&lng='+Mlng+'&dateTime='+dateTime+'&type='+type+'&nameFont='+nameFont+'&subFont='+subFont+'&bodyFont='+bodyFont;
+                    var params = 'title='+title+'&subtitle='+subtitle+'&content='+content+'&bg='+bgImg+'&lat='+Mlat+'&lng='+Mlng+'&dateTime='+dateTime+'&type='+type+'&nameFont='+nameFont+'&subFont='+subFont+'&bodyFont='+bodyFont+'&loc='+loc;
 
                     http.open('POST', url, true);
 
@@ -331,6 +344,7 @@
                         }
                         
                         http.send(params);
+
                 }
 			}
 </script>
@@ -362,4 +376,33 @@
             }
 </script>
 
+<div class="modal fade" id="howToGetLink" tabindex="-1" role="dialog" aria-labelledby="howToGetLink" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content ">
+        <div class="modal-header  text-center">
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body container">
+          <h2 class="modal-title form-header text-center col-12" id="exampleModalLongTitle">How Get Google Map Link...</h2>
+          <hr>
+          <div class="row">
+              <div class="col-md-12">
+                  <h3> STEP 1: Open Google Map </h3>
+              </div>
+              <div class="col-md-6">
+                  <h3>STEP 2 :</h3>
+                  <img src="./images/inst-share.jpg" alt="" width="100%">
+              </div>
+              <div class="col-md-6">
+                    <h3>STEP 3 :</h3>
+                  <img src="./images/inst-copy.jpg" alt="" width="100%">
+              </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 @endsection
