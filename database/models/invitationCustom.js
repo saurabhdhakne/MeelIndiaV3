@@ -16,6 +16,8 @@ const DatabaseSchema = new mongoose.Schema({
 
   lat: String,
 
+  loc: String,
+
 });
 
 const invitationCustom = mongoose.model("invitationCustom", DatabaseSchema);

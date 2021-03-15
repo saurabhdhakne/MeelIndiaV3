@@ -164,11 +164,23 @@
                 </label>
                 <input type="text" class="form-control mt-2" id="lat2" name="lat" placeholder="Enter lattitude" required>
                 <input type="text" class="form-control mt-2" id="lng2" name="lng" placeholder="Enter longitude" required>
-              </div>
+            </div>
+            
+            <h5> Select Location on Map OR paste the Google Map link.</h5>
+            
+            <input type="text" class="form-control" id="loc" name="loc" aria-describedby="loc" placeholder="google map link (Optional)">
+            <a class="h3 text-primary" data-toggle="modal" data-target="#howToGetLink" style="cursor:pointer"> How to get Link...? </a>
+            
+            <input type="button" class="col-12  pt-2 pb-2 mt-2 mb-2 btn btn-danger" m-2 value="Open Google Map"  onclick="window.location='https://www.google.com/maps/' ">
+            
+            <small>
+                Note : If you Want to set location with MellIndia's map then don't add google map Link...! 
+            </small>
             <button type="submit" class="btn btn-primary shadowme mt-3 col-md-12">Submit</button>
         </form>       
     </div>
     <div class="col-md-6 col-sm-6" >
+        
         <form action="" class="col-md-12 col-sm-12">
             <div class="form-group">
                 <input type="hidden" class="form-control" id="lat" name="lat" aria-describedby="mobile" placeholder="lat" required>
@@ -185,6 +197,7 @@
     
             <!-- <input type="button" onclick="getLocation()" class=" btn btn-outline-primary btn-block mt-2" value="Get Current Location">
             -->
+
             <input type="button" onclick="setLocation()" class=" btn btn-outline-primary btn-block mt-2" value="Set Your Location">
 
             {{--  <input type="button" name="Save" value="Share" onclick="sendInvite()" class="submitinvitation btn btn-primary btn-block mt-3">  --}}
@@ -196,6 +209,36 @@
    </div>
 </div>
 
+
+<div class="modal fade" id="howToGetLink" tabindex="-1" role="dialog" aria-labelledby="howToGetLink" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content ">
+        <div class="modal-header  text-center">
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body container">
+          <h2 class="modal-title form-header text-center col-12" id="exampleModalLongTitle">How Get Google Map Link...</h2>
+          <hr>
+          <div class="row">
+              <div class="col-md-12">
+                  <h3> STEP 1: Open Google Map </h3>
+              </div>
+              <div class="col-md-6">
+                  <h3>STEP 2 :</h3>
+                  <img src="./images/inst-share.jpg" alt="" width="100%">
+              </div>
+              <div class="col-md-6">
+                    <h3>STEP 3 :</h3>
+                  <img src="./images/inst-copy.jpg" alt="" width="100%">
+              </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 
 <script>
     var map=new MapmyIndia.Map("map",{ center:[28.61, 77.23],zoomControl: true,hybrid:true });

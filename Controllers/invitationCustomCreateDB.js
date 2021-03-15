@@ -54,6 +54,8 @@ module.exports = async (req, res) => {
 
           lng:req.body.lng,
 
+          loc: req.body.loc,
+
           dateTime:req.body.dateTime,      
 
         },
