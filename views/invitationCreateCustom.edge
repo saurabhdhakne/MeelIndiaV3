@@ -262,6 +262,17 @@
 
     map.on('click', onMapClick);
 
+
+    function showGML(){
+                
+                document.getElementById('loc').value = null;
+                document.getElementById('map').style.display = "none";
+                document.getElementById('gmap').style.display = "block";
+            }
+            function showM(){
+                document.getElementById('map').style.display = "block";
+                document.getElementById('gmap').style.display = "none";
+            }
 </script>
 
 

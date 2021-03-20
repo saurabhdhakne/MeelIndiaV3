@@ -141,6 +141,10 @@
         box-shadow: 0 2px 15px salmon;
         cursor: pointer;
     }
+
+    #map, #gmap{
+        display: none;
+    }
     @media(max-width:522px)
     {
         .headingmain
@@ -195,9 +199,13 @@
             <div class="form-group">
                 <input type="text" class="form-control" id="lng" name="lng" aria-describedby="mobile" placeholder="lng" required>
             </div>
-            <h5 id="notice"> Please give access to location...If you haven't. </h5>
             <input type="hidden" name="location" value="">
             
+            <div class="d-flex">
+                <input type="button" value="Use Map" class="btn btn-danger m-2" onclick="showM()">
+                <input type="button" value="Add Google Map Link" class="btn btn-danger m-2" onclick="showGML()">
+            </div>
+
             {{--  <input type="text" class="form-control mb-2" placeholder="Search Location..." onchange="getLocations()">  --}}
             <div id="map" class="mb-5 shadowme" style="width:100%; height:60vh;z-index:8"></div>
         
@@ -206,18 +214,18 @@
             <!-- 
                 <input type="button" onclick="getLocation()" class=" btn btn-outline-primary btn-block mt-2" value="Get Current Location">
             -->
-            <h3> Select Location on Map OR paste the Google Map link.</h3>
-            <input type="text" class="form-control" id="loc" name="loc" aria-describedby="mobile" placeholder="google map link (Optional)" required>
-            <a class="h3 text-primary" data-toggle="modal" data-target="#howToGetLink" style="cursor:pointer"> How to get Link...? </a>
-            
-            <input type="button" class="col-12  pt-2 pb-2 mt-2 mb-2 btn btn-danger" m-2 value="Open Google Map"  onclick="window.location='https://www.google.com/maps/' ">
-            
+            <div class="col-md-12" id="gmap">
+                <input type="text" class="form-control" id="loc" name="loc" aria-describedby="mobile" placeholder="google map link (Optional)" required>
+                <a class="h3 text-primary" data-toggle="modal" data-target="#howToGetLink" style="cursor:pointer"> How to get Link...? </a>
+                
+                <input type="button" class="col-12  pt-2 pb-2 mt-2 mb-2 btn btn-danger" m-2 value="Open Google Map"  onclick="window.location='https://www.google.com/maps/' ">
+                
+            </div>
+          
             <input type="button" onclick="setLocation()" class=" btn btn-outline-primary btn-block mt-2" value="Set Your Location">
 
             <input type="button" name="Save" value="Share" onclick="sendInvite()" class="submitinvitation btn btn-primary btn-block mt-3">
-            <small>
-                Note : If you Want to set location with MellIndia's map then don't add google map Link...! 
-            </small>
+          
 
         </form>
 
@@ -373,6 +381,17 @@
                 var k;
                 document.all ? k = e.keyCode : k = e.which;
                 return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
+            }
+
+            function showGML(){
+                
+                document.getElementById('loc').value = null;
+                document.getElementById('map').style.display = "none";
+                document.getElementById('gmap').style.display = "block";
+            }
+            function showM(){
+                document.getElementById('map').style.display = "block";
+                document.getElementById('gmap').style.display = "none";
             }
 </script>
 
