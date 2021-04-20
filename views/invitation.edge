@@ -194,11 +194,11 @@ font-family:'play';
 
                         @if(dt.loc)
 
-                            <input type="button" class="col-12  pt-2 pb-2 mt-2 mb-2 btn btn-success m-2" value="Locate to destination" data-title="Venue" data-intro="Click here to open venue / celebraion location in Google map." onclick="window.location='{{dt.loc}}' ">
+                            <input type="button" class="col-12  pt-2 pb-2 mt-2 mb-2 btn btn-success m-2" value="Locate to destination" data-title="Venue" data-intro="Click here to open venue or location of celebration in Google map." onclick="window.location='{{dt.loc}}' ">
     
                         @else
 
-                            <input type="button" class="col-12  pt-2 pb-2 mt-2 mb-2 btn btn-success m-2" value="Locate to destination" data-title="Venue" data-intro="Click here to open venue / Celebraion location in Google map." onclick="window.location='https://www.google.com/maps/search/?api=1&query={{dt.lat}},{{dt.lng}}' ">
+                            <input type="button" class="col-12  pt-2 pb-2 mt-2 mb-2 btn btn-success m-2" value="Locate to destination" data-title="Venue" data-intro="Click here to open venue or location of celebration in Google map." onclick="window.location='https://www.google.com/maps/search/?api=1&query={{dt.lat}},{{dt.lng}}' ">
 
                         @endif
 
