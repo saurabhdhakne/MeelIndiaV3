@@ -62,7 +62,7 @@ module.exports = async (req, res) => {
         (error, post) => {
             
           console.log(error, post);
-          res.redirect("invitationCustom?id="+post._id)
+          res.redirect("invitationCustom2?id="+post._id)
 
           // nodemailer.createTestAccount((err, account) => {
           //   let transporter = nodemailer.createTransport({
