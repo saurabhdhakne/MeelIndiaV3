@@ -12,7 +12,7 @@ const passport = require('passport')
 
 require('./passport-setup')
 
-//const expressSession = require("express-session");
+// const expressSession = require("express-session");
 
 const expressSession = require("cookie-session");
 
@@ -99,6 +99,7 @@ const addUserData3 = require("./Controllers/addUserData3");
 const greetingCustomCreateDB = require("./Controllers/greetingCustomCreateDB");
 const greetingCreateCustom = require("./Controllers/greetingCreateCustom");
 const greetingCustomDelete = require("./Controllers/greetingCustomDelete");
+const invitation2 = require("./Controllers/invitation2");
 
 
 // create application/json parser
@@ -127,7 +128,7 @@ app.use(
     saveUninitialized: false, //dont save the session which is empty
 
     cookie: {
-      maxAge: 1800000, //Session liftime
+      maxAge: 30 * 24 * 60 * 60 * 1000, //Session liftime
       sameSite: true,
       secure: IN_PROD, //set true when application is in production mode and false when it is in development mode
     },
@@ -229,6 +230,8 @@ app.post("/invitationCreate", urlencodedParser, invitationCreateDB);
 app.post("/invitationCustomCreateDB", urlencodedParser, invitationCustomCreateDB);
 
 app.get("/invitation", invitation);
+
+app.get("/invitation2", invitation2);
 
 app.get("/invitationCustom", invitationCustom);
 

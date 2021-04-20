@@ -11,6 +11,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
+<link href="https://unpkg.com/intro.js/minified/introjs.min.css" rel="stylesheet"> 
+<link href="https://unpkg.com/intro.js/themes/introjs-modern.css" rel="stylesheet"> 
+<script src="https://unpkg.com/intro.js/minified/intro.min.js"></script>
+
+
 <style>
 
     @import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@700&display=swap');
@@ -59,7 +64,7 @@
         width: 350px;
         margin:auto;
         background: cover;
-        font-family: 'Dancing Script', cursive;
+        font-family: Edwardian Script ITC, bold;
         /* background: url( "./invitationBg/birthday.png"); */
         background-size:100% 100% ;
         padding-top: 350px;
@@ -175,7 +180,7 @@
         <ul class="text-center col-12" style="text-decoration:none; list-style:none">
                 <li class=""> <input type="button" onclick="changeNameFont()" class=" btn btn-primary bg-primary" value="Change Font"> </li>
         </ul>      
-        <div class="invite shadowme" id="inviteBody">
+        <div class="invite shadowme" id="inviteBody" data-title="Invitation" data-intro="Fill the data in the invitation.">
             <img src="" id="bgInvite" alt="">
             <div class="dataInvite">
                 <input type="text" id="subtitle" name="subtitle" maxlength="30" onkeypress="return blockSpecialChar(event)" class="ytedit h4 inputInvite text-center" value="" placeholder=""> 
@@ -184,7 +189,7 @@
                 </textarea><br>
                 <textarea rows="4" id="content" name = "content" maxlength="130"  onkeypress="return blockSpecialChar(event)" class="ytedit form-control inputInvite text-center text-light h3" style="font-size:1.2em;" id="content">The fun of a special day is incomplete without the presence of our friends. You are most cordially invited to our baby’s birthday party!
                 </textarea><br>
-                <input type="datetime-local" class="ytedit form-control p inputInvite text-center text-light mb-0 col-6 offset-3 btn bg-danger" name="dateTime" id="dateTime"  value="2021-06-12T19:30">
+                <input type="datetime-local" data-title="Date and Time" data-intro="Enter the date and time of celebration." class="ytedit form-control p inputInvite text-center text-light mb-0 col-6 offset-3 btn bg-danger" name="dateTime" id="dateTime"  value="2021-06-12T19:30">
             </div>
         </div>
         <div class="col-12 text-center">
@@ -194,16 +199,16 @@
     <div class="col-md-6 col-sm-6" onload="">
         <form action="" class="col-md-12 col-sm-12">
             <div class="form-group">
-                <input type="text" class="form-control" id="lat" name="lat" aria-describedby="mobile" placeholder="lat" required>
+                <input type="hidden" class="form-control" id="lat" name="lat" aria-describedby="" placeholder="lat" required>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" id="lng" name="lng" aria-describedby="mobile" placeholder="lng" required>
+                <input type="hidden" class="form-control" id="lng" name="lng" aria-describedby="" placeholder="lng" required>
             </div>
             <input type="hidden" name="location" value="">
             
             <div class="d-flex">
-                <input type="button" value="Use Map" class="btn btn-danger m-2" onclick="showM()">
-                <input type="button" value="Add Google Map Link" class="btn btn-danger m-2" onclick="showGML()">
+                <input type="button" value="Use Map" class="btn btn-danger m-2" data-title="Use Map" data-intro="You can use the MapmyIndia ( Indian technology company, that builds digital map data) to search venue" onclick="showM()">
+                <input type="button" value="Add Google Map Link" class="btn btn-danger m-2" onclick="showGML()" data-title="Google Map Link" data-intro="Or you can paste google map link.">
             </div>
 
             {{--  <input type="text" class="form-control mb-2" placeholder="Search Location..." onchange="getLocations()">  --}}
@@ -224,7 +229,7 @@
           
             <input type="button" onclick="setLocation()" class=" btn btn-outline-primary btn-block mt-2" value="Set Your Location">
 
-            <input type="button" name="Save" value="Share" onclick="sendInvite()" class="submitinvitation btn btn-primary btn-block mt-3">
+            <input type="button" name="Save" value="Share" onclick="sendInvite()" data-title="Final Step: Click here to create your digital invitation" data-intro="Click here after you done filling all the details." class="submitinvitation btn btn-primary btn-block mt-3">
           
 
         </form>
@@ -257,7 +262,7 @@
 
 </script>
 <script>
-    var bgImg, type, nameFont = " Dancing Script, cursive",bodyFont= " Dancing Script, cursive",subFont =  " Dancing Script, cursive";
+    var bgImg, type, nameFont = "Edwardian Script ITC, bold",bodyFont= "Edwardian Script ITC, bold",subFont =  "Edwardian Script ITC, bold";
  
     function invite_birthday(){
         document.getElementById("inviteBody").style.backgroundImage = "url('./invitationBg/birthday.png')";
@@ -347,7 +352,7 @@
                                 alert("Your invite created successfully");
                                 strText = this.responseText;
                                 strText = strText.slice(1,-1);
-                                window.location="invitation?id="+strText;
+                                window.location="invitation2?id="+strText;
                             }
                         }
                         
@@ -424,4 +429,8 @@
       </div>
     </div>
   </div>
+
+  <script>
+      introJs().start();
+  </script>
 @endsection
