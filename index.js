@@ -83,6 +83,7 @@ const invitationCreateDB = require("./Controllers/invitationCreateDB");
 const invitationCustomCreateDB = require("./Controllers/invitationCustomCreateDB");
 const invitation = require("./Controllers/invitation");
 const invitationCustom = require("./Controllers/invitationCustom");
+const invitationCustom2 = require("./Controllers/invitationCustom2");
 const inviteUpdate = require("./Controllers/inviteUpdate");
 const inviteDelete = require("./Controllers/inviteDelete");
 const inviteCustomDelete = require("./Controllers/inviteCustomDelete");
@@ -234,6 +235,8 @@ app.get("/invitation", invitation);
 app.get("/invitation2", invitation2);
 
 app.get("/invitationCustom", invitationCustom);
+
+app.get("/invitationCustom2", invitationCustom2);
 
 app.get("/engangement", engangementPravinNikita);
 
