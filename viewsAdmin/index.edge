@@ -1,0 +1,79 @@
+@layout('layout.app')
+
+@section('content')
+
+            <!-- Content Row -->
+            <div class="row">
+            
+                  <div class="col-xl-3 col-md-6 mb-4">
+                      <div class="card border-left-success shadow h-100 py-2">
+                          <div class="card-body">
+                          <div class="row no-gutters align-items-center">
+                              <div class="col mr-2">
+                              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total orders</div>
+                              <div class="h5 mb-0 font-weight-bold text-gray-800" id="total"> {{ len1 }} </div>
+                              </div>
+                              <div class="col-auto">
+                              <i class="fas fa-check fa-2x text-gray-300"></i>
+                              </div>
+                          </div>
+                          </div>
+                      </div>
+                  </div>
+
+            </div>
+            
+            <div class="row">
+  
+              <!-- Area Chart -->
+              
+              <!-- Content Column -->
+                <div class="col-xl-12 mb-4">
+  
+                  <!-- Project Card Example -->
+                  <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-primary">Order Details</h6>
+                    </div>
+                    <div class="card-body row">
+
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">fname</th>
+                          <th scope="col">lname</th>
+                          <th scope="col">Gender</th>
+                          <th scope="col">Mobile</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Invitations</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                    
+                          @each(dt in userData)
+                                <tr>
+                                      <td> {{dt.fname}} </td>
+                                      <td> {{dt.lname}} </td>
+                                      <td> {{dt.email}} </td>
+                                      <td> {{dt.gender}} </td>
+                                      <td> {{dt.contact}} </td>
+                                      <td> {{dt.active}} </td>
+                                      <td> <input type="button" class="btn btn-outline-primary" value="Invitations & Greetings" onclick="window.open('invitations?email={{ dt.email }}','__blank') "> </td>
+                                </tr>
+                          @endeach
+
+                        </tbody>
+                      </table>
+
+
+                    </div>
+                  </div>
+                  
+                </div>
+        
+  
+            
+            </div>
+
+@endsection

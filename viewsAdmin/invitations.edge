@@ -1,0 +1,164 @@
+@layout('layout.app')
+
+@section('content')
+
+            <!-- Content Row -->
+            <div class="row">
+            
+                  <div class="col-xl-3 col-md-6 mb-4">
+                      <div class="card border-left-success shadow h-100 py-2">
+                          <div class="card-body">
+                          <div class="row no-gutters align-items-center">
+                              <div class="col mr-2">
+                              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Invitations</div>
+                              <div class="h5 mb-0 font-weight-bold text-gray-800" id="total"> {{ length1 }} </div>
+                              </div>
+                              <div class="col-auto">
+                              <i class="fas fa-check fa-2x text-gray-300"></i>
+                              </div>
+                          </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Custom Invitations</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="total"> {{ length2 }} </div>
+                            </div>
+                            <div class="col-auto">
+                            <i class="fas fa-check fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Greetings</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="total"> {{ length3 }} </div>
+                            </div>
+                            <div class="col-auto">
+                            <i class="fas fa-check fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Custom Greetings</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="total"> {{ length4 }} </div>
+                            </div>
+                            <div class="col-auto">
+                            <i class="fas fa-check fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="row">
+  
+              <!-- Area Chart -->
+              
+              <!-- Content Column -->
+                <div class="col-xl-12 mb-4">
+  
+                  <!-- Project Card Example -->
+                  <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-primary">Order Details</h6>
+                    </div>
+                    <div class="card-body row">
+
+               
+                        <div class="col-md-3 p-2">
+                            <div class="col-12 card ">
+                                <h1 class="text-center mt-3 mb-3 text-dark">INVITATIONS</h1>
+                                @each(dt in invitations)
+
+                                <hr>
+                                        <h5>Title : {{ dt.title}}  </h5>
+                                        <p>Type :  {{dt.type }}  </p>
+                                        <input type="button" class="btn btn-sm btn-outline-primary" value="open" onclick="window.open('https://meelindia.com/invitation??id={{ dt._id }}','__blank') "> 
+        
+                                @endeach
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-3 p-2">
+                            <div class="col-12 card ">
+                                <h1 class="text-center mt-3 mb-3 text-dark">CUSTOM INV.</h1>
+                                @each(dt in invitationsCustom)
+
+                                <hr>
+                                        <h5>Title : {{ dt.title}}  </h5>
+                                        <p>Type :  {{dt.type }}  </p>
+                                        <input type="button" class="btn btn-sm btn-outline-primary" value="open" onclick="window.open('https://meelindia.com/invitation??id={{ dt._id }}','__blank') "> 
+        
+                                @endeach
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-3 p-2">
+                            <div class="col-12 card ">
+                                <h1 class="text-center mt-3 mb-3 text-dark">GREETINGS</h1>
+                                @each(dt in greetings)
+
+                                <hr>
+                                        <h5>Title : {{ dt.title}}  </h5>
+                                        <p>Type :  {{dt.type }}  </p>
+                                        <input type="button" class="btn btn-sm btn-outline-primary" value="open" onclick="window.open('https://meelindia.com/invitation??id={{ dt._id }}','__blank') "> 
+        
+                                @endeach
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-3 p-2">
+                            <div class="col-12 card ">
+                                <h1 class="text-center mt-3 mb-3 text-dark">CUSTOM GRE.</h1>
+                                @each(dt in greetingCustom)
+
+                                <hr>
+                                        <h5>Title : {{ dt.title}}  </h5>
+                                        <p>Type :  {{dt.type }}  </p>
+                                        <input type="button" class="btn btn-sm btn-outline-primary" value="open" onclick="window.open('https://meelindia.com/invitation??id={{ dt._id }}','__blank') "> 
+        
+                                @endeach
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                  </div>
+                  
+                </div>
+        
+  
+            
+            </div>
+
+@endsection
