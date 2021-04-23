@@ -1,0 +1,56 @@
+@layout('layout.app')
+
+@section('content')
+    <div class="constainer-fluid">
+
+        <div class="container-fluid">
+            <div class="row blogHead d-flex justify-content-center align-items-center">
+                <h1 class="display-3 text-light font-weight-bold text-center col-md-10"> 
+                    @each(dt in blogs)
+                    
+                    {{ dt.title }} 
+                    
+                    @endeach
+                     </h1>
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+            <div class="row blogsAll">
+                
+                @each(dt in blogs)
+                
+                <div class="col-md-10 offset-md-1 mb-4 rounded">
+                    <div class="col-md-12 bg-white card shadowme p-0">
+                    
+                            <div id="content" class="col-10 offset-md-1">
+                                {{{dt.content}}}
+                            </div>
+                            
+                            
+                        <br>
+                        <hr>
+                        <br>
+                        <div class="col-12 text-center h3 pb-4">
+                            <div class="col-md-12 mb-2"> Found Useful ? Share with...</div> 
+                            <a class="socialbtn h1 m-2" href="whatsapp://send?text=https://meelindia.com/blogPost?id={{dt._id}}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> 
+                            <a class="socialbtn h1 m-2" href="https://www.facebook.com/sharer/sharer.php?u=https://meelindia.com/blogPost?id={{dt._id}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a> 
+                            <a class="socialbtn h1 m-2" onclick='myFunction("{{dt._id}}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>
+                        </div>
+
+                    </div>
+                </div>
+                
+                @endeach
+                <script>
+                        function myFunction(str) {
+                                var copyText = 'https://meelindia.com/blogPost?id='+str;
+                                navigator.clipboard.writeText(copyText);
+                                alert("Copied the text: " + copyText);
+                            }
+                </script>
+            </div>
+        </div>
+    </div>
+        
+@endsection

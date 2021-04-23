@@ -12,6 +12,8 @@ mongoose.set("useUnifiedTopology", true);
 
 module.exports = (req, res) => {
   try {
+    console.log(req.body);
+    
     if(req.body.email == "admin@mail.com" && req.body.password == "123" ){
      
       req.session.userType = "admin";

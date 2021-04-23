@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="shortcut icon" href="./icons/meelindia.png" type="image/x-icon">  
 
 <style>
       
@@ -210,7 +211,6 @@
     }
     .classinitial{
       background: none;
-      
     }
     .classfinal{
       background: #fd5195;
@@ -231,7 +231,6 @@
     .classfinal .greetingBlock2 a{
         color: black;
     }
-
 
     .greetingBlock{
       position:absolute; list-style:none; background:snow; padding:10px; display: none;
@@ -266,12 +265,52 @@
         box-shadow: 1px 0px 10px;
       }
 
+      .blogHead{
+        min-height: 70vh;
+        background: url('./images/blog.jpg');
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover; 
+       margin-top: -10vh;
+       z-index: 1;
+
+      }
+      .blogHead h1{
+        text-shadow: .3px 3px 5px rgba(0, 0, 0, .7);
+        -webkit-text-stroke-width: .5px;
+        -webkit-text-stroke-color: black;
+        position: absolute;
+        font-family: 'Century Gothic';
+        z-index: 1;
+      }
+      .blogsAll{
+        margin-top: -15vh;
+        z-index: 6;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      }
+      hr.bhr{
+        height:15px;
+        background: #f1f1f1;
+        box-shadow:0 2px 5px rgba(0,0,0,.5);
+        z-index: 1;
+
+      }
+
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
   }
 
       @media (max-width: 768px) {
+        
+        .blogHead h1{
+          font-size:2em;
+        }
+        .blogsAll .card{
+          overflow-x:hidden; 
+        }
+        
         nav{
           text-align: right;
         }
@@ -404,6 +443,9 @@
     <li class="nav-item pr-3">
       <a class="nav-link" href="/about">  <i class="fa fa-info" aria-hidden="true"></i> &nbsp; About</a>
     </li>
+    <li class="nav-item pr-3">
+      <a class="nav-link" href="/blog">  <i class="fa fa-info" aria-hidden="true"></i> &nbsp; Blog</a>
+    </li>
       
     @if(!user)
 
@@ -487,6 +529,9 @@
         </li>
         <li class="nav-item pr-3">
           <a class="nav-link" href="/about">  <i class="fa fa-info" aria-hidden="true"></i> &nbsp; About</a>
+        </li>
+        <li class="nav-item pr-3">
+          <a class="nav-link" href="/blog">  <i class="fa fa-info" aria-hidden="true"></i> &nbsp; Blog</a>
         </li>
           
         @if(!user)
@@ -592,6 +637,10 @@
             
             <li class="nav-item pr-3">
               <a class="nav-link" href="/about">About</a>
+            </li>
+
+            <li class="nav-item pr-3">
+              <a class="nav-link" href="/blog">Blog</a>
             </li>
               
             @if(!user)

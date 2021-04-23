@@ -1,0 +1,55 @@
+@layout('layout.app')
+
+@section('content')
+
+<script src="./ckeditor/ckeditor.js"></script>
+
+            <!-- Content Row -->
+            <div class="row">
+                  <!-- Content Column -->
+                  <div class="col-xl-12 mb-4">
+  
+                    <!-- Project Card Example -->
+                    <div class="card shadow mb-4">
+                      <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Create a Blog</h6>
+                      </div>
+                      <div class="card-body row">
+                      <form action="blogCreate" method="POST" class="col-12" >
+                          
+                          <div class="form-group ">
+                              <label for="exampleInputEmail1 ">Title</label>
+                              <input type="text" name="title" class="form-control" id="title" aria-describedby="help" placeholder="Enter the title" required> 
+                          </div>
+                     
+                            <div class="form-group p-2">
+                                  <label class="form-label" for="fileToUpload">Select Image</label>
+                                  <input type="text" name="img" class="form-control" id="img" aria-describedby="help" placeholder="Enter the url of image" required> 
+                            </div>
+  
+                          <textarea name="content" id="editor1" rows="50" cols="80" >
+                              Write Blog here, You Can also add images!!!
+                          </textarea>
+                          
+                          <div class="col-12 pt-5 text-center">
+                              <input type="submit" class="btn btn-primary btn-lg" value="Submit Blog">
+                          </div>
+  
+                     </form>
+                              <script>
+                                  // Replace the <textarea id="editor1"> with a CKEditor 4
+                                  // instance, using default configuration.
+                                  CKEDITOR.replace( 'editor1' );
+                              </script>
+                      </div>
+                    </div>
+                    
+                  </div>
+            </div>
+
+            <script>
+                function updateTotal(){
+                  document.getElementById("total").innerHTML = "<?php echo $lengths ; ?> " ; 
+                }updateTotal();
+          </script>
+@endsection

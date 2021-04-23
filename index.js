@@ -34,6 +34,10 @@ const httpsOptions = {
 //Controllers
 const indexRoute = require("./Controllers/index");
 
+// blog
+const blog = require("./Controllers/blog");
+const blogPost = require("./Controllers/blogPost");
+
 // registration
 const signUpUser = require("./Controllers/signUpUser");
 const addUserData = require("./Controllers/addUserData");
@@ -157,6 +161,10 @@ app.get("/help", help);
 app.get("/about", about);
 
 app.get("/contact", contact);
+
+app.get("/blog", blog);
+
+app.get("/blogPost", blogPost);
 
 app.get("/logout", (req, res, next) => {
   if (req.session) {

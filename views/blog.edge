@@ -1,0 +1,45 @@
+@layout('layout.app')
+
+@section('content')
+    <div class="constainer-fluid">
+
+        <div class="container-fluid">
+            <div class="row blogHead d-flex justify-content-center align-items-center">
+                <h1 class="display-2 text-light font-weight-bold text-center col-md-3"> Blog <hr class="bhr"> </h1>
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+            <div class="row blogsAll">
+                
+                @each(dt in blogs)
+                
+                <div class="col-md-3 mb-4 rounded">
+                    <div class="col-md-12 bg-white card shadowme p-0">
+                        <img src="{{ dt.img }}" width="100%" alt="Blogs Image" class="rounded">
+                        <h4 class="mt-3 col-12 text-center">{{ dt.title }} </h4>
+                        <p class="col-12 text-right"> {{ dt.dateTime }}  <hr> </p>
+                        
+                        <div class="col-12 text-center h3">
+                            <a class="socialbtn h1 m-2" href="whatsapp://send?text=https://meelindia.com/blogPost?id={{dt._id}}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> 
+                            <a class="socialbtn h1 m-2" href="https://www.facebook.com/sharer/sharer.php?u=https://meelindia.com/blogPost?id={{dt._id}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a> 
+                            <a class="socialbtn h1 m-2" onclick='myFunction("{{dt._id}}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>
+                     </div>
+
+                        <a href="blogPost?id={{ dt._id }}" class="btn btn-primary btn-block">Read More...</a>
+                    </div>
+                </div>
+                
+                @endeach
+                <script>
+                    function myFunction(str) {
+                            var copyText = 'https://meelindia.com/blogPost?id='+str;
+                            navigator.clipboard.writeText(copyText);
+                            alert("Copied the text: " + copyText);
+                        }
+            </script>
+            </div>
+        </div>
+    </div>
+        
+@endsection

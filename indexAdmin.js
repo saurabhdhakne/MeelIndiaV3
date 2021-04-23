@@ -36,14 +36,20 @@ const indexRoute = require("./ControllersAdmin/index");
 const adminLogin = require("./ControllersAdmin/adminLogin");
 const signInUser = require("./ControllersAdmin/signInUser");
 const invitation = require("./ControllersAdmin/invitations");
+const blogs = require('./ControllersAdmin/blogs');
+const blogCreate = require('./ControllersAdmin/blogCreate');
+const blogCreateDB = require("./ControllersAdmin/blogCreateDB");
+const blogDelete = require("./ControllersAdmin/blogDelete");
 
 // create application/json parser
+
 var jsonParser = bodyParser.json();
 
 app.use(bodyParser.json({ limit: "10mb", extended: true }));
+
 // create application/x-www-form-urlencoded parser
 
-var urlencodedParser = bodyParser.urlencoded({ extended: true, limit: "10mb" });
+var urlencodedParser = bodyParser.urlencoded({ extended: true, limit: "16mb" });
 
 app.use(express.static("publicAdmin"));
 
@@ -90,6 +96,14 @@ app.post("/signInUser", urlencodedParser, signInUser);
 
 app.get("/invitations", urlencodedParser, invitation);
 
+app.get("/blogs", redirectLoginUser, blogs);
+
+app.get("/blogCreate", redirectLoginUser, blogCreate);
+
+app.post("/blogCreate", urlencodedParser, blogCreateDB);
+
+app.get("/blogDelete",redirectLoginUser, blogDelete);
+
 app.get("/logout", (req, res, next) => {
   if (req.session) {
     req.session = null;
@@ -97,7 +111,7 @@ app.get("/logout", (req, res, next) => {
   res.redirect("/");
 });
 
-// app.use(notfound);
+// app.use("notfound");
 
 server.listen(process.env.PORT3, () => {
   console.log(`HTTP App listening on port ${process.env.PORT3}`);
