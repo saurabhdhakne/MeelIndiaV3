@@ -27,8 +27,9 @@ module.exports = (req, res) => {
           if (result.length > 0) {
             invitationData = result;
             res.render("invitationCustom2", {
-                invitations : invitationData,
-              });
+              invitations : invitationData,
+            });
+            console.log(invitationData[0]._id);
           }
         });
 
