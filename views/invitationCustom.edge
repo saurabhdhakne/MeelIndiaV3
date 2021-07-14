@@ -141,15 +141,16 @@ img{
                 </div>
                 <div class="col-md-8 offset-md-2 mb-2 text-center">
                     <div class="d-flex justify-content-center">
-                    @if(dt.loc)
+                    
+                        @if(dt.loc)
 
-                        <input type="button" class="col-12  pt-2 pb-2 mt-2 mb-2 btn btn-success m-2" value="Locate to destination"  onclick="window.location='{{dt.loc}}' ">
+                            <input type="button" class="col-12  pt-2 pb-2 mt-2 mb-2 btn btn-success m-2" value="Locate to destination" data-title="Venue" data-intro="Click here to open venue or location of celebration in Google map." onclick="window.location='{{dt.loc}}' ">
+    
+                        @else
 
-                    @else
+                            <input type="button" class="col-12  pt-2 pb-2 mt-2 mb-2 btn btn-success m-2" value="Locate to destination" data-title="Venue" data-intro="Click here to open venue or location of celebration in Google map." onclick="window.location='https://www.google.com/maps/search/?api=1&query={{dt.lat}},{{dt.lng}}' ">
 
-                        <input type="button" class="col-12  pt-2 pb-2 mt-2 mb-2 btn btn-success m-2" value="Locate to destination"  onclick="window.location='https://www.google.com/maps/search/?api=1&query={{dt.lat}},{{dt.lng}}' ">
-
-                    @endif
+                        @endif
                             {{--  <a class="socialbtn h1 d-flex  m-2" href="whatsapp://send?text=The%20generated%20link%20is%20digital%20invitation%20carddevelop%20by%20MeelIndia%20https://meelindia.com/invitationCustom?id={{dt._id}}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>   --}}
                             {{--  <a class="socialbtn h1 d-flex  m-2" href="https://www.facebook.com/sharer/sharer.php?u=https://meelindia.com/invitationCustom?id={{dt._id}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>   --}}
                             <!-- <a class="socialbtn d-flex row" href="https://www.instagram.com/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-instagram" aria-hidden="true"></i></a>  -->

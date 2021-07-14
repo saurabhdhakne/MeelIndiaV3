@@ -148,24 +148,21 @@ img{
                 <div class="col-md-8 offset-md-2 mb-2 text-center">
                     <div class="d-flex justify-content-center">
                     @if(dt.loc)
-
                         <input type="button" class="col-12  pt-2 pb-2 mt-2 mb-2 btn btn-success m-2" value="Locate to destination"  onclick="window.location='{{dt.loc}}' ">
-
                     @else
-
                         <input type="button" class="col-12  pt-2 pb-2 mt-2 mb-2 btn btn-success m-2" value="Locate to destination"  onclick="window.location='https://www.google.com/maps/search/?api=1&query={{dt.lat}},{{dt.lng}}' ">
-
                     @endif
-                            <a class="socialbtn h1 d-flex  m-2" href="{{dt.image}}" download> <i class="fa fa-download" aria-hidden="true"></i></a>
-                          
+                        <a class="socialbtn h1 d-flex  m-2" href="{{dt.image}}" download> <i class="fa fa-download" aria-hidden="true"></i></a>
                     </div>
             </div> 
                 
         </div>
              
             @endeach
+
             <input type="button" value="MeelIndia Home" class="btn btn-danger m-2 col-md-6" onclick="window.location='profileUser'">
             <input type="button" value="Create Your Own Invitation / Greeting" class="btn btn-danger m-2 col-md-5 offset-md-2" onclick="window.location='SignUpUser'">
+            
             <br> <br>
             
 
