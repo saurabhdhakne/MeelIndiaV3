@@ -14,7 +14,9 @@ require('./passport-setup')
 
 // const expressSession = require("express-session");
 
-const expressSession = require("cookie-session");
+const expressSession = require("express-session");
+
+const mongoDBSession = require('connect-mongodb-session')(expressSession);
 
 const path = require("path");
 
@@ -105,6 +107,7 @@ const greetingCustomCreateDB = require("./Controllers/greetingCustomCreateDB");
 const greetingCreateCustom = require("./Controllers/greetingCreateCustom");
 const greetingCustomDelete = require("./Controllers/greetingCustomDelete");
 const invitation2 = require("./Controllers/invitation2");
+const { session } = require("passport");
 
 
 // create application/json parser
@@ -123,6 +126,13 @@ config({ cache: process.env.NODE_ENV === "production" });
 // Automatically sets view engine and adds dot notation to app.render
 app.use(engine);
 
+var url = `${process.env.db}`;
+
+const store = new mongoDBSession({
+  uri : url,
+  collection: "mysession"
+});
+
 const IN_PROD = process.env.NODE_ENV === "production";
 
 app.use(
@@ -131,6 +141,7 @@ app.use(
     resave: false, // do not store if it never modified
     secret: process.env.SESSION_SECRETE, // secrete key which we dont't want expose to client
     saveUninitialized: false, //dont save the session which is empty
+    store:store,
 
     cookie: {
       maxAge: 30 * 24 * 60 * 60 * 1000, //Session liftime

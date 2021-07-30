@@ -24,6 +24,7 @@ module.exports = (req, res) => {
         console.log("Unable to connect");
       } else {
 
+
         invitationData = [];
         invitationData2 = [];
         greetingData = [];
@@ -44,7 +45,7 @@ module.exports = (req, res) => {
                 userData = result[0];
                 req.session.userType = "user";
                 req.session.email = result[0].email;
-                
+
                 await invitation.find({ email: req.session.email }, (err, result1) => {
                   if (err) throw err;
                   if (result1.length > 0) {
