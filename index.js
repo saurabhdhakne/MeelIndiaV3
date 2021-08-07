@@ -245,7 +245,7 @@ app.get("/invitationCreate", redirectLoginUser, invitationCreate);
 
 app.get("/invitationCreateCustom", redirectLoginUser, invitationCreateCustom);
 
-app.post("/invitationCreate", urlencodedParser, invitationCreateDB);
+app.post("/invitationCreate", urlencodedParser, invitationCreateDB); 
 
 app.post("/invitationCustomCreateDB", urlencodedParser, invitationCustomCreateDB);
 
