@@ -99,6 +99,7 @@ const engangementPravinNikita = require("./Controllers/engangementPravinNikita")
 const greetingCreate = require("./Controllers/greetingCreate");
 const greetingCreateDB = require("./Controllers/greetingCreateDB");
 const greeting = require("./Controllers/greeting");
+const greeting2 = require("./Controllers/greeting2");
 const greetingCustom = require("./Controllers/greetingCustom");
 const greetingUpdate = require("./Controllers/greetingUpdate");
 const greetingDelete = require("./Controllers/greetingDelete");
@@ -288,6 +289,8 @@ app.post("/greetingCreate", urlencodedParser, greetingCreateDB);
 app.post("/greetingCustomCreateDB", urlencodedParser, greetingCustomCreateDB);
 
 app.get("/greeting", greeting);
+
+app.get("/greeting2", greeting2);
 
 app.get("/greetingCustom", greetingCustom);
 
