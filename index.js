@@ -178,9 +178,12 @@ app.get("/blog", blog);
 app.get("/blogPost", blogPost);
 
 app.get("/logout", (req, res, next) => {
-  if (req.session) {
-    req.session = null;
-  }
+  // if (req.session) {
+  //   req.session = null;
+  // }
+  req.session.destroy((err) => {
+    if(err) throw err;
+  })
   res.redirect("/");
 });
 
