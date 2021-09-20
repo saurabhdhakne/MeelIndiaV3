@@ -109,6 +109,7 @@ const greetingCreateCustom = require("./Controllers/greetingCreateCustom");
 const greetingCustomDelete = require("./Controllers/greetingCustomDelete");
 const invitation2 = require("./Controllers/invitation2");
 const { session } = require("passport");
+const askForQuote = require("./Controllers/askForQuote");
 
 
 // create application/json parser
@@ -314,6 +315,8 @@ app.post(
   redirectLoginUser,
   greetingCustomDelete
 );
+
+app.post("/askForQuote", urlencodedParser,redirectLoginUser, askForQuote);
 
 // Google auth
 

@@ -181,7 +181,7 @@ font-family:'play';
               
                 <div class="col-md-12 d-flex justify-content-center mb-5">
 
-                    <a class="socialbtn h1 d-flex  mr-4" href="whatsapp://send?text=The%20generated%20link%20is%20digital%20invitation%20carddevelop%20by%20MeelIndia%20https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> 
+                    <a class="socialbtn h1 d-flex  mr-4" href="whatsapp://send?text=The%20generated%20link%20is%20digital%20invitation%20carddevelop%20by%20MeelIndia%09%09%09%09Meelindia%20is%20the%20first%20ever%20initiative%20started%20by%20preneurs%20group%20which%20will%20help%20you%20generating%20unique%20kind%20of%20digital%20cardshttps://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> 
                     <a class="socialbtn h1 d-flex  mr-3" href="https://www.facebook.com/sharer/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-facebook-official" aria-hidden="true"></i></a> 
                     {{--  <a class="socialbtn h1 d-flex  ml-3" href="https://www.instagram.com/sharer.php?u=https://meelindia.com/invitation?id={{dt._id}}"><i class="fa fa-instagram" aria-hidden="true"></i></a>   --}}
                     <a class="socialbtn h1 d-flex  ml-4" onclick='myFunction("{{ dt._id }}");'> <i class="fa fa-copy" aria-hidden="true"></i></a>
@@ -210,6 +210,7 @@ font-family:'play';
 
                         @endif
                         
+                            <input type="button" data-toggle="modal" data-target="#exampleModal" class="col-12  pt-2 pb-2 mt-2 mb-2 btn btn-dark m-2" value="Get Hardcopy ( Ask for Quote )" >
                             
                     </div>
                         <a class="socialbtn h1 col-12 m-2 display-1" onclick="doCapture();" > <i class="fa fa-download" aria-hidden="true"></i></a>
@@ -264,5 +265,37 @@ font-family:'play';
             introJs().start();
         </script>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ask For Quote</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-2">
+        <form method="POST" id="askForQuote" action="/askForQuote">>
+          <div class="form-group">
+            <label for="fName" class="col-form-label">Full Name : </label>
+            <input type="text" class="form-control" name="fname" id="fname">
+          </div>
+          <div class="form-group">
+            <label for="mobile" class="col-form-label">Mobile No : </label>
+            <input type="text" class="form-control" name="mobile" id="mobile">
+          </div>
+          <div class="form-group">
+            <label for="quantity" class="col-form-label">Quantity : </label>
+            <input type="text" class="form-control" name="quantity" id="quantity">
+          </div>
+          <button type="button" class="btn btn-primary mt-3 mb-3 btn-block">Ask for Quote</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
