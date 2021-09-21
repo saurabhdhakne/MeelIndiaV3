@@ -27,6 +27,7 @@ module.exports = async (req, res) => {
                 user: `${process.env.email}`, //Gmail username
                 pass: `${process.env.emailpass}`, // Gmail password
               },
+              
             });
     
             let mailOptions = {
@@ -35,14 +36,21 @@ module.exports = async (req, res) => {
               subject: "MeelIndia : Ask For Quote",
               html: `<h1>Invitation Created Successully.</h1> <br> <br> 
                <br><br> 
-              <h2> Email : ${userEmail} <br> Name : ${req.body.fname} <br> Mobile : ${req.body.mobile} <br> Quantity : ${req.body.quantity} </h2> `,
+              <h2> Email : ${userEmail} <br> Name : ${req.body.fname} <br> Mobile : ${req.body.mobile} <br> Quantity : ${req.body.quantity} </h2>
+              <br><br>
+              <a href='meelindia.com/invitation2?id=${req.body.ivid}' > Invitation </a>'           
+              `,
             };
+            
             transporter.sendMail(mailOptions, (error, info) => {
               if (error) {
                 return console.log(error);
+                res.send(error);
+              }else{
+                console.log("Message sent: %s", info.messageId);
+                res.render("askForQuoteSuccess");
               }
-              console.log("Message sent: %s", info.messageId);
-              res.render("askForQuoteSuccess");
+
               db.close();
             });
           });

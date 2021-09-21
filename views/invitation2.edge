@@ -172,6 +172,7 @@ font-family:'play';
 </style>
 </head>
 <body>
+ 
 <div class="containetr">
    
     <div class="col-md-6 offset-md-3 pb-5">
@@ -210,9 +211,11 @@ font-family:'play';
 
                         @endif
                         
-                            <input type="button" data-toggle="modal" data-target="#exampleModal" class="col-12  pt-2 pb-2 mt-2 mb-2 btn btn-dark m-2" value="Get Hardcopy ( Ask for Quote )" >
                             
                     </div>
+                        
+
+                        <a class="socialbtn h1 col-12 m-2 display-1" data-title="Ask For Quote" data-intro="Click here and fill the details to Get the hardcopy at your doorstep." data-toggle="modal" data-target="#ModalAFQ" > <i class="fa fa-print" aria-hidden="true"></i></a>
                         <a class="socialbtn h1 col-12 m-2 display-1" onclick="doCapture();" > <i class="fa fa-download" aria-hidden="true"></i></a>
                 </div> 
                 
@@ -265,37 +268,47 @@ font-family:'play';
             introJs().start();
         </script>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ask For Quote</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body p-2">
-        <form method="POST" id="askForQuote" action="/askForQuote">>
-          <div class="form-group">
-            <label for="fName" class="col-form-label">Full Name : </label>
-            <input type="text" class="form-control" name="fname" id="fname">
+
+<!-- Button trigger modal -->
+     <!-- Modal -->
+     <div class="modal fade" id="ModalAFQ" tabindex="-1" role="dialog" aria-labelledby="ModalAFQLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ModalAFQLabel">Ask For Quote</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" id="askForQuote" action="/askForQuote">
+                    <input type="hidden" name="ivid" value="{{ invitations[0]._id }}" id="ivid">
+                    <div class="form-group">
+                      <label for="fName" class="col-form-label">Full Name : </label>
+                      <input type="text" class="form-control" name="fname" id="fname">
+                    </div>
+                    <div class="form-group">
+                      <label for="mobile" class="col-form-label">Mobile No : </label>
+                      <input type="text" class="form-control" name="mobile" id="mobile">
+                    </div>
+                    <div class="form-group">
+                      <label for="quantity" class="col-form-label">Quantity : </label>
+                      <input type="text" class="form-control" name="quantity" id="quantity">
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3 mb-3 btn-block">Ask for Quote</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="mobile" class="col-form-label">Mobile No : </label>
-            <input type="text" class="form-control" name="mobile" id="mobile">
-          </div>
-          <div class="form-group">
-            <label for="quantity" class="col-form-label">Quantity : </label>
-            <input type="text" class="form-control" name="quantity" id="quantity">
-          </div>
-          <button type="button" class="btn btn-primary mt-3 mb-3 btn-block">Ask for Quote</button>
-        </form>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+
 </body>
 </html>
